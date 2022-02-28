@@ -10,51 +10,55 @@ class FindingLocation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = AppColor(context);
     return Stack(
       children: [
-        LayoutBuilder(builder: (context, size) {
-          var cal = const BoxConstraintCalculator(
-            maxWidth: 250,
-            widthFactor: 0.45,
-          );
-          final width = cal.getWidth(size);
-          final height = width;
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                width: double.infinity,
-              ),
-              const Spacer(flex: 3),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'finding_your_location'.tr(),
-                    style: AppTextStyle(context).bodyMedium,
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  Container(
-                    child: Stack(
-                      alignment: Alignment.topCenter,
-                      children: [
-                        Image.asset(Assets.images.deliveryaddressImgmap.path,
-                            width: width, height: height),
-                        PinLoadingIcon(
-                          size: (width ?? 100) / 5,
-                          duration: const Duration(milliseconds: 1000),
-                        )
-                      ],
+        Container(
+          color: colors.homeBg,
+          child: LayoutBuilder(builder: (context, size) {
+            var cal = const BoxConstraintCalculator(
+              maxWidth: 250,
+              widthFactor: 0.45,
+            );
+            final width = cal.getWidth(size);
+            final height = width;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  width: double.infinity,
+                ),
+                const Spacer(flex: 3),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      'finding_your_location'.tr(),
+                      style: AppTextStyle(context).bodyMedium,
                     ),
-                  )
-                ],
-              ),
-              const Spacer(flex: 4),
-            ],
-          );
-        }),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    Container(
+                      child: Stack(
+                        alignment: Alignment.topCenter,
+                        children: [
+                          Image.asset(Assets.images.deliveryaddressImgmap.path,
+                              width: width, height: height),
+                          PinLoadingIcon(
+                            size: (width ?? 100) / 5,
+                            duration: const Duration(milliseconds: 1000),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                const Spacer(flex: 4),
+              ],
+            );
+          }),
+        ),
         Padding(
           padding: const EdgeInsets.all(38.0),
           child: NotifyBubble.badWeather(context),

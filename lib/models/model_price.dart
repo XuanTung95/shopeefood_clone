@@ -8,7 +8,7 @@ class Price {
   Price.fromJson(Map<String, dynamic> json) {
     text = json['text'];
     unit = json['unit'];
-    value = json['value'];
+    value = (json['value'] as num?)?.toDouble();
   }
 
   Map<String, dynamic> toJson() {

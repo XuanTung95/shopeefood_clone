@@ -7,9 +7,11 @@ class AppImageNetworkWidget extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit? fit;
+  final Widget? loadingWidget;
+  final Widget? errorWidget;
 
   const AppImageNetworkWidget(
-      {Key? key, this.url, this.width, this.height, this.fit})
+      {Key? key, this.url, this.width, this.height, this.fit, this.loadingWidget, this.errorWidget})
       : super(key: key);
 
   @override
@@ -23,16 +25,16 @@ class AppImageNetworkWidget extends StatelessWidget {
       loadStateChanged: (ExtendedImageState state) {
         switch (state.extendedImageLoadState) {
           case LoadState.loading:
-            return Image.asset(
+            return loadingWidget ?? Image.asset(
               Assets
                   .images
-                  .nodeModulesShopeernCommonimagesAssetsCommonimageLoadingplaceholder2img
+                  .assetsImgPlaceholderItem
                   .path,
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             );
           case LoadState.failed:
             return GestureDetector(
-              child: Image.asset(
+              child: errorWidget ?? Image.asset(
                 Assets
                     .images
                     .nodeModulesShopeernCommonimagesAssetsCommonimageLoadingplaceholderimg

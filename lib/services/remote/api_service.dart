@@ -7,10 +7,13 @@ import 'package:shopeefood_clone/models/model_delivery.dart';
 import 'package:shopeefood_clone/models/model_dish.dart';
 import 'package:shopeefood_clone/models/model_flash_sale.dart';
 import 'package:shopeefood_clone/models/model_location_response.dart';
+import 'package:shopeefood_clone/models/model_order.dart';
 import 'package:shopeefood_clone/services/remote/remote_url.dart';
 
 import '../../models/model_category.dart';
 import '../../models/model_meta_response.dart';
+import '../../models/model_notifications.dart';
+import '../../models/model_user_profile.dart';
 
 part 'api_service.g.dart';
 
@@ -45,4 +48,17 @@ abstract class ApiRestClient {
 
   @GET(urlGetFlashSale)
   Future<FlashSaleResponse> getFlashSale();
+
+  @GET(urlGetOrderHistory)
+  Future<OrderResponse> getOrderHistory();
+
+
+  @GET(urlGetMostOrdered)
+  Future<DeliveryResponse> getMostOrdered();
+
+  @GET(urlGetNotifications)
+  Future<NotificationResponse> getNotifications();
+
+  @GET(urlGetUserProfile)
+  Future<ModelUserProfileResponse> getUserProfile();
 }

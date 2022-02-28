@@ -7,11 +7,15 @@ class AppColor {
 
   Color get primaryColor => _themeData.primaryColor;
 
+  Color get profileBg => const Color(0xFFf76032);
+
   Color get bottomBarBg => Colors.white;
 
   Color get homeBg => Colors.white;
 
   Color get homeDividerBg => const Color(0xfff4f6f8);
+
+  Color get linkAccount => const Color(0xFFFFF8E4);
 
   Color get homeSearchBarBg => const Color(0xFFF5F5F5);
 

@@ -49,6 +49,8 @@ dependencies:
   sliver_tools: ^0.2.5
   modal_bottom_sheet: ^2.0.0
 
+  flutter_html: ^2.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

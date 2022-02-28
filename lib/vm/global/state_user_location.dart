@@ -19,12 +19,17 @@ class StateUserLocation extends ChangeNotifier {
 
   Future<void> _getUserLocationWithRetry() async {
     _loading = true;
-    final response = await retry(
-      () => _getUserLocation(),
-      retryIf: (e) => true,
-    );
+    try {
+      final response = await retry(
+            () => _getUserLocation(),
+        retryIf: (e) => false,
+      );
+      _currentLocation = response;
+    } catch (e) {
+      logger.e(e);
+    }
     _loading = false;
-    _currentLocation = response;
+    await Future.delayed(Duration(seconds: 2));
     notifyListeners();
   }
 

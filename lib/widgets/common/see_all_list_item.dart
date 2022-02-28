@@ -11,7 +11,7 @@ class SeeAllListItem extends StatelessWidget {
         Image.asset(
           Assets.images
               .nodeModulesShopeernCommonimagesAssetsCommoniconShowmoreicon.path,
-          width: 35,
+          width: 30,
         ),
         const SizedBox(height: 10,),
         Text(

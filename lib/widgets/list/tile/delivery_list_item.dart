@@ -4,10 +4,17 @@ import 'package:shopeefood_clone/widgets/common/app_image_widget.dart';
 import '../../../utils/common_import.dart';
 import '../../bottom_sheet/bottom_sheet_select_restaurant.dart';
 
-class DeliveryListItem extends StatelessWidget {
+class ViewDeliveryTypeVerticalList extends StatelessWidget {
   final ModelDelivery data;
+  final bool isLike;
+  final bool showOutlets;
 
-  const DeliveryListItem({Key? key, required this.data}) : super(key: key);
+  const ViewDeliveryTypeVerticalList(
+      {Key? key,
+      required this.data,
+      this.isLike = false,
+      this.showOutlets = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +71,8 @@ class DeliveryListItem extends StatelessWidget {
                     child: AppImageNetworkWidget(
                       url: ImageUtils.getIconImage(data.label?.photos),
                       fit: BoxFit.fitWidth,
+                      loadingWidget: SizedBox(),
+                      errorWidget: SizedBox(),
                     ),
                   ),
                 ),
@@ -203,47 +212,61 @@ class DeliveryListItem extends StatelessWidget {
   buildOutletsRow(BuildContext context) {
     final textStyle = AppTextStyle(context);
     int outletsCount = (data.brand?.restaurantCount ?? 1) - 1;
-    if (outletsCount < 1) {
-      return const SizedBox();
-    }
-    return GestureDetector(
-      onTap: () {
-        showModalBottomSheet(
-            context: context,
-            builder: (context) {
-              return BottomSheetSelectRestaurant(shop: data,);
-            },
-            isScrollControlled: true,
-            constraints: const BoxConstraints.expand(),
-            backgroundColor: Colors.transparent);
-      },
-      child: Padding(
-        padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-        child: RichText(
-          text: TextSpan(
-            text: 'rebranding.home_brand_restaurant_count'.tr(
-              args: [outletsCount.toString()],
-            ),
-            style: textStyle.bodySmallGrey,
-            children: const [
-              WidgetSpan(
-                child: Icon(
-                  Icons.chevron_right_sharp,
-                  size: 14,
-                  color: Colors.grey,
+    return Row(
+      children: [
+        Expanded(
+          child: (outletsCount < 1 || !showOutlets)
+              ? SizedBox(height: 10,)
+              : GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return BottomSheetSelectRestaurant(
+                            shop: data,
+                          );
+                        },
+                        isScrollControlled: true,
+                        constraints: const BoxConstraints.expand(),
+                        backgroundColor: Colors.transparent);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0, bottom: 8),
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'rebranding.home_brand_restaurant_count'.tr(
+                          args: [outletsCount.toString()],
+                        ),
+                        style: textStyle.bodySmallGrey,
+                        children: const [
+                          WidgetSpan(
+                            child: Icon(
+                              Icons.chevron_right_sharp,
+                              size: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          ),
         ),
-      ),
+        if (isLike) Padding(
+          padding: const EdgeInsets.only(right: 10.0, bottom: 5),
+          child: Image.asset(Assets.images.assetsImgCommonLike.path, width: 18,),
+        ),
+      ],
     );
   }
 }
 
 class DeliveryListItemLoading extends StatelessWidget {
   final Color loadingColor = Colors.grey[200]!;
-  DeliveryListItemLoading({Key? key,}) : super(key: key);
+
+  DeliveryListItemLoading({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -305,7 +328,10 @@ class DeliveryListItemLoading extends StatelessWidget {
 
   buildNameRow(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10, bottom: 10,),
+      padding: const EdgeInsets.only(
+        top: 10,
+        bottom: 10,
+      ),
       child: FractionallySizedBox(
         widthFactor: 0.6,
         child: Container(
@@ -330,7 +356,9 @@ class DeliveryListItemLoading extends StatelessWidget {
               height: 15,
             ),
           ),
-          const Spacer(flex: 4,),
+          const Spacer(
+            flex: 4,
+          ),
           Expanded(
             flex: 4,
             child: Container(
@@ -339,7 +367,9 @@ class DeliveryListItemLoading extends StatelessWidget {
               height: 12,
             ),
           ),
-          const Spacer(flex: 2,),
+          const Spacer(
+            flex: 2,
+          ),
         ],
       ),
     );
@@ -358,7 +388,9 @@ class DeliveryListItemLoading extends StatelessWidget {
               height: 15,
             ),
           ),
-          const Spacer(flex: 1,),
+          const Spacer(
+            flex: 1,
+          ),
           Expanded(
             flex: 2,
             child: Container(
@@ -367,13 +399,14 @@ class DeliveryListItemLoading extends StatelessWidget {
               height: 15,
             ),
           ),
-          const Spacer(flex: 8,),
+          const Spacer(
+            flex: 8,
+          ),
         ],
       ),
     );
   }
 }
-
 
 class RedBorderText extends StatelessWidget {
   final String text;

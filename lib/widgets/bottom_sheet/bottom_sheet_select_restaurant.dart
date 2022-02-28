@@ -122,7 +122,7 @@ class _BottomSheetSelectRestaurantState
                               var item = state.pageData.data[index];
                               return Column(
                                 children: [
-                                  DeliveryListItem(
+                                  ViewDeliveryTypeVerticalList(
                                     data: item,
                                   ),
                                   const SizedBox(height: 5,),

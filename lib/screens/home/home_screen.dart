@@ -8,6 +8,10 @@ import '../../widgets/bottom_bar/home_bottom_nav_bar.dart';
 import '../../widgets/scroll_behavior/macos_scroll_behavior.dart';
 import 'local/location/finding_location.dart';
 import 'local/tabs/home/home_tab.dart';
+import 'local/tabs/like/like_tab.dart';
+import 'local/tabs/me/me_tab.dart';
+import 'local/tabs/notifications/noti_tab.dart';
+import 'local/tabs/order/my_order_tab.dart';
 
 // Size: 360.0 : 779.6666666666666
 class ScreenHome extends ConsumerWidget {
@@ -24,15 +28,19 @@ class ScreenHome extends ConsumerWidget {
         var stateBotNav = ref.watch(StateHomeBottomNav.provider);
         switch(stateBotNav.selected) {
           case HomeBottomNavName.HOME:
-            homeContent = const ScreenHomeTab();
+            homeContent = const TabHomeScreen();
             break;
           case HomeBottomNavName.MY_ORDER:
+            homeContent = TabMyOrderHome();
             break;
           case HomeBottomNavName.LIKES:
+            homeContent = TabLikeHome();
             break;
           case HomeBottomNavName.NOTIFICATION:
+            homeContent = TabNotificationHome();
             break;
           case HomeBottomNavName.ME:
+            homeContent = TabMeHomeView();
             break;
         }
         return Scaffold(

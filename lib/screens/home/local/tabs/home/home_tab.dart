@@ -14,21 +14,21 @@ import '../../../../../widgets/banner/home_banner_widget.dart';
 import '../../../../../widgets/flash_sale/flash_sale_countdown.dart';
 import '../../../../../widgets/grid/home_category_grid.dart';
 import '../../../../../widgets/list/home_now_service_categories_icon_row.dart';
-import '../../../../../widgets/list/home_now_service_categories_tabbar.dart';
+import '../../../../../widgets/tab_bar/home_now_service_categories_tabbar.dart';
 import '../../../../../widgets/list/tile/delivery_list_item.dart';
 import '../../../../../widgets/loading/loading_indicator.dart';
 import '../../../../../widgets/search_bar/home_search_bar_widget.dart';
 import '../../location/deliver_to_widget.dart';
 import 'home_collection_row.dart';
 
-class ScreenHomeTab extends ConsumerStatefulWidget {
-  const ScreenHomeTab({Key? key}) : super(key: key);
+class TabHomeScreen extends ConsumerStatefulWidget {
+  const TabHomeScreen({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ScreenHomeTab> createState() => _ScreenHomeTabState();
+  ConsumerState<TabHomeScreen> createState() => _ScreenHomeTabState();
 }
 
-class _ScreenHomeTabState extends ConsumerState<ScreenHomeTab> {
+class _ScreenHomeTabState extends ConsumerState<TabHomeScreen> {
   @override
   void initState() {
     super.initState();
@@ -174,7 +174,7 @@ class _ScreenHomeTabState extends ConsumerState<ScreenHomeTab> {
           var item = pageData.data[index];
           return Column(
             children: [
-              DeliveryListItem(
+              ViewDeliveryTypeVerticalList(
                 data: item,
               ),
               Container(

@@ -1,5 +1,6 @@
 
 import '../mixin/photo_mixin.dart';
+import 'model_delivery.dart';
 import 'model_label.dart';
 import 'model_photo.dart';
 import 'model_position.dart';
@@ -59,7 +60,7 @@ class ModelDish with PhotoMixin {
   Price? discountPrice;
   int? totalLike;
   String? displayTotalLike;
-  Delivery? delivery;
+  ModelDelivery? delivery;
   List<Photos>? photos;
   bool? isValid;
   int? limitType;
@@ -101,7 +102,7 @@ class ModelDish with PhotoMixin {
     totalLike = json['total_like'];
     displayTotalLike = json['display_total_like'];
     delivery = json['delivery'] != null
-        ? new Delivery.fromJson(json['delivery'])
+        ? new ModelDelivery.fromJson(json['delivery'])
         : null;
     if (json['photos'] != null) {
       photos = <Photos>[];
@@ -146,67 +147,6 @@ class ModelDish with PhotoMixin {
   }
 }
 
-class Delivery {
-  String? name;
-  int? cityId;
-  int? restaurantId;
-  int? prepareTime;
-  Label? label;
-  List<Photos>? photos;
-  Position? position;
-  String? nameEn;
-  int? id;
-
-  Delivery(
-      {this.name,
-        this.cityId,
-        this.restaurantId,
-        this.prepareTime,
-        this.label,
-        this.photos,
-        this.position,
-        this.nameEn,
-        this.id});
-
-  Delivery.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    cityId = json['city_id'];
-    restaurantId = json['restaurant_id'];
-    prepareTime = json['prepare_time'];
-    label = json['label'] != null ? new Label.fromJson(json['label']) : null;
-    if (json['photos'] != null) {
-      photos = <Photos>[];
-      json['photos'].forEach((v) {
-        photos!.add(new Photos.fromJson(v));
-      });
-    }
-    position = json['position'] != null
-        ? new Position.fromJson(json['position'])
-        : null;
-    nameEn = json['name_en'];
-    id = json['id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = name;
-    data['city_id'] = cityId;
-    data['restaurant_id'] = restaurantId;
-    data['prepare_time'] = prepareTime;
-    if (label != null) {
-      data['label'] = label!.toJson();
-    }
-    if (photos != null) {
-      data['photos'] = photos!.map((v) => v.toJson()).toList();
-    }
-    if (position != null) {
-      data['position'] = position!.toJson();
-    }
-    data['name_en'] = nameEn;
-    data['id'] = id;
-    return data;
-  }
-}
 
 
 

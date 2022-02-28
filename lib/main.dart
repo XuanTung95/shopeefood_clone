@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:shopeefood_clone/screens/home/home_screen.dart';
 import 'package:shopeefood_clone/screens/home/local/location/finding_location.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shopeefood_clone/screens/link_account/link_shopee_acount.dart';
+import 'package:shopeefood_clone/screens/notification_setting/screen_notification_setting.dart';
 import 'package:shopeefood_clone/screens/splash/screen_splash.dart';
 import 'package:shopeefood_clone/theme/app_text_style.dart';
 import 'package:shopeefood_clone/utils/money_utls.dart';
@@ -73,6 +75,16 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: '/home',
         builder: (context, state) => const ScreenHome(),
+        routes: [
+          GoRoute(
+            path: 'linkShopeeAccount',
+            builder: (context, state) => const LinkShopeeAcount(),
+          ),
+          GoRoute(
+            path: 'notificationSetting',
+            builder: (context, state) => const ScreenNotificationSetting(),
+          ),
+        ]
       ),
     ],
   );

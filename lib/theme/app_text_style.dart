@@ -23,6 +23,12 @@ class AppTextStyle {
       fontSize: 12,
       fontWeight: FontWeight.w600);
 
+  TextStyle get userName => TextStyle(
+      color: Colors.white,
+      fontFamily: fontFamily,
+      fontSize: 17,
+      fontWeight: FontWeight.w600);
+
   TextStyle get bodyBoldBlackBig => TextStyle(
       color: textColorBlack,
       fontFamily: fontFamily,
@@ -35,12 +41,29 @@ class AppTextStyle {
       fontSize: 13,
       fontWeight: FontWeight.w600);
 
+  TextStyle get bodySmall => TextStyle(
+      color: textColorBlack,
+      fontFamily: fontFamily,
+      fontSize: 13,
+      fontWeight: FontWeight.w400);
 
   TextStyle get bodyMedium => TextStyle(
       color: textColorBlack,
       fontFamily: fontFamily,
       fontSize: 14,
       fontWeight: FontWeight.w400);
+
+  TextStyle get bodyRegular => TextStyle(
+      color: textColorBlack,
+      fontFamily: fontFamily,
+      fontSize: 14.5,
+      fontWeight: FontWeight.w400);
+
+  TextStyle get appBarText => TextStyle(
+      color: textColorBlack,
+      fontFamily: fontFamily,
+      fontSize: 17,
+      fontWeight: FontWeight.w500);
 
   TextStyle get bodySmallGrey => TextStyle(
       color: textColorGrey3,
