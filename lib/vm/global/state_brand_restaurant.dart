@@ -4,35 +4,33 @@ import '../../services/remote_services.dart';
 import '../../utils/common_import.dart';
 
 class StateBrandRestaurant extends ChangeNotifier {
+  static final provider = ChangeNotifierProvider.family.autoDispose(
+    (ref, ModelDelivery shop) => StateBrandRestaurant(shop: shop),
+  );
+
   final ModelDelivery shop;
   final pageData = PageDataStoreWithId<ModelDelivery>();
-  bool isLoading = false;
 
   StateBrandRestaurant({required this.shop});
 
   Future loadData() async {
-    if (pageData.isLoading || pageData.isDone) {
-      logger.i(
-          'Skip loading: loading ${pageData.isLoading} done ${pageData.isDone}');
-      return;
-    }
-    int id = pageData.newId();
-    bool success = false;
-    try {
-      pageData.startLoading();
-      notifyListeners();
-      var api = RemoteService.getApiService();
-      var res = await api.getInfoOfBrand(shop.id ?? -1);
-      if (pageData.isValid(id) && res.reply?.deliveryInfos != null) {
-        pageData.loadSuccess(res.reply?.deliveryInfos ?? []);
-        success = true;
-      }
-    } catch (e,st) {
-      logger.e(st);
-    }
-    if (!success) {
-      pageData.loadError();
-    }
-    notifyListeners();
+    await pageData.loadMoreData(
+      onUpdate: () {
+        notifyListeners();
+      },
+      loadFunction: () async {
+        try {
+          var api = RemoteService.getApiService();
+          var res = await api.getInfoOfBrand(shop.id ?? -1);
+          if (res.reply?.deliveryInfos != null) {
+            return PageDataResponse(
+                data: res.reply?.deliveryInfos ?? [], isSuccess: true);
+          }
+        } catch (e, st) {
+          logger.e(st);
+        }
+        return PageDataResponse(isSuccess: false);
+      },
+    );
   }
 }

@@ -1,9 +1,10 @@
 import 'package:shopeefood_clone/models/model_dish.dart';
 import 'package:shopeefood_clone/utils/money_utls.dart';
+import 'package:shopeefood_clone/widgets/button/app_gesture_detector.dart';
 import 'package:shopeefood_clone/widgets/common/app_image_widget.dart';
 import 'package:shopeefood_clone/widgets/common/see_all_list_item.dart';
 
-import '../../models/model_collection.dart';
+import '../../routing/app_routing.dart';
 import '../../utils/common_import.dart';
 import '../common/add_icon_widget.dart';
 
@@ -31,8 +32,8 @@ class HomeDishScroll extends StatelessWidget {
             onTap: clickSeeAll,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Padding(
+              children: const [
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.0),
                   child: SeeAllListItem(),
                 ),
@@ -50,8 +51,13 @@ class HomeDishScroll extends StatelessWidget {
               : const EdgeInsets.only(
                   right: 10,
                 ),
-          child: DishItemWidget(
-            dish: collection,
+          child: AppGestureDetector(
+            onTap: () {
+              AppRouting.goToShopDetailScreen(context);
+            },
+            child: DishItemWidget(
+              dish: collection,
+            ),
           ),
         );
       },
@@ -69,8 +75,9 @@ class DishItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var colors = AppColor(context);
     var textStyle = AppTextStyle(context);
-    return AspectRatio(
-      aspectRatio: 2.6 / 4,
+    return SizedBox(
+      height: double.infinity,
+      width: 130,
       child: Stack(
         children: [
           Container(
@@ -78,6 +85,7 @@ class DishItemWidget extends StatelessWidget {
               color: colors.homeCollectionItemBg,
               border: Border.all(
                 color: colors.homeItemBorder,
+                width: 0.5
               ),
             ),
             child: Column(
@@ -85,7 +93,7 @@ class DishItemWidget extends StatelessWidget {
                 Expanded(
                   flex: 7,
                   child: AppImageNetworkWidget(
-                    url: dish.getPhotoUrl ?? '',
+                    url: ImageUtils.getIconImage(dish.photos),
                     fit: BoxFit.cover,
                     width: double.infinity,
                   ),
@@ -165,8 +173,11 @@ class DishItemWidget extends StatelessWidget {
                                       )
                                     : const SizedBox(),
                               ),
-                              const AddIconWidget(
-                                size: 20,
+                              AppGestureDetector(
+                                onTap: () {  },
+                                child: const AddIconWidget(
+                                  size: 20,
+                                ),
                               ),
                             ],
                           ),

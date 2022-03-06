@@ -1,4 +1,4 @@
-
+import 'package:shopeefood_clone/models/list_data_store.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../../models/model_flash_sale.dart';
@@ -7,19 +7,36 @@ import '../../services/remote_services.dart';
 class StateFlashSale extends ChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateFlashSale());
 
-  List<ModelFlashSale> _ongoing = [];
-  List<ModelFlashSale> _comingSoon = [];
+  final _ongoing = PageDataStoreWithId<ModelFlashSale>();
+  final _comingSoon = PageDataStoreWithId<ModelFlashSale>();
 
-  List<ModelFlashSale> get ongoing => _ongoing;
+  PageDataStoreWithId<ModelFlashSale> get ongoing => _ongoing;
 
-  List<ModelFlashSale> get comingSoon => _comingSoon;
+  PageDataStoreWithId<ModelFlashSale> get comingSoon => _comingSoon;
 
   init() async {
     await Future.delayed(const Duration(seconds: 1));
-    var api = RemoteService.getApiService();
-    var res = await api.getFlashSale();
-    _ongoing = res.reply?.itemInfos ?? [];
-    _comingSoon = _ongoing;
-    notifyListeners();
+    _loadData(_ongoing);
+    _loadData(_comingSoon);
+  }
+
+  Future<void> _loadData(PageDataStoreWithId<ModelFlashSale> dataStore) async {
+    dataStore.loadMoreData(
+      onUpdate: () {
+        notifyListeners();
+      },
+      loadFunction: () async {
+        try {
+          var api = RemoteService.getApiService();
+          var res = await api.getFlashSale();
+          if (res.reply?.itemInfos != null) {
+            return PageDataResponse(data: res.reply?.itemInfos ?? []);
+          }
+        } catch (e) {
+          logger.e(e);
+        }
+        return PageDataResponse(isSuccess: false);
+      },
+    );
   }
 }

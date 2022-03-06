@@ -16,9 +16,9 @@ class HomeDishRow extends ConsumerWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10,),
+          padding: const EdgeInsets.only(left: 10, top: 8),
           child: SeeAllRow(
-            showSeeAll: stateDish.dish.length > 9,
+            showSeeAll: stateDish.dish.data.length > 9,
             onClick: () {},
             title: 'Thứ 2 hứng khởi mời deal 1Đ',
           ),
@@ -39,9 +39,10 @@ class HomeDishRow extends ConsumerWidget {
           child: HomeDishScroll(
             maxShowItem: 9,
             clickSeeAll: () {},
-            dishs: stateDish.dish,
+            dishs: stateDish.dish.data,
           ),
         ),
+        const SizedBox(height: 10,),
       ],
     );
   }

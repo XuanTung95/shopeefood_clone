@@ -22,7 +22,7 @@ class LikeFilterSelectItemViewState
 
   @override
   Widget build(BuildContext context) {
-    if (!isVisible) return SizedBox();
+    if (!isVisible) return const SizedBox();
     final textStyle = AppTextStyle(context);
     final vm = ref.watch(StateLikesTabFilter.provider);
     return Stack(
@@ -37,7 +37,7 @@ class LikeFilterSelectItemViewState
                     child:
                         ModalBarrier(color: Colors.black.withOpacity(0.4))))),
         Container(
-          constraints: BoxConstraints(maxHeight: 400),
+          constraints: const BoxConstraints(maxHeight: 400),
           color: Colors.white,
           child: ListView.builder(
             controller: ScrollController(),
@@ -79,7 +79,7 @@ class LikeFilterSelectItemViewState
                           ],
                         ),
                       ),
-                      Divider(),
+                      const Divider(),
                     ],
                   ),
                 ),

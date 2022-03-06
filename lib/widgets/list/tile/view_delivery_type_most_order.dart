@@ -1,6 +1,5 @@
-import 'package:shopeefood_clone/widgets/list/tile/delivery_list_item.dart';
+import 'package:shopeefood_clone/widgets/list/tile/view_delivery_list_item.dart';
 
-import '../../../models/model_collection.dart';
 import '../../../models/model_delivery.dart';
 import '../../../utils/common_import.dart';
 import '../../common/app_image_widget.dart';
@@ -15,14 +14,13 @@ class ViewDeliveryTypeMostOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     var colors = AppColor(context);
     var textStyle = AppTextStyle(context);
-    return AspectRatio(
-      aspectRatio: 2.6 / 4,
+    return SizedBox(
+      width: 130,
+      height: double.infinity,
       child: Container(
         decoration: BoxDecoration(
           color: colors.homeCollectionItemBg,
-          border: Border.all(
-            color: colors.homeItemBorder,
-          ),
+          border: Border.all(color: colors.homeItemBorder, width: 0.5),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,15 +71,18 @@ class ViewDeliveryTypeMostOrder extends StatelessWidget {
     String txt = '';
     if (item.promotionGroups?.isNotEmpty ?? false) {
       txt = item.promotionGroups![0].text ?? '';
-    };
+    }
+    ;
     return Expanded(
       flex: 3,
-      child: txt.isNotEmpty ? Padding(
-        padding: const EdgeInsets.only(bottom: 5, left: 10),
-        child: RedBorderText(
-          text: txt,
-        ),
-      ) : SizedBox(),
+      child: txt.isNotEmpty
+          ? Padding(
+              padding: const EdgeInsets.only(bottom: 5, left: 10),
+              child: RedBorderText(
+                text: txt,
+              ),
+            )
+          : const SizedBox(),
     );
   }
 }

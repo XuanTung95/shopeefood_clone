@@ -8,12 +8,12 @@ class FlashSaleResponse {
   FlashSaleResponse({this.reply, this.result});
 
   FlashSaleResponse.fromJson(Map<String, dynamic> json) {
-    reply = json['reply'] != null ? new ReplyFlashSale.fromJson(json['reply']) : null;
+    reply = json['reply'] != null ? ReplyFlashSale.fromJson(json['reply']) : null;
     result = json['result'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.reply != null) {
       data['reply'] = this.reply!.toJson();
     }
@@ -31,13 +31,13 @@ class ReplyFlashSale {
     if (json['item_infos'] != null) {
       itemInfos = <ModelFlashSale>[];
       json['item_infos'].forEach((v) {
-        itemInfos!.add(new ModelFlashSale.fromJson(v));
+        itemInfos!.add(ModelFlashSale.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.itemInfos != null) {
       data['item_infos'] = this.itemInfos!.map((v) => v.toJson()).toList();
     }
@@ -54,18 +54,18 @@ class ModelFlashSale {
 
   ModelFlashSale.fromJson(Map<String, dynamic> json) {
     dishInfo = json['dish_info'] != null
-        ? new DishInfo.fromJson(json['dish_info'])
+        ? DishInfo.fromJson(json['dish_info'])
         : null;
     flashSaleInfo = json['flash_sale_info'] != null
-        ? new FlashSaleInfo.fromJson(json['flash_sale_info'])
+        ? FlashSaleInfo.fromJson(json['flash_sale_info'])
         : null;
     deliveryInfo = json['delivery_info'] != null
-        ? new DeliveryInfo.fromJson(json['delivery_info'])
+        ? DeliveryInfo.fromJson(json['delivery_info'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.dishInfo != null) {
       data['dish_info'] = this.dishInfo!.toJson();
     }
@@ -81,7 +81,7 @@ class ModelFlashSale {
 
 class DishInfo {
   List<Photos>? photos;
-  Price? price;
+  ModelPrice? price;
   int? dishId;
   String? name;
 
@@ -91,16 +91,16 @@ class DishInfo {
     if (json['photos'] != null) {
       photos = <Photos>[];
       json['photos'].forEach((v) {
-        photos!.add(new Photos.fromJson(v));
+        photos!.add(Photos.fromJson(v));
       });
     }
-    price = json['price'] != null ? new Price.fromJson(json['price']) : null;
+    price = json['price'] != null ? ModelPrice.fromJson(json['price']) : null;
     dishId = json['dish_id'];
     name = json['name'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.photos != null) {
       data['photos'] = this.photos!.map((v) => v.toJson()).toList();
     }
@@ -115,7 +115,7 @@ class DishInfo {
 
 class FlashSaleInfo {
   int? sold;
-  Price? discountPrice;
+  ModelPrice? discountPrice;
   int? sessionId;
   int? stock;
 
@@ -124,14 +124,14 @@ class FlashSaleInfo {
   FlashSaleInfo.fromJson(Map<String, dynamic> json) {
     sold = json['sold'];
     discountPrice = json['discount_price'] != null
-        ? new Price.fromJson(json['discount_price'])
+        ? ModelPrice.fromJson(json['discount_price'])
         : null;
     sessionId = json['session_id'];
     stock = json['stock'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['sold'] = this.sold;
     if (this.discountPrice != null) {
       data['discount_price'] = this.discountPrice!.toJson();
@@ -174,7 +174,7 @@ class DeliveryInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['delivery_id'] = this.deliveryId;
     data['name'] = this.name;
     data['restaurant_id'] = this.restaurantId;

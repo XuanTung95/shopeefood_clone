@@ -4,7 +4,7 @@
 import '../../../../../routing/app_routing.dart';
 import '../../../../../utils/common_import.dart';
 import '../../../../../widgets/empty/no_order_to_rate.dart';
-import 'link_shopee_account_row.dart';
+import '../../../../../widgets/common/link_shopee_account_row.dart';
 
 class OrderToRateView extends StatelessWidget {
   const OrderToRateView({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class OrderToRateView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       buildLinkShopeeRow(context),
-      Expanded(child: NoOrderToRate()),
+      const Expanded(child: NoOrderToRate()),
     ],);
   }
 
@@ -22,7 +22,7 @@ class OrderToRateView extends StatelessWidget {
       onTap: () {
         AppRouting.goToLinkShopeeAcount(context);
       },
-      child: LinkShopeeAccountRow(),
+      child: const LinkShopeeAccountRow(),
     );
   }
 }

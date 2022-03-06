@@ -16,7 +16,7 @@ class AppBarDefault extends StatelessWidget {
               context.pop();
             },
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               color: Colors.transparent,
               child: Image.asset(Assets
                   .images

@@ -1,19 +1,24 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
+import 'package:shopeefood_clone/models/model_address.dart';
 import 'package:shopeefood_clone/models/model_ads_banner.dart';
 import 'package:shopeefood_clone/models/model_collection.dart';
 import 'package:shopeefood_clone/models/model_delivery.dart';
 import 'package:shopeefood_clone/models/model_dish.dart';
+import 'package:shopeefood_clone/models/model_feedback_response.dart';
 import 'package:shopeefood_clone/models/model_flash_sale.dart';
 import 'package:shopeefood_clone/models/model_location_response.dart';
+import 'package:shopeefood_clone/models/model_menu_response.dart';
 import 'package:shopeefood_clone/models/model_order.dart';
+import 'package:shopeefood_clone/models/model_shop_detail.dart';
 import 'package:shopeefood_clone/services/remote/remote_url.dart';
 
 import '../../models/model_category.dart';
 import '../../models/model_meta_response.dart';
 import '../../models/model_notifications.dart';
 import '../../models/model_user_profile.dart';
+import '../../models/model_voucher.dart';
 
 part 'api_service.g.dart';
 
@@ -61,4 +66,22 @@ abstract class ApiRestClient {
 
   @GET(urlGetUserProfile)
   Future<ModelUserProfileResponse> getUserProfile();
+
+  @GET(urlGetMyVoucher)
+  Future<ModelVoucherResponse> getMyVoucher();
+
+  @GET(urlGetInvalidVoucher)
+  Future<ModelVoucherResponse> getInvalidVoucher();
+
+  @GET(urlGetAddress)
+  Future<AddressResponse> getAddress();
+
+  @GET(urlGetShopDetail)
+  Future<ShopDetailResponse> getShopDetail();
+
+  @GET(urlGetMenu)
+  Future<ModelMenuResponse> getMenu();
+
+  @GET(urlGetFeedback)
+  Future<ModelFeedbackResponse> getFeedback();
 }

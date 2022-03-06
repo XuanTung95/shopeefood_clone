@@ -1,6 +1,5 @@
 
 
-import 'package:shopeefood_clone/mixin/photo_mixin.dart';
 
 import 'model_photo.dart';
 
@@ -11,16 +10,16 @@ class HomeSquareResponse {
   HomeSquareResponse({this.reply, this.result});
 
   HomeSquareResponse.fromJson(Map<String, dynamic> json) {
-    reply = json['reply'] != null ? new HomeSquareReply.fromJson(json['reply']) : null;
+    reply = json['reply'] != null ? HomeSquareReply.fromJson(json['reply']) : null;
     result = json['result'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.reply != null) {
-      data['reply'] = this.reply!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (reply != null) {
+      data['reply'] = reply!.toJson();
     }
-    data['result'] = this.result;
+    data['result'] = result;
     return data;
   }
 }
@@ -34,22 +33,22 @@ class HomeSquareReply {
     if (json['home_square_info'] != null) {
       homeSquareInfo = <ModelHomeSquare>[];
       json['home_square_info'].forEach((v) {
-        homeSquareInfo!.add(new ModelHomeSquare.fromJson(v));
+        homeSquareInfo!.add(ModelHomeSquare.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.homeSquareInfo != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (homeSquareInfo != null) {
       data['home_square_info'] =
-          this.homeSquareInfo!.map((v) => v.toJson()).toList();
+          homeSquareInfo!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class ModelHomeSquare with PhotoMixin {
+class ModelHomeSquare {
   String? title;
   String? url;
   int? displayOrder;
@@ -72,7 +71,7 @@ class ModelHomeSquare with PhotoMixin {
     if (json['photos'] != null) {
       photos = <Photos>[];
       json['photos'].forEach((v) {
-        photos!.add(new Photos.fromJson(v));
+        photos!.add(Photos.fromJson(v));
       });
     }
     id = json['id'];
@@ -80,15 +79,15 @@ class ModelHomeSquare with PhotoMixin {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['url'] = this.url;
-    data['display_order'] = this.displayOrder;
-    if (this.photos != null) {
-      data['photos'] = this.photos!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['url'] = url;
+    data['display_order'] = displayOrder;
+    if (photos != null) {
+      data['photos'] = photos!.map((v) => v.toJson()).toList();
     }
-    data['id'] = this.id;
-    data['pinned_position'] = this.pinnedPosition;
+    data['id'] = id;
+    data['pinned_position'] = pinnedPosition;
     return data;
   }
 }

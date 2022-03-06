@@ -1,11 +1,11 @@
-class Price {
+class ModelPrice {
   String? text;
   String? unit;
   double? value;
 
-  Price({this.text, this.unit, this.value});
+  ModelPrice({this.text, this.unit, this.value});
 
-  Price.fromJson(Map<String, dynamic> json) {
+  ModelPrice.fromJson(Map<String, dynamic> json) {
     text = json['text'];
     unit = json['unit'];
     value = (json['value'] as num?)?.toDouble();

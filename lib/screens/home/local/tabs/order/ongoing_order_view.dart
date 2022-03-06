@@ -11,7 +11,7 @@ class OngoingOrderView extends StatefulWidget {
 class _OngoingOrderViewState extends State<OngoingOrderView> {
   @override
   Widget build(BuildContext context) {
-    return OrderEmptyWidget();
+    return const OrderEmptyWidget();
   }
 
 }

@@ -10,8 +10,8 @@ class EmptyCartWidget extends StatelessWidget {
     final textStyle = AppTextStyle(context);
     return Column(
       children: [
-        SizedBox(width: double.infinity,),
-        Spacer(flex: 5,),
+        const SizedBox(width: double.infinity,),
+        const Spacer(flex: 5,),
         Expanded(
           flex: 3,
           child: Image.asset(Assets.images.nodeModulesShopeernCommonimagesAssetsCommonimageEmptycardicon.path),
@@ -31,7 +31,7 @@ class EmptyCartWidget extends StatelessWidget {
             style: textStyle.bodyMedium.copyWith(color: Colors.grey[600]!),
           ),
         ),
-        Spacer(flex: 5,),
+        const Spacer(flex: 5,),
       ],
     );
   }

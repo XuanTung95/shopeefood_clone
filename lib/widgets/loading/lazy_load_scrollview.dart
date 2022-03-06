@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 enum LoadingStatus { LOADING, STABLE }
 
 /// Signature for EndOfPageListeners
-typedef void EndOfPageListenerCallback();
+typedef EndOfPageListenerCallback = void Function();
 
 /// A widget that wraps a [Widget] and will trigger [onEndOfPage] when it
 /// reaches the bottom of the list

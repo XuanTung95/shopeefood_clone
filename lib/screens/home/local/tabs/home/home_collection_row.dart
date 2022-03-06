@@ -14,9 +14,12 @@ class HomeCollectionsRow extends ConsumerWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 10),
+          padding: const EdgeInsets.only(
+            left: 10,
+            top: 5,
+          ),
           child: SeeAllRow(
-            showSeeAll: stateCollection.collections.length > 9,
+            showSeeAll: stateCollection.collections.data.length > 9,
             onClick: () {},
             title: 'collections'.tr(),
           ),
@@ -26,8 +29,11 @@ class HomeCollectionsRow extends ConsumerWidget {
           child: HomeCollectionsScroll(
             maxShowItem: 9,
             clickSeeAll: () {},
-            collections: stateCollection.collections,
+            collections: stateCollection.collections.data,
           ),
+        ),
+        const SizedBox(
+          height: 10,
         ),
       ],
     );

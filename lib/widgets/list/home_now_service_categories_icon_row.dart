@@ -72,7 +72,7 @@ class _CategoryListItem extends StatelessWidget {
                       : Colors.grey.withOpacity(0.2),
                   Colors.grey.withOpacity(0.05),
                 ],
-                stops: [
+                stops: const [
                   0,
                   0.8,
                 ],

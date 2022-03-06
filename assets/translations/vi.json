@@ -1117,7 +1117,7 @@
   "expected_time": "Thời gian giao",
   "expired_captcha": "Mã xác nhận không đúng hoặc có thể đã hết hạn, vui lòng kiểm tra và thử lại",
   "expired_day_left": "{0} ngày còn lại",
-  "expired_days_left": "{0} ngày còn lại",
+  "expired_days_left": "{} ngày còn lại",
   "expired_hour_left": "{0} giờ còn lại",
   "expired_hours_left": "{0} giờ còn lại",
   "expired_minute_left": "{0} phút còn lại",

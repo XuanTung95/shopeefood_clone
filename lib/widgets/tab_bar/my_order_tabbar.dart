@@ -1,4 +1,5 @@
 import 'package:shopeefood_clone/vm/global/state_home_now_service_categories.dart';
+import 'package:shopeefood_clone/widgets/list/tile/divider_widget.dart';
 
 import '../../utils/common_import.dart';
 
@@ -31,41 +32,34 @@ class _MyOrderTabBarState
     var colors = AppColor(context);
     var textStyle = AppTextStyle(context);
     var style = textStyle.bodyBoldBlack;
-    return Container(
-      color: colors.homeBg,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 45,
-            child: TabBar(
-              onTap: (value) {
-                var state = ref.read(StateHomeNowServiceCategories.provider);
-                state.setSelectedFilter(value);
-                widget.onChanged?.call();
-              },
-              padding: EdgeInsets.zero,
-              indicatorPadding: EdgeInsets.zero,
-              labelPadding: const EdgeInsets.symmetric(horizontal: 1),
-              indicatorColor: colors.primaryColor,
-              labelColor: colors.primaryColor,
-              labelStyle: style,
-              unselectedLabelStyle: style.copyWith(fontWeight: FontWeight.w400),
-              unselectedLabelColor: textStyle.textColorBlack,
-              controller: widget.controller,
-              tabs: [
-                buildTabItem('Ongoing'),
-                buildTabItem('History'),
-                buildTabItem("Top Rate"),
-                buildTabItem('Cart'),
-              ],
-            ),
+    return DividerWidget(
+      child: Container(
+        color: colors.homeBg,
+        child: SizedBox(
+          height: 45,
+          child: TabBar(
+            onTap: (value) {
+              var state = ref.read(StateHomeNowServiceCategories.provider);
+              state.setSelectedFilter(value);
+              widget.onChanged?.call();
+            },
+            padding: EdgeInsets.zero,
+            indicatorPadding: EdgeInsets.zero,
+            labelPadding: const EdgeInsets.symmetric(horizontal: 1),
+            indicatorColor: colors.primaryColor,
+            labelColor: colors.primaryColor,
+            labelStyle: style,
+            unselectedLabelStyle: style.copyWith(fontWeight: FontWeight.w400),
+            unselectedLabelColor: textStyle.textColorBlack,
+            controller: widget.controller,
+            tabs: [
+              buildTabItem('Ongoing'),
+              buildTabItem('History'),
+              buildTabItem("Top Rate"),
+              buildTabItem('Cart'),
+            ],
           ),
-          Container(
-            height: 1,
-            width: double.infinity,
-            color: Colors.grey[100],
-          ),
-        ],
+        ),
       ),
     );
   }

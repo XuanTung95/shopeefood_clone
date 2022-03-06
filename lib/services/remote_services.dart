@@ -1,17 +1,22 @@
 import 'package:shopeefood_clone/services/remote/api_service.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/base_fake_api.dart';
+import 'package:shopeefood_clone/services/remote/fake_api/fake_address.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_ads_banner.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_api_notification.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_collections_api.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_delivery_item_list.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_dish_api.dart';
+import 'package:shopeefood_clone/services/remote/fake_api/fake_feedback.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_flashsale.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_get_info_of_brand.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_home_square_api.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_meta_data.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_most_ordered.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_order_history.dart';
+import 'package:shopeefood_clone/services/remote/fake_api/fake_shop_detail.dart';
+import 'package:shopeefood_clone/services/remote/fake_api/fake_shop_menus.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_user_profile.dart';
+import 'package:shopeefood_clone/services/remote/fake_api/fake_voucher.dart';
 
 import '../utils/common_import.dart';
 
@@ -39,6 +44,12 @@ class FakeApiInterceptor extends Interceptor {
     FakeMostOrdered(),
     FakeNotification(),
     FakeUserProfile(),
+    FakeVoucher(),
+    FakeInvalidVoucher(),
+    FakeAddress(),
+    FakeShopDetail(),
+    FakeShopMenu(),
+    FakeFeedback(),
   ];
 
   @override

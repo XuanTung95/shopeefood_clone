@@ -1,7 +1,4 @@
 
-
-
-
 const String urlGetCollectionInfo = 'collection/getInfo';
 const String urlGetDishInfo = 'dish/getInfo';
 const String urlGetHomeSquareInfo = 'home/square/getInfo';
@@ -14,3 +11,9 @@ const String urlGetOrderHistory = 'order/getOrderHistory';
 const String urlGetMostOrdered = 'order/getMostOrdered';
 const String urlGetNotifications = 'notification/get';
 const String urlGetUserProfile = 'user/profile';
+const String urlGetMyVoucher = 'user/myVoucher';
+const String urlGetInvalidVoucher = 'user/invalidVoucher';
+const String urlGetAddress = 'user/address';
+const String urlGetShopDetail = 'shop/detail';
+const String urlGetMenu = 'shop/getMenu';
+const String urlGetFeedback = 'shop/getFeedback';

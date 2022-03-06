@@ -40,6 +40,8 @@ class UserAvatarWidget extends ConsumerWidget {
 }
 
 class DefaultUserAvatar extends StatelessWidget {
+  const DefaultUserAvatar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Image.asset(

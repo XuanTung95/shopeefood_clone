@@ -23,13 +23,7 @@ class ScrollDayPickerItem extends StatefulWidget {
     required this.selectedDate,
     required this.onChanged,
     this.selectableDayPredicate,
-  }) : assert(currentDate != null),
-        assert(displayedMonth != null),
-        assert(firstDate != null),
-        assert(lastDate != null),
-        assert(selectedDate != null),
-        assert(onChanged != null),
-        assert(!firstDate.isAfter(lastDate)),
+  }) : assert(!firstDate.isAfter(lastDate)),
         assert(!selectedDate.isBefore(firstDate)),
         assert(!selectedDate.isAfter(lastDate)),
         super(key: key);
@@ -123,8 +117,9 @@ class _ScrollDayPickerItemState extends State<ScrollDayPickerItem> {
       result.add(ExcludeSemantics(
         child: Center(child: Text(weekday, style: headerStyle)),
       ));
-      if (i == (localizations.firstDayOfWeekIndex - 1) % 7)
+      if (i == (localizations.firstDayOfWeekIndex - 1) % 7) {
         break;
+      }
     }
     return result;
   }

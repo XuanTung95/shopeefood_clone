@@ -1,5 +1,4 @@
 
-import '../mixin/photo_mixin.dart';
 import 'model_delivery.dart';
 import 'model_label.dart';
 import 'model_photo.dart';
@@ -50,14 +49,14 @@ class DishReply {
   }
 }
 
-class ModelDish with PhotoMixin {
+class ModelDish {
   int? totalOrder;
   //List<Null>? campaigns;
   String? name;
   String? displayTotalOrder;
-  Price? price;
+  ModelPrice? price;
   int? discountRemainingQuantity;
-  Price? discountPrice;
+  ModelPrice? discountPrice;
   int? totalLike;
   String? displayTotalLike;
   ModelDelivery? delivery;
@@ -94,10 +93,10 @@ class ModelDish with PhotoMixin {
     // }
     name = json['name'];
     displayTotalOrder = json['display_total_order'];
-    price = json['price'] != null ? new Price.fromJson(json['price']) : null;
+    price = json['price'] != null ? new ModelPrice.fromJson(json['price']) : null;
     discountRemainingQuantity = json['discount_remaining_quantity'];
     discountPrice = json['discount_price'] != null
-        ? new Price.fromJson(json['discount_price'])
+        ? new ModelPrice.fromJson(json['discount_price'])
         : null;
     totalLike = json['total_like'];
     displayTotalLike = json['display_total_like'];

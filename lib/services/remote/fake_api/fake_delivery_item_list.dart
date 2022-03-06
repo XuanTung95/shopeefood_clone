@@ -750,7 +750,6 @@ class FakeDeliveryItemList extends BaseFakeApi {
 
   @override
   dynamic response() {
-    print('_count = $_count');
     switch ((++_count) % 4) {
       case 0:
         return jsonDecode(_json);

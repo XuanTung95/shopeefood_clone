@@ -1,5 +1,5 @@
 
-import '../mixin/photo_mixin.dart';
+
 import 'model_photo.dart';
 
 class ModelCollectionResponse {
@@ -46,7 +46,7 @@ class Reply {
   }
 }
 
-class ModelCollection with PhotoMixin  {
+class ModelCollection {
   String? description;
   List<Photos>? photos;
   int? foodyServiceId;

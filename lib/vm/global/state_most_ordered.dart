@@ -1,29 +1,47 @@
+import 'package:shopeefood_clone/models/list_data_store.dart';
 import 'package:shopeefood_clone/services/remote_services.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../../models/model_delivery.dart';
 
 class StateMostOrdered extends ChangeNotifier {
-
   static final provider =
-  ChangeNotifierProvider<StateMostOrdered>((ref) => StateMostOrdered());
+      ChangeNotifierProvider<StateMostOrdered>((ref) => StateMostOrdered());
 
-  List<ModelDelivery> _mostOrdered = [];
-  List<ModelDelivery> _liked = [];
+  PageDataStoreWithId<ModelDelivery> _mostOrdered =
+      PageDataStoreWithId<ModelDelivery>();
+  PageDataStoreWithId<ModelDelivery> _liked =
+      PageDataStoreWithId<ModelDelivery>();
 
-  List<ModelDelivery> get liked => _liked;
+  PageDataStoreWithId<ModelDelivery> get liked => _liked;
 
-  List<ModelDelivery> get mostOrdered => _mostOrdered;
+  PageDataStoreWithId<ModelDelivery> get mostOrdered => _mostOrdered;
 
   void init() {
     _getMostOrdered();
   }
 
   _getMostOrdered() async {
-    var api = RemoteService.getApiService();
-    var res = await api.getMostOrdered();
-    _mostOrdered = res.reply?.deliveryInfos ?? [];
-    _liked = _mostOrdered;
-    notifyListeners();
+    await Future.wait(
+      [
+        _getOrderData(_mostOrdered),
+        _getOrderData(_liked),
+      ],
+    );
+  }
+
+  Future<void> _getOrderData(PageDataStoreWithId<ModelDelivery> store) async {
+    await store.loadMoreData(onUpdate: () {
+      notifyListeners();
+    }, loadFunction: () async {
+      try {
+        var api = RemoteService.getApiService();
+        var res = await api.getMostOrdered();
+        return PageDataResponse(data: res.reply?.deliveryInfos ?? []);
+      } catch (e) {
+        logger.e(e);
+      }
+      return PageDataResponse(isSuccess: false);
+    });
   }
 }

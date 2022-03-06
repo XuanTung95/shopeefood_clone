@@ -6,6 +6,6 @@ class ViewCartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return EmptyCartWidget();
+    return const EmptyCartWidget();
   }
 }

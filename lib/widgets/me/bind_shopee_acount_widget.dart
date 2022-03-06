@@ -1,13 +1,17 @@
+import 'package:shopeefood_clone/routing/app_routing.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
+import 'package:shopeefood_clone/widgets/button/app_gesture_detector.dart';
 
 class BindShopeeAcountWidget extends StatelessWidget {
+  const BindShopeeAcountWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final colors = AppColor(context);
     final textStyle = AppTextStyle(context);
     return Container(
       color: colors.linkAccount,
-      padding: EdgeInsets.symmetric(vertical: 3),
+      padding: const EdgeInsets.symmetric(vertical: 3),
       child: Row(
         children: [
           Padding(
@@ -29,16 +33,21 @@ class BindShopeeAcountWidget extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-                color: colors.primaryColor, borderRadius: BorderRadius.circular(2)),
-            padding: const EdgeInsets.only(left: 8, right: 8, top: 2, bottom: 0),
-            child: Text(
-              'bind'.tr(),
-              style: textStyle.bodySmall.copyWith(color: Colors.white),
+          AppGestureDetector(
+            onTap: () {
+              AppRouting.goToErrorScreen(context);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  color: colors.primaryColor, borderRadius: BorderRadius.circular(2)),
+              padding: const EdgeInsets.only(left: 8, right: 8, top: 2, bottom: 0),
+              child: Text(
+                'bind'.tr(),
+                style: textStyle.bodySmall.copyWith(color: Colors.white),
+              ),
             ),
           ),
-          SizedBox(width: 8,),
+          const SizedBox(width: 8,),
         ],
       ),
     );

@@ -2,7 +2,7 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 
 class AppTextStyle {
   final ThemeData _themeData;
-  String fontFamily = 'sfuitext';
+  final String fontFamily = 'sfuitext';
 
   AppTextStyle(BuildContext context) : _themeData = Theme.of(context);
 
@@ -39,6 +39,12 @@ class AppTextStyle {
       color: textColorBlack,
       fontFamily: fontFamily,
       fontSize: 13,
+      fontWeight: FontWeight.w600);
+
+  TextStyle get bodyBoldSmallWhite => TextStyle(
+      color: Colors.white,
+      fontFamily: fontFamily,
+      fontSize: 12,
       fontWeight: FontWeight.w600);
 
   TextStyle get bodySmall => TextStyle(
@@ -78,7 +84,7 @@ class AppTextStyle {
       fontWeight: FontWeight.w400);
 
   TextStyle get homeNavItemActive => TextStyle(
-      color: textColorBlack,
+      color: _themeData.primaryColor,
       fontFamily: fontFamily,
       fontSize: 11,
       fontWeight: FontWeight.w400);
@@ -124,4 +130,10 @@ class AppTextStyle {
       fontFamily: fontFamily,
       fontSize: 14,
       fontWeight: FontWeight.w300);
+
+  TextStyle get dialogButton => TextStyle(
+      color: textColorBlack,
+      fontFamily: fontFamily,
+      fontSize: 15,
+      fontWeight: FontWeight.w400);
 }

@@ -10,6 +10,5 @@ class MacOsScrollBehavior extends MaterialScrollBehavior {
   Set<PointerDeviceKind> get dragDevices => {
     PointerDeviceKind.touch,
     PointerDeviceKind.mouse,
-    // etc.
   };
 }

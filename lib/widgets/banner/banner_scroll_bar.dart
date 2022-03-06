@@ -47,23 +47,20 @@ class _BannerScrollBarState extends State<BannerScrollBar> {
 
   @override
   Widget build(BuildContext context) {
-    // print('Build home banner index: $value');
-    return Container(
-      child: Stack(
-        children: [
-          buildDash(),
-          AnimatedPositioned(
-              left: getCircleLeft(),
-              child: Container(
-                width: widget.circleSize,
-                height: widget.circleSize,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 1)),
-              ),
-              duration: const Duration(milliseconds: 300))
-        ],
-      ),
+    return Stack(
+      children: [
+        buildDash(),
+        AnimatedPositioned(
+            left: getCircleLeft(),
+            child: Container(
+              width: widget.circleSize,
+              height: widget.circleSize,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.white, width: 1)),
+            ),
+            duration: const Duration(milliseconds: 300))
+      ],
     );
   }
 

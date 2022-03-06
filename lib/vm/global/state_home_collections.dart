@@ -4,21 +4,35 @@ import 'package:shopeefood_clone/services/remote/fake_api/fake_collections_api.d
 import 'package:shopeefood_clone/services/remote_services.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
+import '../../models/list_data_store.dart';
+
 class StateHomeCollection extends ChangeNotifier {
   static final provider =
       ChangeNotifierProvider((ref) => StateHomeCollection());
-  List<ModelCollection> _collections = [];
+  final _collections = PageDataStoreWithId<ModelCollection>();
 
-  List<ModelCollection> get collections => _collections;
+  PageDataStoreWithId<ModelCollection> get collections => _collections;
 
   init() async {
     await _getCollections();
   }
 
   Future _getCollections() async {
-    var api = RemoteService.getApiService();
-    var res = await api.getListCollectionInfo();
-    _collections = res.reply?.collections ?? [];
-    notifyListeners();
+    _collections.loadMoreData(
+        onUpdate: () {
+          notifyListeners();
+        },
+        loadFunction: () async {
+          try {
+            var api = RemoteService.getApiService();
+            var res = await api.getListCollectionInfo();
+            if (res.reply?.collections != null) {
+              return PageDataResponse(data: res.reply?.collections ?? []);
+            }
+          } catch (e) {
+            logger.e(e);
+          }
+          return PageDataResponse(isSuccess: false);
+        });
   }
 }

@@ -9,9 +9,13 @@ class AppImageNetworkWidget extends StatelessWidget {
   final BoxFit? fit;
   final Widget? loadingWidget;
   final Widget? errorWidget;
+  /// If non-null, this color is blended with each image pixel using [colorBlendMode].
+  final Color? color;
+  final BoxShape? shape;
+  final Alignment alignment;
 
   const AppImageNetworkWidget(
-      {Key? key, this.url, this.width, this.height, this.fit, this.loadingWidget, this.errorWidget})
+      {Key? key, this.url, this.width, this.height, this.fit, this.loadingWidget, this.errorWidget, this.color, this.shape, this.alignment = Alignment.center,})
       : super(key: key);
 
   @override
@@ -20,24 +24,21 @@ class AppImageNetworkWidget extends StatelessWidget {
       url ?? '',
       width: width,
       height: height,
-      cache: false,
+      cache: true,
+      color: color,
       fit: fit,
+      shape: shape,
+      alignment: alignment,
       loadStateChanged: (ExtendedImageState state) {
         switch (state.extendedImageLoadState) {
           case LoadState.loading:
-            return loadingWidget ?? Image.asset(
-              Assets
-                  .images
-                  .assetsImgPlaceholderItem
-                  .path,
-              fit: BoxFit.cover,
-            );
+            return loadingWidget ?? const SizedBox();
           case LoadState.failed:
             return GestureDetector(
               child: errorWidget ?? Image.asset(
                 Assets
                     .images
-                    .nodeModulesShopeernCommonimagesAssetsCommonimageLoadingplaceholderimg
+                    .assetsImgPlaceholderItem
                     .path,
                 fit: BoxFit.fill,
               ),
@@ -45,7 +46,6 @@ class AppImageNetworkWidget extends StatelessWidget {
                 state.reLoadImage();
               },
             );
-            break;
           case LoadState.completed:
             break;
         }

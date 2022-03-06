@@ -4,6 +4,8 @@ import 'package:shopeefood_clone/vm/global/state_flash_sale.dart';
 import 'package:shopeefood_clone/vm/global/state_home_category.dart';
 import 'package:shopeefood_clone/vm/global/state_home_dish.dart';
 import 'package:shopeefood_clone/vm/global/state_me.dart';
+import 'package:shopeefood_clone/vm/global/state_my_voucher.dart';
+import 'package:shopeefood_clone/vm/global/state_user_address.dart';
 import 'package:shopeefood_clone/vm/global/state_user_location.dart';
 
 import '../../vm/global/state_home_ads_banner.dart';
@@ -41,7 +43,9 @@ class _ScreenSplashState extends ConsumerState<ScreenSplash> {
     ref.read(StateMostOrdered.provider).init();
     ref.read(StateNotifications.provider).init();
     ref.read(StateMe.provider).init();
-    await Future.delayed(const Duration(seconds: 0));
+    ref.read(StateMyVoucher.provider).init();
+    ref.read(StateUserAddress.provider).init();
+    await Future.delayed(const Duration(seconds: 1));
     AppRouting.goToHomeScreen(context);
   }
 

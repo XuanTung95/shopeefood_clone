@@ -31,7 +31,7 @@ class _HomeBannerWidgetState extends ConsumerState<HomeBannerWidget> {
   @override
   Widget build(BuildContext context) {
     var bannerState = ref.watch(StateHomeBanner.provider);
-    List<ModelBanner> _data = bannerState.banners;
+    List<ModelBanner> _data = bannerState.banners.data;
     if (_data.isEmpty) return const SizedBox();
     return SizedBox(
       child: Stack(

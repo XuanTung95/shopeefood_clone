@@ -17,29 +17,32 @@ class SearchFilterRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = AppTextStyle(context);
-    return Row(
-      children: [
-        buildText(text1, context, textStyle, () {
-          onClickIndex(0);
-        }),
-        const Spacer(),
-        buildText(text2, context, textStyle, () {
-          onClickIndex(1);
-        }),
-        const Spacer(),
-        buildText(text3, context, textStyle, () {
-          onClickIndex(2);
-        }),
-        const SizedBox(
-          width: 10,
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      child: Row(
+        children: [
+          buildText(text1, context, textStyle, () {
+            onClickIndex(0);
+          }),
+          const Spacer(),
+          buildText(text2, context, textStyle, () {
+            onClickIndex(1);
+          }),
+          const Spacer(),
+          buildText(text3, context, textStyle, () {
+            onClickIndex(2);
+          }),
+          const SizedBox(
+            width: 10,
+          ),
+        ],
+      ),
     );
   }
 
   buildText(String text, BuildContext context, AppTextStyle textStyle,
       void Function() onTap) {
-    if (text.isEmpty) return SizedBox();
+    if (text.isEmpty) return const SizedBox();
     return Flexible(
       flex: text.length + 4,
       child: GestureDetector(
@@ -47,7 +50,7 @@ class SearchFilterRow extends StatelessWidget {
         child: FittedBox(
           fit: BoxFit.scaleDown,
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 8),
+            padding: const EdgeInsets.symmetric(vertical: 8),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [

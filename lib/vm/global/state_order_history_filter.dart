@@ -1,4 +1,5 @@
 import 'package:shopeefood_clone/utils/common_import.dart';
+import 'package:shopeefood_clone/utils/date_time_utils.dart';
 
 class StateOrderHistoryFilter extends ChangeNotifier {
   static final provider =
@@ -19,16 +20,16 @@ class StateOrderHistoryFilter extends ChangeNotifier {
 
   String _selectedService = 'All Services';
 
-  List<String> _allStatus = [
-    'All Status',
-    'Cancelled',
-    'Completed'
-  ];
+  List<String> _allStatus = ['All Status', 'Cancelled', 'Completed'];
 
   String _selectedStatus = 'All Status';
 
   DateTime _fromDate = DateTime.now().subtract(const Duration(days: 30));
   DateTime _toDate = DateTime.now();
+
+  String getDateString() {
+    return '${DateTimeUtils.formatOnlyDate(_fromDate)} - ${DateTimeUtils.formatOnlyDate(_toDate)}';
+  }
 
   List<String> get allServices => _allServices;
 
@@ -56,11 +57,19 @@ class StateOrderHistoryFilter extends ChangeNotifier {
 
   set fromDate(DateTime value) {
     _fromDate = value;
+    if (_toDate.isBefore(_fromDate)) {
+      _toDate = _fromDate;
+    }
+    notifyListeners();
   }
 
   DateTime get toDate => _toDate;
 
   set toDate(DateTime value) {
     _toDate = value;
+    if (_fromDate.isAfter(_toDate)) {
+      _fromDate = toDate;
+    }
+    notifyListeners();
   }
 }

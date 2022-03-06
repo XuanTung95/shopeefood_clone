@@ -23,8 +23,9 @@ class HomeSearchBarWidget extends StatelessWidget {
             width: 5,
           ),
           Flexible(
-            child: Text(
+            child: AutoSizeText(
               text,
+              minFontSize: 12,
               style: textStyle.homeSearchBarText,
               maxLines: 1,
             ),

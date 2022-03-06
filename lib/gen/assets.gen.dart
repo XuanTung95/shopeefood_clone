@@ -18,6 +18,10 @@ class $AssetsImagesGen {
   AssetGenImage get airpayIconNetworkError =>
       const AssetGenImage('assets/images/airpay_icon_network_error.png');
 
+  /// File path: assets/images/assets_ic_map_share.png
+  AssetGenImage get assetsIcMapShare =>
+      const AssetGenImage('assets/images/assets_ic_map_share.png');
+
   /// File path: assets/images/assets_img_account_bind_account.png
   AssetGenImage get assetsImgAccountBindAccount =>
       const AssetGenImage('assets/images/assets_img_account_bind_account.png');
@@ -1472,6 +1476,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/deliveryaddress_imgmap.png
   AssetGenImage get deliveryaddressImgmap =>
       const AssetGenImage('assets/images/deliveryaddress_imgmap.png');
+
+  /// File path: assets/images/ic_notify_nowicon_white.png
+  AssetGenImage get icNotifyNowiconWhite =>
+      const AssetGenImage('assets/images/ic_notify_nowicon_white.png');
 
   /// File path: assets/images/node_modules_shopeern_commonimages_assets_background_cursivebackgroundimg.png
   AssetGenImage

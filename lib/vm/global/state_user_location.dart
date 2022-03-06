@@ -24,12 +24,12 @@ class StateUserLocation extends ChangeNotifier {
             () => _getUserLocation(),
         retryIf: (e) => false,
       );
+      await Future.delayed(const Duration(seconds: 2));
       _currentLocation = response;
     } catch (e) {
       logger.e(e);
     }
     _loading = false;
-    await Future.delayed(Duration(seconds: 2));
     notifyListeners();
   }
 

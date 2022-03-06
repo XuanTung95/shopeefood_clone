@@ -1117,7 +1117,7 @@
   "expected_time": "Expected Delivery Time",
   "expired_captcha": "Invalid or expired captcha, please check and try again",
   "expired_day_left": "{0} day left",
-  "expired_days_left": "{0} days left",
+  "expired_days_left": "{} days left",
   "expired_hour_left": "{0} hour left",
   "expired_hours_left": "{0} hours left",
   "expired_minute_left": "{0} minute left",

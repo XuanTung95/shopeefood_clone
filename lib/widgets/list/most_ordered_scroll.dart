@@ -1,9 +1,9 @@
 import 'package:shopeefood_clone/models/model_delivery.dart';
-import 'package:shopeefood_clone/widgets/common/app_image_widget.dart';
+import 'package:shopeefood_clone/routing/app_routing.dart';
+import 'package:shopeefood_clone/widgets/button/app_gesture_detector.dart';
 import 'package:shopeefood_clone/widgets/common/see_all_list_item.dart';
 import 'package:shopeefood_clone/widgets/list/tile/view_delivery_type_most_order.dart';
 
-import '../../models/model_collection.dart';
 import '../../utils/common_import.dart';
 
 class MostOrdersScroll extends StatelessWidget {
@@ -50,8 +50,13 @@ class MostOrdersScroll extends StatelessWidget {
               : const EdgeInsets.only(
             right: 10,
           ),
-          child: ViewDeliveryTypeMostOrder(
-            item: _item,
+          child: AppGestureDetector(
+            onTap: () {
+              AppRouting.goToShopDetailScreen(context);
+            },
+            child: ViewDeliveryTypeMostOrder(
+              item: _item,
+            ),
           ),
         );
       },

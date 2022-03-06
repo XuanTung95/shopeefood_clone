@@ -39,18 +39,16 @@ class FindingLocation extends StatelessWidget {
                     const SizedBox(
                       height: 50,
                     ),
-                    Container(
-                      child: Stack(
-                        alignment: Alignment.topCenter,
-                        children: [
-                          Image.asset(Assets.images.deliveryaddressImgmap.path,
-                              width: width, height: height),
-                          PinLoadingIcon(
-                            size: (width ?? 100) / 5,
-                            duration: const Duration(milliseconds: 1000),
-                          )
-                        ],
-                      ),
+                    Stack(
+                      alignment: Alignment.topCenter,
+                      children: [
+                        Image.asset(Assets.images.deliveryaddressImgmap.path,
+                            width: width, height: height),
+                        PinLoadingIcon(
+                          size: (width ?? 100) / 5,
+                          duration: const Duration(milliseconds: 1000),
+                        )
+                      ],
                     )
                   ],
                 ),
@@ -122,15 +120,16 @@ class _PinLoadingIconState extends State<PinLoadingIcon>
           height: 10,
         ),
         Transform(
-            alignment: Alignment.center,
-            transform: Matrix4.identity()
-              ..scale(
-                scaleAnimation.value,
-              ),
-            child: Image.asset(
-              Assets.images.deliveryaddressIcloadingpinshadow.path,
-              width: widget.size / 2,
-            )),
+          alignment: Alignment.center,
+          transform: Matrix4.identity()
+            ..scale(
+              scaleAnimation.value,
+            ),
+          child: Image.asset(
+            Assets.images.deliveryaddressIcloadingpinshadow.path,
+            width: widget.size / 2,
+          ),
+        ),
       ],
     );
   }

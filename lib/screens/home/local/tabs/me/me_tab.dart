@@ -1,4 +1,6 @@
+import 'package:shopeefood_clone/routing/app_routing.dart';
 import 'package:shopeefood_clone/vm/global/state_me.dart';
+import 'package:shopeefood_clone/widgets/button/app_gesture_detector.dart';
 import 'package:shopeefood_clone/widgets/button/app_select_button.dart';
 import 'package:shopeefood_clone/widgets/divider/list_divider.dart';
 
@@ -24,141 +26,193 @@ class _MeTabViewState extends ConsumerState<TabMeHomeView> {
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
-          child: Container(
-            color: colors.profileBg,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10, bottom: 10, top: 70),
-              child: Row(
-                children: [
-                  UserAvatarWidget(),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Text(
-                    state.userProfile?.name ?? '',
-                    style: textStyle.userName,
-                  ),
-                ],
-              ),
-            ),
-          ),
+          child: buildUserAvatar(colors, state, textStyle),
         ),
         SliverToBoxAdapter(
           child: BindShopeeAcountWidget(),
         ),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: ListDivider(),
         ),
         SliverToBoxAdapter(
           child: DividerWidget(
-            child: MeTabListItem(
-              asset: Assets.images.assetsImgMeVoucherIcon.path,
-              title: 'user_voucher_header'.tr(),
-              tailWidget: Text(
-                '12',
-                style: textStyle.bodySmallGrey,
+            child: AppGestureDetector(
+              onTap: () {
+                AppRouting.goToMyVoucherScreen(context);
+              },
+              child: MeTabListItem(
+                asset: Assets.images.assetsImgMeVoucherIcon.path,
+                title: 'user_voucher_header'.tr(),
+                tailWidget: Text(
+                  '12',
+                  style: textStyle.bodySmallGrey,
+                ),
               ),
             ),
           ),
         ),
         SliverToBoxAdapter(
           child: DividerWidget(
-            child: MeTabListItem(
-              asset: Assets.images.assetsImgMeCoinsIcon.path,
-              title: 'coins_my_shopee_coin'.tr(),
-              tailWidget: Text(
-                'coins_enable_now'.tr(),
-                style: textStyle.bodySmallGrey.copyWith(color: Colors.blue),
+            child: AppGestureDetector(
+              onTap: () {
+                AppRouting.goToLinkShopeeAcount(context);
+              },
+              child: MeTabListItem(
+                asset: Assets.images.assetsImgMeCoinsIcon.path,
+                title: 'coins_my_shopee_coin'.tr(),
+                tailWidget: Text(
+                  'coins_enable_now'.tr(),
+                  style: textStyle.bodySmallGrey.copyWith(color: Colors.blue),
+                ),
               ),
             ),
           ),
         ),
         SliverToBoxAdapter(
           child: DividerWidget(
-            child: MeTabListItem(
-              asset: Assets.images.assetsImgMePayment.path,
-              title: 'payment_title'.tr(),
+            child: AppGestureDetector(
+              onTap: () {
+                AppRouting.goToPaymentScreen(context);
+              },
+              child: MeTabListItem(
+                asset: Assets.images.assetsImgMePayment.path,
+                title: 'payment_title'.tr(),
+              ),
             ),
           ),
         ),
         SliverToBoxAdapter(
           child: DividerWidget(
-            child: MeTabListItem(
-              asset: Assets.images.assetsImgMeAddressIcon.path,
-              title: 'general_address'.tr(),
+            child: AppGestureDetector(
+              onTap: () {
+                AppRouting.goToAddressScreen(context);
+              },
+              child: MeTabListItem(
+                asset: Assets.images.assetsImgMeAddressIcon.path,
+                title: 'general_address'.tr(),
+              ),
             ),
           ),
         ),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: ListDivider(),
         ),
         SliverToBoxAdapter(
           child: DividerWidget(
-            child: MeTabListItem(
-              asset: Assets.images.assetsImgMeInviteIcon.path,
-              title: 'me_invite_friend'.tr(),
+            child: AppGestureDetector(
+              onTap: () {
+                AppRouting.goToInviteFriendScreen(context);
+              },
+              child: MeTabListItem(
+                asset: Assets.images.assetsImgMeInviteIcon.path,
+                title: 'me_invite_friend'.tr(),
+              ),
             ),
           ),
         ),
         SliverToBoxAdapter(
           child: DividerWidget(
-            child: MeTabListItem(
-              asset: Assets.images.assetsImgMeHelpIcon.path,
-              title: 'help_center'.tr(),
+            child: AppGestureDetector(
+              onTap: () {
+                AppRouting.goToErrorScreen(context);
+              },
+              child: MeTabListItem(
+                asset: Assets.images.assetsImgMeHelpIcon.path,
+                title: 'help_center'.tr(),
+              ),
             ),
           ),
         ),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: ListDivider(),
         ),
         SliverToBoxAdapter(
           child: DividerWidget(
-            child: MeTabListItem(
-              asset: Assets.images.assetsImgMeShowOwnersIcon.path,
-              title: 'me_for_shop_owner'.tr(),
+            child: AppGestureDetector(
+              onTap: () {
+                AppRouting.goToErrorScreen(context);
+              },
+              child: MeTabListItem(
+                asset: Assets.images.assetsImgMeShowOwnersIcon.path,
+                title: 'me_for_shop_owner'.tr(),
+              ),
             ),
           ),
         ),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: ListDivider(),
         ),
         SliverToBoxAdapter(
           child: DividerWidget(
-            child: MeTabListItem(
-              asset: Assets.images.assetsImgMeUserPolicyIcon.path,
-              title: 'user_policy'.tr(),
+            child: AppGestureDetector(
+              onTap: () {
+                AppRouting.goToUserPolicyScreen(context);
+              },
+              child: MeTabListItem(
+                asset: Assets.images.assetsImgMeUserPolicyIcon.path,
+                title: 'user_policy'.tr(),
+              ),
             ),
           ),
         ),
         SliverToBoxAdapter(
           child: DividerWidget(
-            child: MeTabListItem(
-              asset: Assets.images.assetsImgMeSettingsIcon.path,
-              title: 'account_settings'.tr(),
+            child: AppGestureDetector(
+              onTap: () {
+                AppRouting.goToSettingsScreen(context);
+              },
+              child: MeTabListItem(
+                asset: Assets.images.assetsImgMeSettingsIcon.path,
+                title: 'account_settings'.tr(),
+              ),
             ),
           ),
         ),
         SliverToBoxAdapter(
           child: DividerWidget(
-            child: MeTabListItem(
-              asset: Assets.images.assetsImgMeShopeefoodIcon.path,
-              title: 'about_now_vn'.tr(),
+            child: AppGestureDetector(
+              onTap: () {},
+              child: MeTabListItem(
+                asset: Assets.images.assetsImgMeShopeefoodIcon.path,
+                title: 'about_now_vn'.tr(),
+              ),
             ),
           ),
         ),
         SliverToBoxAdapter(
           child: Container(
             color: colors.homeDividerBg,
-            padding: EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 40),
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 40),
             child: SizedBox(
-              height: 40,
               child: AppSelectButton(
-                onClick: () {}, text: 'logout'.tr(),
+                onClick: () {},
+                text: 'logout'.tr(),
               ),
             ),
           ),
         )
       ],
     );
+  }
+
+  Container buildUserAvatar(AppColor colors, StateMe state, AppTextStyle textStyle) {
+    return Container(
+          color: colors.profileBg,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, bottom: 10, top: 70),
+            child: Row(
+              children: [
+                const UserAvatarWidget(),
+                const SizedBox(
+                  width: 15,
+                ),
+                Text(
+                  state.userProfile?.name ?? '',
+                  style: textStyle.userName,
+                ),
+              ],
+            ),
+          ),
+        );
   }
 }

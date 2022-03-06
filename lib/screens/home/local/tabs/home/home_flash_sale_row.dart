@@ -1,10 +1,8 @@
 import 'package:shopeefood_clone/vm/global/state_flash_sale.dart';
 
 import '../../../../../utils/common_import.dart';
-import '../../../../../vm/global/state_home_collections.dart';
 import '../../../../../widgets/common/see_all_row.dart';
 import '../../../../../widgets/flash_sale/flash_sale_countdown.dart';
-import '../../../../../widgets/list/home_collections_scroll.dart';
 import '../../../../../widgets/list/home_flash_sale_scroll.dart';
 
 class HomeFlashSaleRow extends ConsumerStatefulWidget {
@@ -31,21 +29,27 @@ class _HomeFlashSaleRowState extends ConsumerState<HomeFlashSaleRow> {
                   Assets.images.assetsImgFlashsaleFlashSale.path,
                   width: 100,
                 ),
-                const SizedBox(width: 10,),
+                const SizedBox(
+                  width: 10,
+                ),
                 const FlashSaleCountdown(),
-                const Spacer(flex: 10,)
+                const Spacer(
+                  flex: 10,
+                )
               ],
             ),
             title: '',
           ),
         ),
-        const SizedBox(height: 10,),
+        const SizedBox(
+          height: 10,
+        ),
         SizedBox(
           height: 190,
           child: HomeFlashSaleScroll(
             maxShowItem: 5,
             clickSeeAll: () {},
-            datas: stateFlashSale.ongoing,
+            datas: stateFlashSale.ongoing.data,
           ),
         ),
       ],

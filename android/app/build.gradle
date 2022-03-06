@@ -45,7 +45,7 @@ android {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.shopeefood_clone"
         minSdkVersion 21 //flutter.minSdkVersion
-        targetSdkVersion 30 //flutter.targetSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

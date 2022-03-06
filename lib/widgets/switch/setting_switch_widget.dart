@@ -40,7 +40,7 @@ class _SettingSwitchWidgetState extends State<SettingSwitchWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(widget.title, style: textStyle.bodyBoldBlack,),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Text(widget.description, style: textStyle.bodySmallGrey,)
               ],
             ),

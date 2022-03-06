@@ -3,7 +3,6 @@ import 'package:shopeefood_clone/utils/date_time_utils.dart';
 
 import '../../../utils/common_import.dart';
 import '../../common/app_image_widget.dart';
-import 'delivery_list_item.dart';
 
 class OrderItemWidget extends StatelessWidget {
   final ModelOrders order;
@@ -16,10 +15,10 @@ class OrderItemWidget extends StatelessWidget {
     final colors = AppColor(context);
     return Column(
       children: [
-        SizedBox(height: 10,),
+        const SizedBox(height: 10,),
         buildOrderNoRow(context, textStyle, colors),
         buildInfoRow(context, textStyle, colors),
-        Divider(
+        const Divider(
           thickness: 0.5,
           height: 0,
         ),
@@ -55,7 +54,7 @@ class OrderItemWidget extends StatelessWidget {
             ],
           ),
         ),
-        Spacer(),
+        const Spacer(),
         Text(
           DateTimeUtils.getOrderDate(order),
           style: textStyle.bodySmall2Grey,
@@ -71,7 +70,7 @@ class OrderItemWidget extends StatelessWidget {
         Expanded(
           flex: 5,
           child: Container(
-            padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
+            padding: const EdgeInsets.only(top: 10, bottom: 10, right: 10),
             child: buildImage(context, textStyle),
           ),
         ),
@@ -117,8 +116,8 @@ class OrderItemWidget extends StatelessWidget {
                       url: ImageUtils.getIconImage(
                           order.delivery?.label?.photos),
                       fit: BoxFit.fitWidth,
-                      loadingWidget: SizedBox(),
-                      errorWidget: SizedBox(),
+                      loadingWidget: const SizedBox(),
+                      errorWidget: const SizedBox(),
                     ),
                   ),
                 ),

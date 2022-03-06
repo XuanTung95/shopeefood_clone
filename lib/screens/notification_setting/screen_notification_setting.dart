@@ -20,7 +20,7 @@ class _ScreenNotificationSettingState extends State<ScreenNotificationSetting> {
         child: Column(
           children: [
             AppBarDefault(title: 'notification_setting_title'.tr()),
-            ListDivider(),
+            const ListDivider(),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: SettingSwitchWidget(
@@ -31,7 +31,7 @@ class _ScreenNotificationSettingState extends State<ScreenNotificationSetting> {
                     'notification_setting_push_notification_description'.tr(),
               ),
             ),
-            ListDivider(),
+            const ListDivider(),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: SettingSwitchWidget(

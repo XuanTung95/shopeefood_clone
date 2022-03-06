@@ -1,5 +1,6 @@
-import 'package:extended_image/extended_image.dart';
 import 'package:shopeefood_clone/models/model_category.dart';
+import 'package:shopeefood_clone/routing/app_routing.dart';
+import 'package:shopeefood_clone/widgets/button/app_gesture_detector.dart';
 export 'package:extended_image/extended_image.dart';
 import '../../utils/common_import.dart';
 import '../common/app_image_widget.dart';
@@ -46,7 +47,7 @@ class _HomeCategoryGridState extends State<HomeCategoryGrid> {
         mainAxisMargin: margin,
         // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: GridView.builder(
             controller: scrollController,
             scrollDirection: Axis.horizontal,
@@ -54,8 +55,13 @@ class _HomeCategoryGridState extends State<HomeCategoryGrid> {
                 const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
             itemBuilder: (BuildContext context, int index) {
               final category = widget.categories[index];
-              return HomeCategoryItem(
-                category: category,
+              return AppGestureDetector(
+                onTap: () {
+                  AppRouting.goToShopDetailScreen(context);
+                },
+                child: HomeCategoryItem(
+                  category: category,
+                ),
               );
             },
             itemCount: widget.categories.length,
@@ -83,7 +89,7 @@ class HomeCategoryItem extends StatelessWidget {
             child: AspectRatio(
               aspectRatio: 1,
               child: AppImageNetworkWidget(
-                url: category.getPhotoUrl ?? '',
+                url: ImageUtils.getIconImage(category.photos),
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.cover,

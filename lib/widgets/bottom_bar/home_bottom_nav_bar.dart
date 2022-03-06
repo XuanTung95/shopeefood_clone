@@ -1,13 +1,18 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../../vm/global/state_home_bottom_nav.dart';
+import '../../vm/global/state_home_tab_scroll.dart';
 
 class HomeBottomNavigationBar extends ConsumerWidget {
+  const HomeBottomNavigationBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context, ref) {
     var state = ref.watch(StateHomeBottomNav.provider);
     var appColor = AppColor(context);
+    final showBackToTopBtn = state.selected == HomeBottomNavName.HOME &&
+        ref.watch(StateHomeTabScroll.provider
+            .select((value) => value.showBackToTopBtn));
     return Container(
       color: appColor.bottomBarBg,
       child: Row(
@@ -16,6 +21,12 @@ class HomeBottomNavigationBar extends ConsumerWidget {
             child: HomeBotNavTabItem(
               callback: () {
                 state.selected = HomeBottomNavName.HOME;
+                if (showBackToTopBtn) {
+                  ref
+                      .read(StateHomeTabScroll.provider)
+                      .homeScrollToTop
+                      .notifyListeners();
+                }
               },
               isActive: state.selected == HomeBottomNavName.HOME,
               iconWidget: BottomNavTabIcon(
@@ -25,7 +36,7 @@ class HomeBottomNavigationBar extends ConsumerWidget {
                 iconAssetActive:
                     Assets.images.assetsImgTabbarIcTabBarHomeSelected.path,
               ),
-              text: 'Home',
+              text: showBackToTopBtn ? 'back_to_top'.tr() : 'Home',
             ),
           ),
           Expanded(
@@ -37,9 +48,9 @@ class HomeBottomNavigationBar extends ConsumerWidget {
               iconWidget: BottomNavTabIcon(
                 isActive: state.selected == HomeBottomNavName.MY_ORDER,
                 iconAssetInactive:
-                Assets.images.assetsImgTabbarIcTabBarOrderNormal.path,
+                    Assets.images.assetsImgTabbarIcTabBarOrderNormal.path,
                 iconAssetActive:
-                Assets.images.assetsImgTabbarIcTabBarOrderSelected.path,
+                    Assets.images.assetsImgTabbarIcTabBarOrderSelected.path,
               ),
               text: 'My Orders',
             ),
@@ -53,9 +64,9 @@ class HomeBottomNavigationBar extends ConsumerWidget {
               iconWidget: BottomNavTabIcon(
                 isActive: state.selected == HomeBottomNavName.LIKES,
                 iconAssetInactive:
-                Assets.images.assetsImgTabbarIcTabBarSaveNormal.path,
+                    Assets.images.assetsImgTabbarIcTabBarSaveNormal.path,
                 iconAssetActive:
-                Assets.images.assetsImgTabbarIcTabBarSaveSelected.path,
+                    Assets.images.assetsImgTabbarIcTabBarSaveSelected.path,
               ),
               text: 'Likes',
             ),
@@ -68,10 +79,14 @@ class HomeBottomNavigationBar extends ConsumerWidget {
               isActive: state.selected == HomeBottomNavName.NOTIFICATION,
               iconWidget: BottomNavTabIcon(
                 isActive: state.selected == HomeBottomNavName.NOTIFICATION,
-                iconAssetInactive:
-                Assets.images.nodeModulesShopeernCommonimagesAssetsCommoniconNotificationicon.path,
-                iconAssetActive:
-                Assets.images.nodeModulesShopeernCommonimagesAssetsCommoniconNotificationiconSelected.path,
+                iconAssetInactive: Assets
+                    .images
+                    .nodeModulesShopeernCommonimagesAssetsCommoniconNotificationicon
+                    .path,
+                iconAssetActive: Assets
+                    .images
+                    .nodeModulesShopeernCommonimagesAssetsCommoniconNotificationiconSelected
+                    .path,
               ),
               text: 'Notifications',
             ),
@@ -85,9 +100,9 @@ class HomeBottomNavigationBar extends ConsumerWidget {
               iconWidget: BottomNavTabIcon(
                 isActive: state.selected == HomeBottomNavName.ME,
                 iconAssetInactive:
-                Assets.images.assetsImgAuthenticationIconUser.path,
+                    Assets.images.assetsImgAuthenticationIconUser.path,
                 iconAssetActive:
-                Assets.images.assetsImgAuthenticationIconUserSelected.path,
+                    Assets.images.assetsImgAuthenticationIconUserSelected.path,
               ),
               text: 'Me',
             ),
@@ -121,7 +136,9 @@ class HomeBotNavTabItem extends StatelessWidget {
         color: Colors.transparent,
         child: Column(
           children: [
-            const SizedBox(height: 6,),
+            const SizedBox(
+              height: 6,
+            ),
             iconWidget,
             Padding(
               padding: const EdgeInsets.only(bottom: 8, top: 8),

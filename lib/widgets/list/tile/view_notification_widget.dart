@@ -20,21 +20,21 @@ class ViewNotificationWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 1,
+            flex: 5,
             child: Padding(
-              padding: const EdgeInsets.only(left: 5.0, right: 5, top: 10),
+              padding: const EdgeInsets.only(left: 10.0, top: 10),
               child: AppImageNetworkWidget(
                 url: ImageUtils.getIconImage(notification.photos),
               ),
             ),
           ),
           Expanded(
-            flex: 5,
+            flex: 20,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 8.0, top: 10),
+                  padding: const EdgeInsets.only(left: 8.0, top: 10, right: 8),
                   child: Text(
                     notification.title ?? '',
                     style: textStyle.bodySmall.copyWith(fontWeight: FontWeight.w500),
@@ -44,7 +44,7 @@ class ViewNotificationWidget extends StatelessWidget {
                   data: notification.message ?? '',
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 8.0, top: 2, bottom: 5),
+                  padding: const EdgeInsets.only(left: 8.0, bottom: 8),
                   child: Text(DateTimeUtils.getNotificationDate(notification), style: textStyle.bodySmall2Grey,),
                 )
               ],

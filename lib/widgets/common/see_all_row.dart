@@ -32,17 +32,23 @@ class SeeAllRow extends StatelessWidget {
             onTap: onClick,
             child: ColoredBox(
               color: Colors.transparent,
-              child: Row(
-                children: [
-                  Text(
-                    'shopeefood.see_all'.tr(),
-                    style: textStyle.bodySmallGrey,
-                  ),
-                  Image.asset(
-                    Assets.images.assetsImgShipCommonArrowRight.path,
-                    width: 25,
-                  ),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5.0),
+                child: Row(
+                  children: [
+                    Text(
+                      'shopeefood.see_all'.tr(),
+                      style: textStyle.bodySmallGrey,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Image.asset(
+                        Assets.images.assetsImgCommonArrowRight.path,
+                        width: 11,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           )

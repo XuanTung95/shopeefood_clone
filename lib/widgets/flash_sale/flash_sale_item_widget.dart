@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:shopeefood_clone/models/model_flash_sale.dart';
 import 'package:shopeefood_clone/utils/money_utls.dart';
 
-import '../../models/model_dish.dart';
 import '../../utils/common_import.dart';
 import '../common/app_image_widget.dart';
 
@@ -20,8 +19,9 @@ class FlashSaleItemWidget extends StatelessWidget {
     if (soldPercent > 0) {
       soldPercent = max(soldPercent, 0.1);
     }
-    return AspectRatio(
-      aspectRatio: 2.6 / 4,
+    return SizedBox(
+      width: 130,
+      height: double.infinity,
       child: Stack(
         children: [
           Container(
@@ -29,6 +29,7 @@ class FlashSaleItemWidget extends StatelessWidget {
               color: colors.homeCollectionItemBg,
               border: Border.all(
                 color: colors.homeItemBorder,
+                width: 0.5
               ),
             ),
             child: Column(
@@ -195,8 +196,6 @@ class FlashSaleItemWidget extends StatelessWidget {
     if (data.dishInfo?.price?.value != null &&
         data.dishInfo!.price!.value! > 0 &&
         data.flashSaleInfo?.discountPrice?.value != null) {
-      print(
-          '${data.dishInfo?.price?.value} ${data.flashSaleInfo?.discountPrice?.value}');
 
       return (100 * data.flashSaleInfo!.discountPrice!.value!) ~/
           data.dishInfo!.price!.value!;

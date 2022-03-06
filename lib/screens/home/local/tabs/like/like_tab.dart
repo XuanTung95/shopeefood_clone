@@ -1,12 +1,14 @@
 import 'package:shopeefood_clone/vm/global/state_most_ordered.dart';
+import 'package:shopeefood_clone/widgets/button/app_gesture_detector.dart';
 import 'package:shopeefood_clone/widgets/divider/list_divider.dart';
+import 'package:shopeefood_clone/widgets/list/tile/divider_widget.dart';
 
+import '../../../../../routing/app_routing.dart';
 import '../../../../../utils/common_import.dart';
-import '../../../../../vm/global/state_home_collections.dart';
+import '../../../../../vm/global/state_likes_tab_filter.dart';
 import '../../../../../widgets/common/see_all_row.dart';
-import '../../../../../widgets/list/home_collections_scroll.dart';
 import '../../../../../widgets/list/most_ordered_scroll.dart';
-import '../../../../../widgets/list/tile/delivery_list_item.dart';
+import '../../../../../widgets/list/tile/view_delivery_list_item.dart';
 import '../../../../../widgets/tab_bar/likes_tabbar.dart';
 import '../order/search_filter_row.dart';
 import 'local/like_filter_select_item_view.dart';
@@ -20,7 +22,7 @@ class TabLikeHome extends ConsumerStatefulWidget {
 
 class _LikeTabViewState extends ConsumerState<TabLikeHome> {
   final filterKey =
-      GlobalObjectKey<LikeFilterSelectItemViewState>("likeFilterKey");
+      const GlobalObjectKey<LikeFilterSelectItemViewState>("likeFilterKey");
 
   @override
   Widget build(BuildContext context) {
@@ -28,45 +30,45 @@ class _LikeTabViewState extends ConsumerState<TabLikeHome> {
     final colors = AppColor(context);
     return Material(
       color: colors.homeBg,
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: SizedBox(
-              width: double.infinity,
-              child: Text(
-                'rebranding.likes_tab_title'.tr(),
-                style: textStyle.appBarText,
+      child: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 10, right: 10, top: 10, bottom: 5),
+              child: SizedBox(
+                width: double.infinity,
+                child: Text(
+                  'rebranding.likes_tab_title'.tr(),
+                  style: textStyle.appBarText,
+                ),
               ),
             ),
-          ),
-          LikesTabBar(),
-          Divider(
-            thickness: 0.5,
-            height: 0,
-          ),
-          buildSearchFilterRow(context),
-          Expanded(
-            child: Stack(
-              children: [
-                buildListContent(context),
-                LikeFilterSelectItemView(
-                  key: filterKey,
-                ),
-              ],
+            DividerWidget(child: LikesTabBar()),
+            buildSearchFilterRow(context),
+            Expanded(
+              child: Stack(
+                children: [
+                  buildListContent(context),
+                  LikeFilterSelectItemView(
+                    key: filterKey,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   buildSearchFilterRow(BuildContext context) {
     final colors = AppColor(context);
+    final vm = ref.watch(StateLikesTabFilter.provider);
     return Container(
       color: colors.homeDividerBg,
       child: SearchFilterRow(
-        text1: 'all_services'.tr(),
+        text1: vm.selectedService,
         text2: '',
         text3: '',
         onClickIndex: (int index) {
@@ -82,7 +84,7 @@ class _LikeTabViewState extends ConsumerState<TabLikeHome> {
         SliverToBoxAdapter(
           child: buildMostOrderRow(context),
         ),
-        SliverToBoxAdapter(child: ListDivider()),
+        const SliverToBoxAdapter(child: ListDivider()),
         buildLikesRow(context),
       ],
     );
@@ -97,7 +99,7 @@ class _LikeTabViewState extends ConsumerState<TabLikeHome> {
           Padding(
             padding: const EdgeInsets.only(left: 10),
             child: SeeAllRow(
-              showSeeAll: state.mostOrdered.length > 9,
+              showSeeAll: state.mostOrdered.data.length > 9,
               onClick: () {},
               title: 'saved_page_most_ordered_section_title'.tr(),
             ),
@@ -107,7 +109,7 @@ class _LikeTabViewState extends ConsumerState<TabLikeHome> {
             child: MostOrdersScroll(
               maxShowItem: 9,
               clickSeeAll: () {},
-              items: state.mostOrdered,
+              items: state.mostOrdered.data,
             ),
           ),
         ],
@@ -118,23 +120,27 @@ class _LikeTabViewState extends ConsumerState<TabLikeHome> {
   buildLikesRow(BuildContext context) {
     var state = ref.watch(StateMostOrdered.provider);
     return SliverList(
-      delegate: SliverChildBuilderDelegate((context, index) {
-        var item = state.mostOrdered[index];
-        return Column(
-          children: [
-            ViewDeliveryTypeVerticalList(
-              data: item,
-              isLike: true,
-              showOutlets: false,
-            ),
-            Container(
-              height: 10,
-              width: double.infinity,
-              color: AppColor(context).homeDividerBg,
-            ),
-          ],
-        );
-      }, childCount: state.mostOrdered.length),
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          var item = state.mostOrdered.data[index];
+          return Column(
+            children: [
+              AppGestureDetector(
+                onTap: () {
+                  AppRouting.goToShopDetailScreen(context);
+                },
+                child: ViewDeliveryTypeVerticalList(
+                  data: item,
+                  isLike: true,
+                  showOutlets: false,
+                ),
+              ),
+              const ListDivider(),
+            ],
+          );
+        },
+        childCount: state.mostOrdered.data.length,
+      ),
     );
   }
 }

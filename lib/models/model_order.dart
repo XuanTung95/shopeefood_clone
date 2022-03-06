@@ -304,16 +304,16 @@ class Host {
 
 class PaidStatus {
   bool? isSuccess;
-  Price? fee;
-  Price? amount;
+  ModelPrice? fee;
+  ModelPrice? amount;
 
   PaidStatus({this.isSuccess, this.fee, this.amount});
 
   PaidStatus.fromJson(Map<String, dynamic> json) {
     isSuccess = json['is_success'];
-    fee = json['fee'] != null ? Price.fromJson(json['fee']) : null;
+    fee = json['fee'] != null ? ModelPrice.fromJson(json['fee']) : null;
     amount = json['amount'] != null
-        ? Price.fromJson(json['amount'])
+        ? ModelPrice.fromJson(json['amount'])
         : null;
   }
 

@@ -15,32 +15,53 @@ class IconTitleDescWidget extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          flex: 1,
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Image.asset(
-              asset,
-              fit: BoxFit.fitWidth,
+          flex: 6,
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            alignment: Alignment.center,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxHeight: 45,
+                maxWidth: 45,
+              ),
+              child: Image.asset(
+                asset,
+                fit: BoxFit.fitWidth,
+              ),
             ),
           ),
         ),
         Expanded(
-          flex: 5,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          flex: 20,
+          child: Row(
             children: [
-              SizedBox(height: 8,),
-              Text(title, style: textStyle.bodyRegular,),
-              Padding(
-                padding: const EdgeInsets.only(top: 5, bottom: 8),
-                child: Text(desc, style: textStyle.bodySmallGrey,),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      title,
+                      style: textStyle.bodyRegular,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 5, bottom: 8),
+                      child: Text(
+                        desc,
+                        style: textStyle.bodySmallGrey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Image.asset(
+                Assets.images.assetsImgShipCommonArrowRight.path,
+                width: 25,
               ),
             ],
           ),
-        ),
-        Image.asset(
-          Assets.images.assetsImgShipCommonArrowRight.path,
-          width: 25,
         ),
       ],
     );

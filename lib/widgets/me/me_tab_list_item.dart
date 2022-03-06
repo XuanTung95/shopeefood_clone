@@ -17,14 +17,14 @@ class MeTabListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Row(
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: Image.asset(
               asset,
-              width: 28,
+              width: 25,
             ),
           ),
           Expanded(child: Text(title)),

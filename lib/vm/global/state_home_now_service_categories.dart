@@ -20,10 +20,9 @@ class StateHomeNowServiceCategories extends ChangeNotifier {
   List<Categories> get categories => _categories;
   List<Categories> _categories = [];
   int _selectedIndex = 0;
+  int _selectedFilter = 0;
 
   int get selectedIndex => _selectedIndex;
-
-  int _selectedFilter = 0;
 
   int get selectedFilter => _selectedFilter;
   final Map<int, Map<int, PageDataStoreWithId<ModelDelivery>>> _pagesData = {};
@@ -89,29 +88,25 @@ class StateHomeNowServiceCategories extends ChangeNotifier {
   }
 
   Future _loadNextPage(PageDataStoreWithId<ModelDelivery> pageData, int id, int filter) async {
-    if (pageData.isLoading || pageData.isDone) {
-      logger.i('Skip loading: loading ${pageData.isLoading} done ${pageData.isDone}');
-      return;
-    }
-    int id = pageData.newId();
-    bool success = false;
-    try {
-      pageData.startLoading();
-      notifyListeners();
-      var api = RemoteService.getApiService();
-      var res = await api.getDeliveryListItem(id, filter, pageData.page, pageData.pageSize);
-      if (pageData.isValid(id) && res.reply?.deliveryInfos != null) {
-        pageData.loadSuccess(res.reply?.deliveryInfos ?? []);
-        success = true;
-      }
-    } catch (e) {
-      logger.e(e);
-    }
-    if (!success) {
-      pageData.loadError();
-    }
-    notifyListeners();
+    await pageData.loadMoreData(
+      onUpdate: () {
+        notifyListeners();
+      },
+      loadFunction: () async {
+        try {
+          var api = RemoteService.getApiService();
+          var res = await api.getDeliveryListItem(id, filter, pageData.page, pageData.pageSize);
+          if (res.reply?.deliveryInfos != null) {
+            return PageDataResponse(data: res.reply?.deliveryInfos ?? [], isSuccess: true);
+          }
+        } catch (e, st) {
+          logger.e(st);
+        }
+        return PageDataResponse(isSuccess: false);
+      },
+    );
   }
+
 
   void setSelectedFilter(int filter) {
     if (filter == _selectedFilter) return;

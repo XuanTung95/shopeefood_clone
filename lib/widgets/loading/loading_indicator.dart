@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-import 'dart:ui';
 import 'dart:math' as Math;
 import 'package:flutter/widgets.dart';
 
@@ -109,8 +108,8 @@ class _DefaultLoadingIndicatorState extends State<DefaultLoadingIndicator> {
 class _DefaultIndicatorPainter extends CustomPainter {
   final Paint p;
   final Color color;
-  final leavesCount;
-  final leaveColors;
+  final int leavesCount;
+  final List<Color> leaveColors;
   final Path path;
   final double rotateDegree;
 
