@@ -10,6 +10,7 @@ import 'common_import.dart';
 class DateTimeUtils {
   static final dateFormat = DateFormat('yyyy-MM-dd hh:mm:ss');
   static final dateOutFormat = DateFormat('dd/MM/yyyy');
+  static final dateOutCheckoutFormat = DateFormat('hh:mm - {} dd/MM');
   static final dateOutShortFormat = DateFormat('dd/MM/yy');
   static final dateOutDefaultFormat = DateFormat('dd-MM-yyyy hh:mm');
   static final dateOutFormatDot = DateFormat('dd.MM.yyyy');

@@ -1,4 +1,5 @@
-import 'package:flutter_html/flutter_html.dart';
+// import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:shopeefood_clone/models/model_notifications.dart';
 import 'package:shopeefood_clone/utils/date_time_utils.dart';
 import 'package:shopeefood_clone/widgets/common/app_image_widget.dart';
@@ -15,7 +16,9 @@ class ViewNotificationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final textStyle = AppTextStyle(context);
     return Container(
-      color: (notification.isUnread ?? true) ? const Color(0xFFfff4f4) : Colors.transparent,
+      color: (notification.isUnread ?? true)
+          ? const Color(0xFFfff4f4)
+          : Colors.transparent,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -37,15 +40,22 @@ class ViewNotificationWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 8.0, top: 10, right: 8),
                   child: Text(
                     notification.title ?? '',
-                    style: textStyle.bodySmall.copyWith(fontWeight: FontWeight.w500),
+                    style: textStyle.bodySmall
+                        .copyWith(fontWeight: FontWeight.w500),
                   ),
                 ),
-                Html(
-                  data: notification.message ?? '',
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0, top: 5, bottom: 8, right: 8),
+                  child: HtmlWidget(
+                    notification.message ?? '',
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0, bottom: 8),
-                  child: Text(DateTimeUtils.getNotificationDate(notification), style: textStyle.bodySmall2Grey,),
+                  child: Text(
+                    DateTimeUtils.getNotificationDate(notification),
+                    style: textStyle.bodySmall2Grey,
+                  ),
                 )
               ],
             ),

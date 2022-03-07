@@ -9,7 +9,8 @@ import '../scroll_behavior/clone_scroll_bar.dart';
 class HomeCategoryGrid extends StatefulWidget {
   final List<ModelHomeSquare> categories;
 
-  const HomeCategoryGrid({Key? key, required this.categories}) : super(key: key);
+  const HomeCategoryGrid({Key? key, required this.categories})
+      : super(key: key);
 
   @override
   State<HomeCategoryGrid> createState() => _HomeCategoryGridState();
@@ -18,6 +19,7 @@ class HomeCategoryGrid extends StatefulWidget {
 class _HomeCategoryGridState extends State<HomeCategoryGrid> {
   late ScrollController scrollController;
   final homeScrollBarKey = GlobalKey<RawScrollbarState>();
+
 
   @override
   void initState() {
@@ -52,12 +54,14 @@ class _HomeCategoryGridState extends State<HomeCategoryGrid> {
             controller: scrollController,
             scrollDirection: Axis.horizontal,
             gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
             itemBuilder: (BuildContext context, int index) {
               final category = widget.categories[index];
               return AppGestureDetector(
                 onTap: () {
-                  AppRouting.goToShopDetailScreen(context);
+                  AppRouting.goToHomeWebViewScreen(context: context,
+                      title: 'https://shopee.vn/m/LPshopeefood-hn?hidebar=1',
+                      url: 'https://shopee.vn/m/LPshopeefood-hn?hidebar=1');
                 },
                 child: HomeCategoryItem(
                   category: category,
@@ -89,7 +93,7 @@ class HomeCategoryItem extends StatelessWidget {
             child: AspectRatio(
               aspectRatio: 1,
               child: AppImageNetworkWidget(
-                url: ImageUtils.getIconImage(category.photos),
+                url: ImageUtils.getIconImage(category.photos, highQuality: true),
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.cover,

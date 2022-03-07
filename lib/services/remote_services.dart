@@ -6,6 +6,7 @@ import 'package:shopeefood_clone/services/remote/fake_api/fake_api_notification.
 import 'package:shopeefood_clone/services/remote/fake_api/fake_collections_api.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_delivery_item_list.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_dish_api.dart';
+import 'package:shopeefood_clone/services/remote/fake_api/fake_draft_order.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_feedback.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_flashsale.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_get_info_of_brand.dart';
@@ -21,12 +22,17 @@ import 'package:shopeefood_clone/services/remote/fake_api/fake_voucher.dart';
 import '../utils/common_import.dart';
 
 class RemoteService {
-  static ApiRestClient getApiService() {
-    Dio dio = Dio();
-    dio.interceptors.add(LogInterceptor());
-    dio.interceptors.add(FakeApiInterceptor());
+  static ApiRestClient? _client;
 
-    return ApiRestClient(dio);
+  static ApiRestClient getApiService() {
+    if (_client == null) {
+      Dio dio = Dio();
+      dio.interceptors.add(LogInterceptor());
+      dio.interceptors.add(FakeApiInterceptor());
+
+      _client = ApiRestClient(dio);
+    }
+    return _client!;
   }
 }
 
@@ -50,6 +56,7 @@ class FakeApiInterceptor extends Interceptor {
     FakeShopDetail(),
     FakeShopMenu(),
     FakeFeedback(),
+    FakeDraftOrder(),
   ];
 
   @override

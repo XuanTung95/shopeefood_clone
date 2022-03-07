@@ -21,8 +21,8 @@ class UserAvatarWidget extends ConsumerWidget {
           child: ClipOval(
             child: AppImageNetworkWidget(
               url: ImageUtils.getIconImage(state.userProfile?.photos),
-              loadingWidget: DefaultUserAvatar(),
-              errorWidget: DefaultUserAvatar(),
+              loadingWidget: const DefaultUserAvatar(),
+              errorWidget: const DefaultUserAvatar(),
             ),
           ),
         ),

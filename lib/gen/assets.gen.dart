@@ -1477,6 +1477,10 @@ class $AssetsImagesGen {
   AssetGenImage get deliveryaddressImgmap =>
       const AssetGenImage('assets/images/deliveryaddress_imgmap.png');
 
+  /// File path: assets/images/ic_dn_app_icon.png
+  AssetGenImage get icDnAppIcon =>
+      const AssetGenImage('assets/images/ic_dn_app_icon.png');
+
   /// File path: assets/images/ic_notify_nowicon_white.png
   AssetGenImage get icNotifyNowiconWhite =>
       const AssetGenImage('assets/images/ic_notify_nowicon_white.png');

@@ -7,7 +7,7 @@ class DefaultLoadingIndicator extends StatefulWidget {
   final Color color;
 
   const DefaultLoadingIndicator({
-    this.color = const Color(0x99000000),
+    this.color = const Color(0xFFee4d2d),
   });
 
   @override

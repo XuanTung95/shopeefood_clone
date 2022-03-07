@@ -13,6 +13,7 @@ class StateOrderHistory extends ChangeNotifier {
   PageDataStoreWithId<ModelOrders> get orders => _orders;
 
   init() async {
+    _orders.reset();
     await _getHistoryOrder();
   }
 

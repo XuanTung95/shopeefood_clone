@@ -53,7 +53,7 @@ class ScreenHome extends ConsumerWidget {
                   ],
                 ),
               ),
-              HomeBottomNavigationBar(),
+              const HomeBottomNavigationBar(),
             ],
           ),
         );

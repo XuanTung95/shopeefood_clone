@@ -2,6 +2,7 @@ import 'package:shopeefood_clone/routing/app_routing.dart';
 import 'package:shopeefood_clone/screens/home/local/tabs/order/search_filter_row.dart';
 import 'package:shopeefood_clone/vm/global/state_order_history.dart';
 import 'package:shopeefood_clone/widgets/button/app_gesture_detector.dart';
+import 'package:shopeefood_clone/widgets/loading/loading_indicator.dart';
 
 import '../../../../../utils/common_import.dart';
 import '../../../../../vm/global/state_order_history_filter.dart';
@@ -26,6 +27,10 @@ class _ViewHistoryOrderState extends ConsumerState<ViewHistoryOrder> {
   void initState() {
     super.initState();
     scrollController = ScrollController();
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      final stateOrderHistory = ref.watch(StateOrderHistory.provider);
+      stateOrderHistory.init();
+    });
   }
 
   @override
@@ -36,6 +41,10 @@ class _ViewHistoryOrderState extends ConsumerState<ViewHistoryOrder> {
 
   @override
   Widget build(BuildContext context) {
+    final stateOrderHistory = ref.watch(StateOrderHistory.provider);
+    if (stateOrderHistory.orders.isLoading) {
+      return const Center(child: DefaultLoadingIndicator(),);
+    }
     return Column(
       children: [
         buildLinkShopeeRow(context),
@@ -75,31 +84,36 @@ class _ViewHistoryOrderState extends ConsumerState<ViewHistoryOrder> {
       child: Stack(
         children: [
           if (stateOrderHistory.orders.data.isNotEmpty)
-            CustomScrollView(
-              controller: scrollController, // bug scroll controller
-              slivers: [
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      final order = stateOrderHistory.orders.data[index];
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: AppGestureDetector(
-                                onTap: () {
-                                  AppRouting.goToShopDetailScreen(context);
-                                },
-                                child: OrderItemWidget(order: order,)),
-                          ),
-                          const ListDivider(),
-                        ],
-                      );
-                    },
-                    childCount: stateOrderHistory.orders.data.length,
-                  ),
-                )
-              ],
+            RefreshIndicator(
+              onRefresh: () {
+                return Future.delayed(const Duration(seconds: 1));
+              },
+              child: CustomScrollView(
+                controller: scrollController, // bug scroll controller
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final order = stateOrderHistory.orders.data[index];
+                        return Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: AppGestureDetector(
+                                  onTap: () {
+                                    AppRouting.goToShopDetailScreen(context);
+                                  },
+                                  child: OrderItemWidget(order: order,)),
+                            ),
+                            const ListDivider(),
+                          ],
+                        );
+                      },
+                      childCount: stateOrderHistory.orders.data.length,
+                    ),
+                  )
+                ],
+              ),
             )
           else
             const OrderEmptyWidget(),

@@ -21,7 +21,7 @@ class StateUserLocation extends ChangeNotifier {
     _loading = true;
     try {
       final response = await retry(
-            () => _getUserLocation(),
+            () => _getUserLocation().timeout(const Duration(seconds: 10)),
         retryIf: (e) => false,
       );
       await Future.delayed(const Duration(seconds: 2));

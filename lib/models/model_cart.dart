@@ -1,5 +1,6 @@
 import 'model_delivery.dart';
 import 'model_feedback_response.dart';
+import 'model_order.dart';
 import 'model_photo.dart';
 import 'model_price.dart';
 import 'model_shop_detail.dart';
@@ -27,7 +28,7 @@ class ModelCartResponse {
 
 class ReplyCart {
   Delivery? delivery;
-  Host? host;
+  ModelHost? host;
   int? orderType;
   String? orderTime;
   int? id;
@@ -47,7 +48,7 @@ class ReplyCart {
     delivery = json['delivery'] != null
         ? Delivery.fromJson(json['delivery'])
         : null;
-    host = json['host'] != null ? Host.fromJson(json['host']) : null;
+    host = json['host'] != null ? ModelHost.fromJson(json['host']) : null;
     orderType = json['order_type'];
     orderTime = json['order_time'];
     id = json['id'];
@@ -112,28 +113,6 @@ class Delivery {
     data['url_rewrite_name'] = urlRewriteName;
     data['id'] = id;
     data['name'] = name;
-    return data;
-  }
-}
-
-class Host {
-  int? uid;
-  String? name;
-  int? foodyUid;
-
-  Host({this.uid, this.name, this.foodyUid});
-
-  Host.fromJson(Map<String, dynamic> json) {
-    uid = json['uid'];
-    name = json['name'];
-    foodyUid = json['foody_uid'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['uid'] = uid;
-    data['name'] = name;
-    data['foody_uid'] = foodyUid;
     return data;
   }
 }

@@ -1,6 +1,8 @@
 import 'package:shopeefood_clone/models/model_shop_detail.dart';
+import 'package:shopeefood_clone/screens/confirm_order/screen_confirm_order.dart';
 import 'package:shopeefood_clone/screens/dish_detail/screen_dish_detail.dart';
 import 'package:shopeefood_clone/screens/error/screen_error.dart';
+import 'package:shopeefood_clone/screens/webview/screen_webview.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../models/model_menu_response.dart';
@@ -22,77 +24,136 @@ import 'package:shopeefood_clone/screens/splash/screen_splash.dart';
 import 'package:shopeefood_clone/screens/user_policy/screen_user_policy.dart';
 
 class AppRouting {
-  static const PATH_HOME = '/home';
-  static const PATH_ERROR = 'errorScreen';
-  static const PATH_SHOP_DETAIL = 'shopDetail';
-  static const PATH_USER_POLICY = 'userPolicy';
-  static const PATH_SETTINGS = 'settings';
-  static const PATH_INVITE_FRIEND = 'inviteFriend';
-  static const PATH_MY_VOUCHER = 'myVoucher';
-  static const PATH_PAYMENT = 'payment';
-  static const PATH_ADDRESS = 'address';
-  static const PATH_LINK_SHOPEE_ACCOUNT = 'linkShopeeAccount';
-  static const PATH_NOTIFICATION_SETTING = 'notificationSetting';
-  static const PATH_DISH_DETAIL = 'dishDetail';
+  static const _PATH_HOME = '/home';
+  static const _PATH_ERROR = 'errorScreen';
+  static const _PATH_SHOP_DETAIL = 'shopDetail';
+  static const _PATH_USER_POLICY = 'userPolicy';
+  static const _PATH_SETTINGS = 'settings';
+  static const _PATH_INVITE_FRIEND = 'inviteFriend';
+  static const _PATH_MY_VOUCHER = 'myVoucher';
+  static const _PATH_PAYMENT = 'payment';
+  static const _PATH_ADDRESS = 'address';
+  static const _PATH_LINK_SHOPEE_ACCOUNT = 'linkShopeeAccount';
+  static const _PATH_WEBVIEW = 'webview';
+  static const _PATH_NOTIFICATION_SETTING = 'notificationSetting';
+  static const _PATH_DISH_DETAIL = 'dishDetail';
+  static const _PATH_CONFIRM_ORDER = 'confirmOrder';
+
+  static const _NAME_SPLASH = 'splash';
+
+  static var _NAME_HOME = 'home';
+
+  static var _NAME_HOME_LINK_SHOPEE_ACCOUNT = 'home/linkAccount';
+  static var _NAME_HOME_WEB_VIEW = 'home/webview';
+
+  static var _NAME_HOME_NOTIFICATION_SETTING = 'home/notificationSetting';
+
+  static var _NAME_HOME_MY_VOUCHER = 'home/myVoucher';
+
+  static var _NAME_HOME_PAYMENT = 'home/payment';
+
+  static var _NAME_HOME_ADDRESS = 'home/address';
+
+  static var _NAME_HOME_INVITE_FRIEND = 'home/inviteFriend';
+
+  static var _NAME_HOME_USER_POLICY = 'home/userPolicy';
+
+  static var _NAME_HOME_SHOP_DETAIL = 'home/shopDetail';
+
+  static var _NAME_HOME_SHOP_DETAIL_DISH_DETAIL =
+      '$_NAME_HOME_SHOP_DETAIL/dishDetail';
+  static var _NAME_HOME_SHOP_DETAIL_DISH_DETAIL_CONFIRM_ORDER =
+      '$_NAME_HOME_SHOP_DETAIL/dishDetail/$_PATH_CONFIRM_ORDER';
+  static var _NAME_HOME_SHOP_DETAIL_CONFIRM_ORDER =
+      '$_NAME_HOME_SHOP_DETAIL/$_PATH_CONFIRM_ORDER';
+
+  static var _NAME_HOME_SETTINGS = 'home/setting';
+
+  static var _NAME_HOME_SETTINGS_NOTIFICATION_SETTING =
+      '$_NAME_HOME_SETTINGS/notificationSetting';
 
   static void goToHomeScreen(BuildContext context) {
-    context.go(PATH_HOME);
+    context.goNamed(_NAME_HOME);
   }
 
   static void goToLinkShopeeAcount(BuildContext context) {
-    context.go('$PATH_HOME/$PATH_LINK_SHOPEE_ACCOUNT');
+    context.goNamed(_NAME_HOME_LINK_SHOPEE_ACCOUNT);
   }
 
   static void goToNotificationSetting(BuildContext context) {
-    context.go('$PATH_HOME/$PATH_NOTIFICATION_SETTING');
+    context.goNamed(_NAME_HOME_NOTIFICATION_SETTING);
   }
 
   static void goToMyVoucherScreen(BuildContext context) {
-    context.go('$PATH_HOME/$PATH_MY_VOUCHER');
+    context.goNamed(_NAME_HOME_MY_VOUCHER);
   }
 
   static void goToPaymentScreen(BuildContext context) {
-    context.go('$PATH_HOME/$PATH_PAYMENT');
+    context.goNamed(_NAME_HOME_PAYMENT);
   }
 
   static void goToAddressScreen(BuildContext context) {
-    context.go('$PATH_HOME/$PATH_ADDRESS');
+    context.goNamed(_NAME_HOME_ADDRESS);
   }
 
   static void goToInviteFriendScreen(BuildContext context) {
-    context.go('$PATH_HOME/$PATH_INVITE_FRIEND');
+    context.goNamed(_NAME_HOME_INVITE_FRIEND);
   }
 
   static void goToErrorScreen(BuildContext context) {
-    context.go('$PATH_HOME/$PATH_ERROR');
+    context.go('$_PATH_HOME/$_PATH_ERROR');
   }
 
   static void goToUserPolicyScreen(BuildContext context) {
-    context.go('$PATH_HOME/$PATH_USER_POLICY');
+    context.goNamed(_NAME_HOME_USER_POLICY);
   }
 
   static void goToSettingsScreen(BuildContext context) {
-    context.go('$PATH_HOME/$PATH_SETTINGS');
+    context.goNamed(_NAME_HOME_SETTINGS);
   }
 
   static void goToShopDetailScreen(BuildContext context) {
-    context.go('$PATH_HOME/$PATH_SHOP_DETAIL');
+    context.goNamed(_NAME_HOME_SHOP_DETAIL);
   }
 
-  static void goToShopDetailDishScreen(
+  static void goToShopDetailConfirmOrderScreen(BuildContext context) {
+    context.goNamed(_NAME_HOME_SHOP_DETAIL_CONFIRM_ORDER);
+  }
+
+  static void goToShopDetailDishDetailConfirmOrderScreen(
       BuildContext context, ModelMenu menu, ModelShopDetail shop) {
-    context.go('$PATH_HOME/$PATH_SHOP_DETAIL/$PATH_DISH_DETAIL', extra: {
+    context.goNamed(_NAME_HOME_SHOP_DETAIL_DISH_DETAIL_CONFIRM_ORDER, extra: {
       "menu": menu,
       "shop": shop,
     });
   }
 
+  static void goToShopDetailDishScreen(
+      BuildContext context, ModelMenu menu, ModelShopDetail shop) {
+    context.goNamed(_NAME_HOME_SHOP_DETAIL_DISH_DETAIL, extra: {
+      "menu": menu,
+      "shop": shop,
+    });
+  }
+
+  static void goToHomeWebViewScreen(
+      {required BuildContext context, required String title, required String url}) {
+    context.goNamed(_NAME_HOME_WEB_VIEW, extra: {
+      "title": title,
+      "url": url,
+    });
+  }
+
   static void goToSettingsNotificationsSettingScreen(BuildContext context) {
-    context.go('$PATH_HOME/$PATH_SETTINGS/$PATH_NOTIFICATION_SETTING');
+    context.goNamed(_NAME_HOME_SETTINGS_NOTIFICATION_SETTING);
   }
 
   static GoRouter getRouter() {
     return GoRouter(
+      redirect: (state) {
+        // logger.d('Redirect: ${state.path}');
+      },
+      debugLogDiagnostics: true,
       errorPageBuilder: (
         context,
         state,
@@ -102,60 +163,108 @@ class AppRouting {
       routes: [
         GoRoute(
           path: '/',
+          name: _NAME_SPLASH,
           builder: (context, state) => const ScreenSplash(),
         ),
         GoRoute(
-            path: AppRouting.PATH_HOME,
+            path: AppRouting._PATH_HOME,
+            name: _NAME_HOME,
             builder: (context, state) => const ScreenHome(),
             routes: [
               GoRoute(
-                path: AppRouting.PATH_LINK_SHOPEE_ACCOUNT,
+                name: _NAME_HOME_WEB_VIEW,
+                path: AppRouting._PATH_WEBVIEW,
+                builder: (context, state) {
+                  if (state.extra is Map) {
+                    return ScreenWebView(
+                        title: (state.extra as Map)["title"] ?? '',
+                        url: (state.extra as Map)["url"]);
+                  }
+                  return const ScreenWebView(
+                    title: "",
+                    url: "",
+                  );
+                },
+              ),
+              GoRoute(
+                name: _NAME_HOME_LINK_SHOPEE_ACCOUNT,
+                path: AppRouting._PATH_LINK_SHOPEE_ACCOUNT,
                 builder: (context, state) => const ScreenLinkShopeeAcount(),
               ),
               GoRoute(
-                path: AppRouting.PATH_NOTIFICATION_SETTING,
+                name: _NAME_HOME_NOTIFICATION_SETTING,
+                path: AppRouting._PATH_NOTIFICATION_SETTING,
                 builder: (context, state) => const ScreenNotificationSetting(),
               ),
               GoRoute(
-                path: AppRouting.PATH_MY_VOUCHER,
+                name: _NAME_HOME_MY_VOUCHER,
+                path: AppRouting._PATH_MY_VOUCHER,
                 builder: (context, state) => const ScreenMyVoucher(),
               ),
               GoRoute(
-                path: AppRouting.PATH_PAYMENT,
+                name: _NAME_HOME_PAYMENT,
+                path: AppRouting._PATH_PAYMENT,
                 builder: (context, state) => const ScreenPayment(),
               ),
               GoRoute(
-                path: AppRouting.PATH_ADDRESS,
+                name: _NAME_HOME_ADDRESS,
+                path: AppRouting._PATH_ADDRESS,
                 builder: (context, state) => const ScreenAddress(),
               ),
               GoRoute(
-                path: AppRouting.PATH_INVITE_FRIEND,
+                name: _NAME_HOME_INVITE_FRIEND,
+                path: AppRouting._PATH_INVITE_FRIEND,
                 builder: (context, state) => const ScreenInviteFriend(),
               ),
               GoRoute(
-                path: AppRouting.PATH_USER_POLICY,
+                name: _NAME_HOME_USER_POLICY,
+                path: AppRouting._PATH_USER_POLICY,
                 builder: (context, state) => const ScreenUserPolicy(),
               ),
               GoRoute(
-                  path: AppRouting.PATH_SHOP_DETAIL,
+                  name: _NAME_HOME_SHOP_DETAIL,
+                  path: AppRouting._PATH_SHOP_DETAIL,
                   builder: (context, state) => const ScreenShopDetail(),
                   routes: [
                     GoRoute(
-                      path: AppRouting.PATH_DISH_DETAIL,
+                        name: _NAME_HOME_SHOP_DETAIL_DISH_DETAIL,
+                        path: AppRouting._PATH_DISH_DETAIL,
+                        builder: (context, state) {
+                          if (state.extra is Map) {
+                            return ScreenDishDetail(
+                              menu: (state.extra as Map)["menu"],
+                              shopDetail: (state.extra as Map)["shop"],
+                            );
+                          } else {
+                            return const ScreenDishDetail();
+                          }
+                        },
+                        routes: [
+                          GoRoute(
+                            name:
+                                _NAME_HOME_SHOP_DETAIL_DISH_DETAIL_CONFIRM_ORDER,
+                            path: AppRouting._PATH_CONFIRM_ORDER,
+                            builder: (context, state) {
+                              return const ScreenConfirmOrder();
+                            },
+                          ),
+                        ]),
+                    GoRoute(
+                      name: _NAME_HOME_SHOP_DETAIL_CONFIRM_ORDER,
+                      path: AppRouting._PATH_CONFIRM_ORDER,
                       builder: (context, state) {
-                        return ScreenDishDetail(
-                          menu: (state.extra as Map)["menu"],
-                          shopDetail: (state.extra as Map)["shop"],
-                        );
+                        return const ScreenConfirmOrder();
                       },
                     ),
                   ]),
               GoRoute(
-                  path: AppRouting.PATH_SETTINGS,
+                  name: _NAME_HOME_SETTINGS,
+                  path: AppRouting._PATH_SETTINGS,
                   builder: (context, state) => const ScreenSettings(),
                   routes: [
                     GoRoute(
-                      path: AppRouting.PATH_NOTIFICATION_SETTING,
+                      name: _NAME_HOME_SETTINGS_NOTIFICATION_SETTING,
+                      path: AppRouting._PATH_NOTIFICATION_SETTING,
                       builder: (context, state) =>
                           const ScreenNotificationSetting(),
                     ),

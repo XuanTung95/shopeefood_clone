@@ -1,6 +1,7 @@
 import 'package:shopeefood_clone/vm/global/state_likes_tab_filter.dart';
 
 import '../../../../../../utils/common_import.dart';
+import '../../../../../../vm/global/state_services_info.dart';
 
 class LikeFilterSelectItemView extends ConsumerStatefulWidget {
   const LikeFilterSelectItemView({Key? key}) : super(key: key);
@@ -25,6 +26,7 @@ class LikeFilterSelectItemViewState
     if (!isVisible) return const SizedBox();
     final textStyle = AppTextStyle(context);
     final vm = ref.watch(StateLikesTabFilter.provider);
+    final servicesInfo = ref.watch(StateServiceInfo.provider);
     return Stack(
       children: [
         GestureDetector(
@@ -43,7 +45,7 @@ class LikeFilterSelectItemViewState
             controller: ScrollController(),
             key: const ValueKey("services"),
             itemBuilder: (context, index) {
-              final currItem = vm.allServices[index];
+              final currItem = servicesInfo.allServices[index];
               final selected = currItem == vm.selectedService;
               return GestureDetector(
                 onTap: () {
@@ -85,7 +87,7 @@ class LikeFilterSelectItemViewState
                 ),
               );
             },
-            itemCount: vm.allServices.length,
+            itemCount: servicesInfo.allServices.length,
           ),
         ),
       ],

@@ -44,7 +44,7 @@ class _LikeTabViewState extends ConsumerState<TabLikeHome> {
                 ),
               ),
             ),
-            DividerWidget(child: LikesTabBar()),
+            const DividerWidget(child: LikesTabBar()),
             buildSearchFilterRow(context),
             Expanded(
               child: Stack(

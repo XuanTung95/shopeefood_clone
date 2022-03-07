@@ -160,8 +160,11 @@ class _ScreenShopDetailState extends ConsumerState<ScreenShopDetail>
                   if (state.shopDetail?.id != null)
                     CheckoutRow(
                       restaurantId: state.shopDetail?.id ?? -1,
-                      onTap: () {
+                      clickViewOrder: () {
                         basketSheetKey.currentState?.isOpen = true;
+                      },
+                      clickCheckout: () {
+                        AppRouting.goToShopDetailConfirmOrderScreen(context);
                       },
                     ),
                 ],

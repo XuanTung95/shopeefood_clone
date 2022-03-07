@@ -39,33 +39,57 @@ class _SettingSwitchWidgetState extends State<SettingSwitchWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(widget.title, style: textStyle.bodyBoldBlack,),
-                const SizedBox(height: 10,),
-                Text(widget.description, style: textStyle.bodySmallGrey,)
+                Text(
+                  widget.title,
+                  style: textStyle.bodyBoldBlack,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  widget.description,
+                  style: textStyle.bodySmallGrey,
+                )
               ],
             ),
           ),
         ),
-        Switch(
-            value: selected,
-            thumbColor: MaterialStateProperty.resolveWith((states) {
-              if (!selected) {
-                return Colors.grey[300];
-              }
-              return Colors.green;
-            }),
-            trackColor: MaterialStateProperty.resolveWith((states) {
-              if (!selected) {
-                return Colors.grey;
-              }
-              return Colors.green[300];
-            }),
-            onChanged: (value) {
-              setState(() {
-                selected = !selected;
-              });
-            }),
+        SwitchDefault(
+          onChanged: (value) {
+            setState(() {
+              selected = !selected;
+            });
+          },
+          selected: selected,
+        ),
       ],
     );
+  }
+}
+
+class SwitchDefault extends StatelessWidget {
+  final bool selected;
+  final ValueChanged<bool>? onChanged;
+
+  const SwitchDefault({Key? key, required this.selected, this.onChanged})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Switch(
+        value: selected,
+        thumbColor: MaterialStateProperty.resolveWith((states) {
+          if (!selected) {
+            return Colors.grey[300];
+          }
+          return Colors.green;
+        }),
+        trackColor: MaterialStateProperty.resolveWith((states) {
+          if (!selected) {
+            return Colors.grey;
+          }
+          return Colors.green[300];
+        }),
+        onChanged: onChanged);
   }
 }

@@ -15,6 +15,7 @@ import 'package:shopeefood_clone/models/model_shop_detail.dart';
 import 'package:shopeefood_clone/services/remote/remote_url.dart';
 
 import '../../models/model_category.dart';
+import '../../models/model_draft_order.dart';
 import '../../models/model_meta_response.dart';
 import '../../models/model_notifications.dart';
 import '../../models/model_user_profile.dart';
@@ -84,4 +85,8 @@ abstract class ApiRestClient {
 
   @GET(urlGetFeedback)
   Future<ModelFeedbackResponse> getFeedback();
+
+  @GET(urlGetDraftOrder)
+  Future<DraftOrderResponse> getDraftOrder();
+
 }

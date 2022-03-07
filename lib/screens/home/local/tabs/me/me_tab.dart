@@ -28,7 +28,7 @@ class _MeTabViewState extends ConsumerState<TabMeHomeView> {
         SliverToBoxAdapter(
           child: buildUserAvatar(colors, state, textStyle),
         ),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: BindShopeeAcountWidget(),
         ),
         const SliverToBoxAdapter(

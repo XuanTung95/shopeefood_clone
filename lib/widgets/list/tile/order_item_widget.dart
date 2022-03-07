@@ -103,6 +103,10 @@ class OrderItemWidget extends StatelessWidget {
               child: AppImageNetworkWidget(
                 url: ImageUtils.getIconImage(order.delivery?.photos),
                 fit: BoxFit.fitWidth,
+                loadingWidget: const AspectRatio(
+                  aspectRatio: 1,
+                  child: SizedBox(),
+                ),
               ),
             ),
             if (order.delivery?.label?.photos?.isNotEmpty ?? false)

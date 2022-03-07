@@ -24,7 +24,7 @@ class AppBarDefault extends StatelessWidget {
                   .path, width: 25,),
             ),
           ),
-          Text(title, style: textStyle.appBarText,)
+          Flexible(child: Text(title, style: textStyle.appBarText, overflow: TextOverflow.ellipsis,))
         ],
       ),
     );

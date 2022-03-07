@@ -17,3 +17,4 @@ const String urlGetAddress = 'user/address';
 const String urlGetShopDetail = 'shop/detail';
 const String urlGetMenu = 'shop/getMenu';
 const String urlGetFeedback = 'shop/getFeedback';
+const String urlGetDraftOrder = 'order/draft';

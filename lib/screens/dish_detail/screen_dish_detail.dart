@@ -8,6 +8,7 @@ import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../models/model_cart.dart';
 import '../../models/model_shop_detail.dart';
+import '../../routing/app_routing.dart';
 import '../../utils/common_import.dart';
 import '../../utils/money_utls.dart';
 import '../../utils/widget_utils.dart';
@@ -15,7 +16,6 @@ import '../../widgets/app_bar/app_bar_circle_button.dart';
 import '../../widgets/bottom_sheet/my_basket_bottom_sheet.dart';
 import '../../widgets/button/app_gesture_detector.dart';
 import '../../widgets/common/add_delete_icon_widget.dart';
-import '../../widgets/common/add_icon_widget.dart';
 import '../../widgets/common/app_image_widget.dart';
 import '../../widgets/common/checkout_row.dart';
 import '../../widgets/common/flying_circle_animation_widget.dart';
@@ -139,15 +139,20 @@ class _ScreenDishDetailState extends ConsumerState<ScreenDishDetail> {
                     key: flyingAnimationKey,
                   ),
                   MyBasketBottomSheet(
-                    key: basketSheetKey, shopDetail: widget.shopDetail!,
+                    key: basketSheetKey,
+                    shopDetail: widget.shopDetail!,
                   ),
                 ],
               ),
             ),
             CheckoutRow(
               restaurantId: widget.shopDetail?.id ?? -1,
-              onTap: () {
+              clickViewOrder: () {
                 basketSheetKey.currentState?.isOpen = true;
+              },
+              clickCheckout: () {
+                AppRouting.goToShopDetailDishDetailConfirmOrderScreen(
+                    context, widget.menu!, widget.shopDetail!);
               },
             ),
           ],
@@ -290,7 +295,7 @@ class _ScreenDishDetailState extends ConsumerState<ScreenDishDetail> {
   buildPrice(BuildContext context, AppTextStyle textStyle) {
     final cart = ref.watch(StateCart.provider);
     OrderDishes orderDish =
-    cart.getOrderDishFromMenu(widget.shopDetail!, widget.menu!);
+        cart.getOrderDishFromMenu(widget.shopDetail!, widget.menu!);
 
     final colors = AppColor(context);
     String finalPrice = '${widget.menu?.price?.getPrice ?? ' '}';
@@ -353,21 +358,20 @@ class _ScreenDishDetailState extends ConsumerState<ScreenDishDetail> {
                 count: orderDish.quantity ?? 0,
                 id: widget.menu!.id,
                 onClickText: (count) {
-                  orderDish.quantity =
-                      min(999,max(0, count));
+                  orderDish.quantity = min(999, max(0, count));
                   cart.addRemoveDish(orderDish, widget.shopDetail!);
                 },
                 onClick: (BuildContext context, bool isAdd) {
                   Offset? clickPos;
                   clickPos = WidgetUtils.getWidgetGlobalPosition(context);
-                  orderDish.quantity =
-                      min(999, max(0, (orderDish.quantity ?? 0) + (isAdd ? 1 : -1)));
+                  orderDish.quantity = min(999,
+                      max(0, (orderDish.quantity ?? 0) + (isAdd ? 1 : -1)));
                   cart.addRemoveDish(orderDish, widget.shopDetail!);
                   if (isAdd) {
                     final state = flyingAnimationKey.currentState;
                     if (clickPos != null && state != null) {
                       Offset? pos =
-                      WidgetUtils.getWidgetGlobalPosition(state.context);
+                          WidgetUtils.getWidgetGlobalPosition(state.context);
                       Size? size = WidgetUtils.getWidgetSize(state.context);
                       if (pos != null && size != null) {
                         state.startAnimation(

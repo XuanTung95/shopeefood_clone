@@ -9,9 +9,11 @@ import '../../utils/common_import.dart';
 class CheckoutRow extends ConsumerWidget {
   final int restaurantId;
   final double height;
-  final VoidCallback? onTap;
+  final VoidCallback? clickViewOrder;
+  final VoidCallback? clickCheckout;
 
-  const CheckoutRow({Key? key, required this.restaurantId, this.onTap, this.height = 60})
+
+  const CheckoutRow({Key? key, required this.restaurantId, this.clickViewOrder, this.clickCheckout, this.height = 60})
       : super(key: key);
 
   @override
@@ -45,7 +47,7 @@ class CheckoutRow extends ConsumerWidget {
                     Expanded(
                       child: AppGestureDetector(
                         onTap: () {
-                          onTap?.call();
+                          clickViewOrder?.call();
                         },
                         child: Row(
                           children: [
@@ -93,7 +95,9 @@ class CheckoutRow extends ConsumerWidget {
                       ),
                     ),
                     AppGestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        clickCheckout?.call();
+                      },
                       child: Container(
                         color: colors.primaryColor,
                         height: double.infinity,

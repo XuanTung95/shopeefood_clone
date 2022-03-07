@@ -53,9 +53,9 @@ class ModelOrders {
   int? submitAppType;
   Feedback? feedback;
   String? orderTime;
-  OrderItems? orderItems;
+  OrderItemInfo? orderItems;
   ModelDelivery? delivery;
-  Host? host;
+  ModelHost? host;
   String? orderCode;
   String? sharingToken;
   PaidStatus? paidStatus;
@@ -97,12 +97,12 @@ class ModelOrders {
         : null;
     orderTime = json['order_time'];
     orderItems = json['order_items'] != null
-        ? OrderItems.fromJson(json['order_items'])
+        ? OrderItemInfo.fromJson(json['order_items'])
         : null;
     delivery = json['delivery'] != null
         ? ModelDelivery.fromJson(json['delivery'])
         : null;
-    host = json['host'] != null ? Host.fromJson(json['host']) : null;
+    host = json['host'] != null ? ModelHost.fromJson(json['host']) : null;
     orderCode = json['order_code'];
     sharingToken = json['sharing_token'];
     paidStatus = json['paid_status'] != null
@@ -243,13 +243,13 @@ class Shipper {
   }
 }
 
-class OrderItems {
+class OrderItemInfo {
   int? totalItem;
   int? totalUser;
 
-  OrderItems({this.totalItem, this.totalUser});
+  OrderItemInfo({this.totalItem, this.totalUser});
 
-  OrderItems.fromJson(Map<String, dynamic> json) {
+  OrderItemInfo.fromJson(Map<String, dynamic> json) {
     totalItem = json['total_item'];
     totalUser = json['total_user'];
   }
@@ -262,28 +262,28 @@ class OrderItems {
   }
 }
 
-class Host {
+class ModelHost {
   List<Photos>? photos;
   List<int>? allowedPaymentMethods;
   int? uid;
   String? name;
   int? foodyUid;
 
-  Host(
+  ModelHost(
       {this.photos,
         this.allowedPaymentMethods,
         this.uid,
         this.name,
         this.foodyUid});
 
-  Host.fromJson(Map<String, dynamic> json) {
+  ModelHost.fromJson(Map<String, dynamic> json) {
     if (json['photos'] != null) {
       photos = <Photos>[];
       json['photos'].forEach((v) {
         photos!.add(Photos.fromJson(v));
       });
     }
-    allowedPaymentMethods = json['allowed_payment_methods'].cast<int>();
+    allowedPaymentMethods = json['allowed_payment_methods']?.cast<int>();
     uid = json['uid'];
     name = json['name'];
     foodyUid = json['foody_uid'];
