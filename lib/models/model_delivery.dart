@@ -63,12 +63,10 @@ class ModelDelivery {
   int? serviceType;
   String? urlRewriteName;
   bool? isFoodyDelivery;
-  List<Null>? rushHour;
   Brand? brand;
   int? limitDistance;
   String? imageName;
   int? restaurantStatus;
-  List<Null>? campaigns;
   List<Photos>? photos;
   Position? confirmMethods;
   String? address;
@@ -88,7 +86,7 @@ class ModelDelivery {
   List<int>? shippingMethods;
   Label? label;
 
-  ModelDelivery({this.totalOrder, this.rating, this.cityId, this.phones, this.restaurantId, this.restaurantUrl, this.brandId, this.isOpen, this.contractType, this.id, this.locationUrl, this.hasContract, this.isQualityMerchant, this.merchantTime, this.categories, this.cuisines, this.serviceType, this.urlRewriteName, this.isFoodyDelivery, this.rushHour, this.brand, this.limitDistance, this.imageName, this.restaurantStatus, this.campaigns, this.photos, this.confirmMethods, this.address, this.nameEn, this.foodyServiceId, this.minOrderValue, this.operating, this.name, this.promotionGroups, this.url, this.displayOrder, this.deliveryId, this.districtId, this.isPickup, this.priceRange, this.position, this.shippingMethods, this.label});
+  ModelDelivery({this.totalOrder, this.rating, this.cityId, this.phones, this.restaurantId, this.restaurantUrl, this.brandId, this.isOpen, this.contractType, this.id, this.locationUrl, this.hasContract, this.isQualityMerchant, this.merchantTime, this.categories, this.cuisines, this.serviceType, this.urlRewriteName, this.isFoodyDelivery, this.brand, this.limitDistance, this.imageName, this.restaurantStatus, this.photos, this.confirmMethods, this.address, this.nameEn, this.foodyServiceId, this.minOrderValue, this.operating, this.name, this.promotionGroups, this.url, this.displayOrder, this.deliveryId, this.districtId, this.isPickup, this.priceRange, this.position, this.shippingMethods, this.label});
 
   ModelDelivery.fromJson(Map<String, dynamic> json) {
     totalOrder = json['total_order'];

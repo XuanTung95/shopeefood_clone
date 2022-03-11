@@ -1,6 +1,4 @@
 
-
-
 import 'package:shopeefood_clone/utils/common_import.dart';
 
 class StateHomeBottomNav extends ChangeNotifier {

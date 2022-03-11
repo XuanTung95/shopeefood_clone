@@ -113,6 +113,7 @@ class StateCart extends ChangeNotifier {
         return value;
       }
     }
+    return null;
   }
 
   OrderItems? _getOrderItemById(int restaurantId) {
@@ -121,5 +122,6 @@ class StateCart extends ChangeNotifier {
         return value;
       }
     }
+    return null;
   }
 }

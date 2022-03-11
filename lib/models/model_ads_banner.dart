@@ -1,12 +1,12 @@
 import 'model_photo.dart';
 
-class AdsBanerResponse {
+class AdsBannerResponse {
   ReplyBanners? reply;
   String? result;
 
-  AdsBanerResponse({this.reply, this.result});
+  AdsBannerResponse({this.reply, this.result});
 
-  AdsBanerResponse.fromJson(Map<String, dynamic> json) {
+  AdsBannerResponse.fromJson(Map<String, dynamic> json) {
     reply = json['reply'] != null ? ReplyBanners.fromJson(json['reply']) : null;
     result = json['result'];
   }

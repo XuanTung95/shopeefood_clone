@@ -749,7 +749,7 @@ class FakeDeliveryItemList extends BaseFakeApi {
   static int _count = 0;
 
   @override
-  dynamic response() {
+  dynamic response({String? url}) {
     switch ((++_count) % 4) {
       case 0:
         return jsonDecode(_json);

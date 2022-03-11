@@ -1,12 +1,11 @@
 import 'dart:io';
 
 import 'package:shopeefood_clone/vm/global/state_home_bottom_nav.dart';
-import 'package:shopeefood_clone/widgets/bubble/notify_bubble.dart';
 
 import '../../utils/common_import.dart';
 import '../../widgets/bottom_bar/home_bottom_nav_bar.dart';
+import '../../widgets/popup/home_popup_widget.dart';
 import '../../widgets/scroll_behavior/macos_scroll_behavior.dart';
-import 'local/location/finding_location.dart';
 import 'local/tabs/home/home_tab.dart';
 import 'local/tabs/like/like_tab.dart';
 import 'local/tabs/me/me_tab.dart';
@@ -19,11 +18,12 @@ class ScreenHome extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    logger.d("Build Home Screen");
     return ScrollConfiguration(
       behavior:
       Platform.isMacOS ? MacOsScrollBehavior() : const ScrollBehavior(),
       child: LayoutBuilder(builder: (context, size) {
-        print('Size: ${size.maxWidth} : ${size.maxHeight}');
+        logger.d('Size: ${size.maxWidth} : ${size.maxHeight}');
         Widget homeContent = const SizedBox();
         var stateBotNav = ref.watch(StateHomeBottomNav.provider);
         switch(stateBotNav.selected) {
@@ -44,16 +44,21 @@ class ScreenHome extends ConsumerWidget {
             break;
         }
         return Scaffold(
-          body: Column(
+          body: Stack(
             children: [
-              Expanded(
-                child: Stack(
-                  children: [
-                    homeContent
-                  ],
-                ),
+              Column(
+                children: [
+                  Expanded(
+                    child: Stack(
+                      children: [
+                        homeContent,
+                      ],
+                    ),
+                  ),
+                  const HomeBottomNavigationBar(),
+                ],
               ),
-              const HomeBottomNavigationBar(),
+              const HomePopupWidget(),
             ],
           ),
         );

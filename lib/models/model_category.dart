@@ -1,6 +1,3 @@
-
-
-
 import 'model_photo.dart';
 
 class HomeSquareResponse {

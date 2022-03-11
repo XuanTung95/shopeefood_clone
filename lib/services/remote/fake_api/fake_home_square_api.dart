@@ -401,7 +401,7 @@ class FakeHomeSquare extends BaseFakeApi {
   }
 
   @override
-  dynamic response() {
+  dynamic response({String? url}) {
     return jsonDecode(_json);
   }
 

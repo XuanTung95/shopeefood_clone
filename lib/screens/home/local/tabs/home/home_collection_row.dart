@@ -10,7 +10,6 @@ class HomeCollectionsRow extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     var stateCollection = ref.watch(StateHomeCollection.provider);
-
     return Column(
       children: [
         Padding(

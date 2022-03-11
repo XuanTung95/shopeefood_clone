@@ -26,6 +26,7 @@ class ModelUserProfileResponse {
 class ModelUserProfile {
   String? username;
   String? lastName;
+  int? occupationId;
   int? uid;
   List<Phones>? phones;
   bool? isMerchant;
@@ -45,6 +46,7 @@ class ModelUserProfile {
   bool? isVerified;
   String? email;
   bool? isEnableCoinReward;
+  String? birthday;
 
   ModelUserProfile(
       {this.username,
@@ -67,11 +69,15 @@ class ModelUserProfile {
         this.reminder,
         this.isVerified,
         this.email,
+        this.occupationId,
+        this.birthday,
         this.isEnableCoinReward});
 
   ModelUserProfile.fromJson(Map<String, dynamic> json) {
     username = json['username'];
     lastName = json['last_name'];
+    occupationId = json['occupationId'];
+    birthday = json['birthday'];
     uid = json['uid'];
     if (json['phones'] != null) {
       phones = <Phones>[];
@@ -112,6 +118,8 @@ class ModelUserProfile {
     data['username'] = username;
     data['last_name'] = lastName;
     data['uid'] = uid;
+    data['birthday'] = birthday;
+    data['occupation_id'] = occupationId;
     if (phones != null) {
       data['phones'] = phones!.map((v) => v.toJson()).toList();
     }

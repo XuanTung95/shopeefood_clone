@@ -1,4 +1,3 @@
-import 'model_delivery.dart';
 import 'model_feedback_response.dart';
 import 'model_order.dart';
 import 'model_photo.dart';

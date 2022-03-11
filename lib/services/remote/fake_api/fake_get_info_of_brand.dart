@@ -17,7 +17,7 @@ class FakeGetInfoOfBrand extends BaseFakeApi {
   }
 
   @override
-  response() {
+  response({String? url}) {
     return jsonDecode(_json);
   }
 

@@ -1,7 +1,6 @@
 
 import 'package:shopeefood_clone/models/model_price.dart';
 
-import 'model_cart.dart';
 import 'model_delivery.dart';
 import 'model_order.dart';
 
@@ -85,7 +84,7 @@ class ModelDraftCarts {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (orderValue != null) {
       data['order_value'] = orderValue!.toJson();
     }

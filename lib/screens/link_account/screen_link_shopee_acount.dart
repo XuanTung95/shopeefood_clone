@@ -23,7 +23,6 @@ class ScreenLinkShopeeAcount extends StatelessWidget {
               flex: 4,
               child: AppGestureDetector(
                 onTap: () {
-
                 },
                 blurType: BlurType.OPACITY,
                 child: Image.asset(

@@ -71,6 +71,12 @@ class AppTextStyle {
       fontSize: 17,
       fontWeight: FontWeight.w500);
 
+  TextStyle get bodyMediumGrey => TextStyle(
+      color: textColorGrey3,
+      fontFamily: fontFamily,
+      fontSize: 14,
+      fontWeight: FontWeight.w400);
+
   TextStyle get bodySmallGrey => TextStyle(
       color: textColorGrey3,
       fontFamily: fontFamily,
@@ -135,5 +141,11 @@ class AppTextStyle {
       color: textColorBlack,
       fontFamily: fontFamily,
       fontSize: 15,
+      fontWeight: FontWeight.w400);
+
+  TextStyle get cupertinoAction => TextStyle(
+      color: Colors.blue,
+      fontFamily: fontFamily,
+      fontSize: 18,
       fontWeight: FontWeight.w400);
 }

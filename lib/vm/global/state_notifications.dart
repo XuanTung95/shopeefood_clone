@@ -3,7 +3,6 @@ import 'package:shopeefood_clone/models/model_notifications.dart';
 import 'package:shopeefood_clone/services/remote_services.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
-import '../../models/model_delivery.dart';
 
 class StateNotifications extends ChangeNotifier {
   static final provider =

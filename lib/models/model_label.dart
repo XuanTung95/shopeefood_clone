@@ -1,6 +1,3 @@
-
-
-
 import 'model_photo.dart';
 
 class Label {
@@ -13,14 +10,14 @@ class Label {
     if (json['photos'] != null) {
       photos = <Photos>[];
       json['photos'].forEach((v) {
-        photos!.add(new Photos.fromJson(v));
+        photos!.add(Photos.fromJson(v));
       });
     }
     labelPosition = json['label_position'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (photos != null) {
       data['photos'] = photos!.map((v) => v.toJson()).toList();
     }

@@ -18,6 +18,7 @@ import 'package:shopeefood_clone/services/remote/fake_api/fake_shop_detail.dart'
 import 'package:shopeefood_clone/services/remote/fake_api/fake_shop_menus.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_user_profile.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_voucher.dart';
+import 'package:shopeefood_clone/services/remote/google_map_service.dart';
 
 import '../utils/common_import.dart';
 
@@ -33,6 +34,11 @@ class RemoteService {
       _client = ApiRestClient(dio);
     }
     return _client!;
+  }
+
+  static GoogleMapService getGoogleMapService() {
+    Dio dio = Dio();
+    return GoogleMapService(dio);
   }
 }
 
@@ -66,7 +72,7 @@ class FakeApiInterceptor extends Interceptor {
       if (api.accept(options.uri.toString())) {
         await Future.delayed(const Duration(seconds: 1));
         Response response =
-            Response(data: api.response(), requestOptions: options);
+            Response(data: api.response(url: options.uri.toString()), requestOptions: options);
         return handler.resolve(response);
       }
     }

@@ -1,4 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 import 'package:shopeefood_clone/models/model_address.dart';
@@ -8,7 +7,6 @@ import 'package:shopeefood_clone/models/model_delivery.dart';
 import 'package:shopeefood_clone/models/model_dish.dart';
 import 'package:shopeefood_clone/models/model_feedback_response.dart';
 import 'package:shopeefood_clone/models/model_flash_sale.dart';
-import 'package:shopeefood_clone/models/model_location_response.dart';
 import 'package:shopeefood_clone/models/model_menu_response.dart';
 import 'package:shopeefood_clone/models/model_order.dart';
 import 'package:shopeefood_clone/models/model_shop_detail.dart';
@@ -37,7 +35,7 @@ abstract class ApiRestClient {
   Future<HomeSquareResponse> getHomeSquare();
 
   @GET(urlGetHomeAdsBanner)
-  Future<AdsBanerResponse> getHomeAdsBanner();
+  Future<AdsBannerResponse> getHomeAdsBanner(@Query("position") int position);
 
   @GET(urlGetMetaData)
   Future<MetaResponse> getMetaData();

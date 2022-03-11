@@ -66,18 +66,18 @@ class _ApiRestClient implements ApiRestClient {
   }
 
   @override
-  Future<AdsBanerResponse> getHomeAdsBanner() async {
+  Future<AdsBannerResponse> getHomeAdsBanner(position) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'position': position};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AdsBanerResponse>(
+        _setStreamType<AdsBannerResponse>(
             Options(method: 'GET', headers: _headers, extra: _extra)
                 .compose(_dio.options, 'home/adds/banners',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = AdsBanerResponse.fromJson(_result.data!);
+    final value = AdsBannerResponse.fromJson(_result.data!);
     return value;
   }
 

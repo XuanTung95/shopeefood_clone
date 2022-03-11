@@ -270,7 +270,7 @@ class FakeNotification extends BaseFakeApi {
   }
 
   @override
-  response() {
+  response({String? url}) {
     return json.decode(_json);
   }
 

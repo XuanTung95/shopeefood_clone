@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:shopeefood_clone/utils/date_time_utils.dart';
 import 'package:shopeefood_clone/utils/money_utls.dart';
 import 'package:shopeefood_clone/vm/global/state_cart.dart';
@@ -17,6 +19,7 @@ import '../../widgets/common/checkout_delivery_time_widget.dart';
 import '../../widgets/common/checkout_list_dish_widget.dart';
 import '../../widgets/common/colors_divider.dart';
 import '../../widgets/rating/select_checked_widget.dart';
+import '../../widgets/scroll_behavior/macos_scroll_behavior.dart';
 import '../../widgets/tab_bar/app_tabbar.dart';
 
 class ScreenConfirmOrder extends ConsumerStatefulWidget {
@@ -45,17 +48,21 @@ class _ScreenConfirmOrderState extends ConsumerState<ScreenConfirmOrder> {
     final colors = AppColor(context);
     final textStyle = AppTextStyle(context);
     final address = ref.watch(StateUserAddress.provider);
-    return Scaffold(
-      backgroundColor: colors.homeBg,
-      body: SafeArea(
-        child: Column(
-          children: [
-            AppBarDefault(
-              title: 'confirm_order'.tr(),
-            ),
-            buildScrollContent(address, order, textStyle, dish, colors),
-            buildBottomRow(textStyle, colors, dish)
-          ],
+    return ScrollConfiguration(
+      behavior:
+      Platform.isMacOS ? MacOsScrollBehavior() : const ScrollBehavior(),
+      child: Scaffold(
+        backgroundColor: colors.homeBg,
+        body: SafeArea(
+          child: Column(
+            children: [
+              AppBarDefault(
+                title: 'confirm_order'.tr(),
+              ),
+              buildScrollContent(address, order, textStyle, dish, colors),
+              buildBottomRow(textStyle, colors, dish)
+            ],
+          ),
         ),
       ),
     );
@@ -126,7 +133,7 @@ class _ScreenConfirmOrderState extends ConsumerState<ScreenConfirmOrder> {
                   Row(
                     children: [
                       Text(
-                        '${'total'.tr()}',
+                        'total'.tr(),
                         style: textStyle.bodyBoldBlackBig,
                       ),
                       const Spacer(),

@@ -13,11 +13,11 @@ class FlashSaleResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.reply != null) {
-      data['reply'] = this.reply!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (reply != null) {
+      data['reply'] = reply!.toJson();
     }
-    data['result'] = this.result;
+    data['result'] = result;
     return data;
   }
 }
@@ -37,9 +37,9 @@ class ReplyFlashSale {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.itemInfos != null) {
-      data['item_infos'] = this.itemInfos!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (itemInfos != null) {
+      data['item_infos'] = itemInfos!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -65,15 +65,15 @@ class ModelFlashSale {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.dishInfo != null) {
-      data['dish_info'] = this.dishInfo!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (dishInfo != null) {
+      data['dish_info'] = dishInfo!.toJson();
     }
-    if (this.flashSaleInfo != null) {
-      data['flash_sale_info'] = this.flashSaleInfo!.toJson();
+    if (flashSaleInfo != null) {
+      data['flash_sale_info'] = flashSaleInfo!.toJson();
     }
-    if (this.deliveryInfo != null) {
-      data['delivery_info'] = this.deliveryInfo!.toJson();
+    if (deliveryInfo != null) {
+      data['delivery_info'] = deliveryInfo!.toJson();
     }
     return data;
   }
@@ -100,15 +100,15 @@ class DishInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (this.photos != null) {
-      data['photos'] = this.photos!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (photos != null) {
+      data['photos'] = photos!.map((v) => v.toJson()).toList();
     }
-    if (this.price != null) {
-      data['price'] = this.price!.toJson();
+    if (price != null) {
+      data['price'] = price!.toJson();
     }
-    data['dish_id'] = this.dishId;
-    data['name'] = this.name;
+    data['dish_id'] = dishId;
+    data['name'] = name;
     return data;
   }
 }
@@ -131,13 +131,13 @@ class FlashSaleInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['sold'] = this.sold;
-    if (this.discountPrice != null) {
-      data['discount_price'] = this.discountPrice!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['sold'] = sold;
+    if (discountPrice != null) {
+      data['discount_price'] = discountPrice!.toJson();
     }
-    data['session_id'] = this.sessionId;
-    data['stock'] = this.stock;
+    data['session_id'] = sessionId;
+    data['stock'] = stock;
     return data;
   }
 }
@@ -174,15 +174,15 @@ class DeliveryInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['delivery_id'] = this.deliveryId;
-    data['name'] = this.name;
-    data['restaurant_id'] = this.restaurantId;
-    data['prepare_time'] = this.prepareTime;
-    data['longitude'] = this.longitude;
-    data['latitude'] = this.latitude;
-    data['rewrite_url'] = this.rewriteUrl;
-    data['location_url'] = this.locationUrl;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['delivery_id'] = deliveryId;
+    data['name'] = name;
+    data['restaurant_id'] = restaurantId;
+    data['prepare_time'] = prepareTime;
+    data['longitude'] = longitude;
+    data['latitude'] = latitude;
+    data['rewrite_url'] = rewriteUrl;
+    data['location_url'] = locationUrl;
     return data;
   }
 }

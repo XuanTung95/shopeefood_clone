@@ -1,13 +1,19 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:retry/retry.dart';
 import 'package:shopeefood_clone/services/remote/location_service.dart';
+import 'package:shopeefood_clone/services/remote_services.dart';
+import 'package:shopeefood_clone/utils/app_config.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
-import 'package:shopeefood_clone/utils/common_import.dart';
+import 'package:shopeefood_clone/utils/location_util.dart';
+import 'package:shopeefood_clone/vm/global/state_home_ads_banner.dart';
 
 class StateUserLocation extends ChangeNotifier {
-  static final provider = ChangeNotifierProvider((ref) => StateUserLocation());
+  static final provider =
+      ChangeNotifierProvider((ref) => StateUserLocation(ref));
+  final Ref ref;
   bool _loading = false;
   UserLocation? _currentLocation;
+
+  StateUserLocation(this.ref);
 
   UserLocation? get currentLocation => _currentLocation;
 
@@ -20,19 +26,30 @@ class StateUserLocation extends ChangeNotifier {
   Future<void> _getUserLocationWithRetry() async {
     _loading = true;
     try {
-      final response = await retry(
-            () => _getUserLocation().timeout(const Duration(seconds: 10)),
-        retryIf: (e) => false,
-      );
-      await Future.delayed(const Duration(seconds: 2));
-      _currentLocation = response;
+      // final response = await retry(
+      //       () => _getUserLocation().timeout(const Duration(seconds: 10)),
+      //   retryIf: (e) => false,
+      // );
+      await Future.delayed(const Duration(seconds: 1));
+      final pos = await LocationUtils.determinePosition();
+      final mapService = RemoteService.getGoogleMapService();
+      final locationResponse = await mapService.getLocationName(
+          '${pos.latitude},${pos.longitude}', AppConfig.MAP_API_KEY);
+      if (locationResponse.results?.isNotEmpty ?? false) {
+        _currentLocation = UserLocation()
+          ..address = locationResponse.results?.first.formattedAddress ?? '';
+        notifyListeners();
+        await Future.delayed(const Duration(seconds: 2));
+      }
     } catch (e) {
       logger.e(e);
     }
     _loading = false;
+    ref.read(StateHomeBanner.provider).intFullScreenBanners();
     notifyListeners();
   }
 
+  /*
   Future<UserLocation> _getUserLocation() async {
     logger.i('_getUserLocation()');
     final dio = Dio();
@@ -46,6 +63,7 @@ class StateUserLocation extends ChangeNotifier {
       ..lat = response.latitude ?? 0
       ..long = response.longitude ?? 0;
   }
+  */
 }
 
 class UserLocation {

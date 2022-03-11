@@ -3,7 +3,7 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 class StateServiceInfo extends ChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateServiceInfo());
 
-  List<String> _allServices = [
+  final List<String> _allServices = [
     'All Services',
     'Food',
     'Fresh',

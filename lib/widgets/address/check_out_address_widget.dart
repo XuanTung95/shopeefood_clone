@@ -42,7 +42,7 @@ class CheckOutAddressWidget extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  '${address.address ?? ''}',
+                  address.address ?? '',
                   style: textStyle.bodySmall,
                 ),
                 const SizedBox(

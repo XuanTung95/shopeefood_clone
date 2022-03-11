@@ -70,10 +70,10 @@ class _ScreenWebViewState extends State<ScreenWebView> {
           },
         ),
         if (isLoading)
-          Container(
+          const SizedBox(
             width: double.infinity,
             height: double.infinity,
-            child: const Center(
+            child: Center(
               child: DefaultLoadingIndicator(),
             ),
           )

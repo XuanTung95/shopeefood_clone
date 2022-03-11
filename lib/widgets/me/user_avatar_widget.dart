@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:shopeefood_clone/vm/global/state_me.dart';
 import 'package:shopeefood_clone/widgets/common/app_image_widget.dart';
 
@@ -19,11 +22,18 @@ class UserAvatarWidget extends ConsumerWidget {
           width: size,
           height: size,
           child: ClipOval(
-            child: AppImageNetworkWidget(
-              url: ImageUtils.getIconImage(state.userProfile?.photos),
-              loadingWidget: const DefaultUserAvatar(),
-              errorWidget: const DefaultUserAvatar(),
-            ),
+            child: state.pickedAvatar != null
+                ? Image.file(
+                    File(
+                      state.pickedAvatar?.path ?? '',
+                    ),
+                    fit: BoxFit.cover,
+                  )
+                : AppImageNetworkWidget(
+                    url: ImageUtils.getIconImage(state.userProfile?.photos),
+                    loadingWidget: const DefaultUserAvatar(),
+                    errorWidget: const DefaultUserAvatar(),
+                  ),
           ),
         ),
         if (verified)

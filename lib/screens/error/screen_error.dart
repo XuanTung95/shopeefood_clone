@@ -1,5 +1,4 @@
 import 'package:shopeefood_clone/routing/app_routing.dart';
-import 'package:shopeefood_clone/widgets/app_bar/app_bar_default.dart';
 
 import '../../utils/common_import.dart';
 import '../../widgets/button/app_gesture_detector.dart';

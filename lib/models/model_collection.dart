@@ -1,5 +1,3 @@
-
-
 import 'model_photo.dart';
 
 class ModelCollectionResponse {

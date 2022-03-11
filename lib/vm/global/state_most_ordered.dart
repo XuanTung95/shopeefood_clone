@@ -8,9 +8,9 @@ class StateMostOrdered extends ChangeNotifier {
   static final provider =
       ChangeNotifierProvider<StateMostOrdered>((ref) => StateMostOrdered());
 
-  PageDataStoreWithId<ModelDelivery> _mostOrdered =
+  final PageDataStoreWithId<ModelDelivery> _mostOrdered =
       PageDataStoreWithId<ModelDelivery>();
-  PageDataStoreWithId<ModelDelivery> _liked =
+  final PageDataStoreWithId<ModelDelivery> _liked =
       PageDataStoreWithId<ModelDelivery>();
 
   PageDataStoreWithId<ModelDelivery> get liked => _liked;

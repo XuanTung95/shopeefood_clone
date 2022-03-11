@@ -6,6 +6,7 @@ class WidgetUtils {
     if (box is RenderBox) {
       return box.localToGlobal(Offset.zero);
     }
+    return null;
   }
 
   static Size? getWidgetSize(BuildContext context) {
@@ -13,5 +14,6 @@ class WidgetUtils {
     if (box is RenderBox) {
       return box.size;
     }
+    return null;
   }
 }

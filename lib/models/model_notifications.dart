@@ -7,16 +7,16 @@ class NotificationResponse {
   NotificationResponse({this.reply, this.result});
 
   NotificationResponse.fromJson(Map<String, dynamic> json) {
-    reply = json['reply'] != null ? new ReplyNotification.fromJson(json['reply']) : null;
+    reply = json['reply'] != null ? ReplyNotification.fromJson(json['reply']) : null;
     result = json['result'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.reply != null) {
-      data['reply'] = this.reply!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (reply != null) {
+      data['reply'] = reply!.toJson();
     }
-    data['result'] = this.result;
+    data['result'] = result;
     return data;
   }
 }
@@ -30,16 +30,16 @@ class ReplyNotification {
     if (json['notification_infos'] != null) {
       notificationInfos = <ModelNotification>[];
       json['notification_infos'].forEach((v) {
-        notificationInfos!.add(new ModelNotification.fromJson(v));
+        notificationInfos!.add(ModelNotification.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.notificationInfos != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (notificationInfos != null) {
       data['notification_infos'] =
-          this.notificationInfos!.map((v) => v.toJson()).toList();
+          notificationInfos!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -77,7 +77,7 @@ class ModelNotification {
     if (json['photos'] != null) {
       photos = <Photos>[];
       json['photos'].forEach((v) {
-        photos!.add(new Photos.fromJson(v));
+        photos!.add(Photos.fromJson(v));
       });
     }
     actionUrl = json['action_url'];
@@ -88,19 +88,19 @@ class ModelNotification {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title_color'] = this.titleColor;
-    data['title'] = this.title;
-    data['uri'] = this.uri;
-    data['id'] = this.id;
-    if (this.photos != null) {
-      data['photos'] = this.photos!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title_color'] = titleColor;
+    data['title'] = title;
+    data['uri'] = uri;
+    data['id'] = id;
+    if (photos != null) {
+      data['photos'] = photos!.map((v) => v.toJson()).toList();
     }
-    data['action_url'] = this.actionUrl;
-    data['created_time'] = this.createdTime;
-    data['message'] = this.message;
-    data['latest_activity_time'] = this.latestActivityTime;
-    data['is_unread'] = this.isUnread;
+    data['action_url'] = actionUrl;
+    data['created_time'] = createdTime;
+    data['message'] = message;
+    data['latest_activity_time'] = latestActivityTime;
+    data['is_unread'] = isUnread;
     return data;
   }
 }

@@ -1,6 +1,3 @@
-
-
-
 import 'package:shopeefood_clone/widgets/app_bar/app_bar_default.dart';
 import 'package:shopeefood_clone/widgets/button/app_gesture_detector.dart';
 import 'package:shopeefood_clone/widgets/list/tile/divider_widget.dart';

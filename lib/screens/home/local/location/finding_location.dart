@@ -1,16 +1,20 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:shopeefood_clone/gen/assets.gen.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 import 'package:shopeefood_clone/widgets/common/extended_box_constraint.dart';
 
+import '../../../../vm/global/state_user_location.dart';
 import '../../../../widgets/bubble/notify_bubble.dart';
 
-class FindingLocation extends StatelessWidget {
+class FindingLocation extends ConsumerWidget {
   const FindingLocation({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    var _stateLocation = ref.watch(StateUserLocation.provider);
+    if (_stateLocation.loading == false) {
+      return const SizedBox();
+    }
     final colors = AppColor(context);
+    final textStyle = AppTextStyle(context);
     return Stack(
       children: [
         Container(
@@ -22,37 +26,66 @@ class FindingLocation extends StatelessWidget {
             );
             final width = cal.getWidth(size);
             final height = width;
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            return Stack(
+              alignment: Alignment.center,
               children: [
-                const SizedBox(
-                  width: double.infinity,
-                ),
-                const Spacer(flex: 3),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      'finding_your_location'.tr(),
-                      style: AppTextStyle(context).bodyMedium,
-                    ),
                     const SizedBox(
-                      height: 50,
+                      width: double.infinity,
                     ),
-                    Stack(
-                      alignment: Alignment.topCenter,
+                    const Spacer(flex: 3),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image.asset(Assets.images.deliveryaddressImgmap.path,
-                            width: width, height: height),
-                        PinLoadingIcon(
-                          size: (width ?? 100) / 5,
-                          duration: const Duration(milliseconds: 1000),
-                        )
+                        Text(
+                          'finding_your_location'.tr(),
+                          style: AppTextStyle(context).bodyMedium,
+                        ),
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        Stack(
+                          alignment: Alignment.topCenter,
+                          children: [
+                            Image.asset(
+                                Assets.images.deliveryaddressImgmap.path,
+                                width: width,
+                                height: height),
+                            PinLoadingIcon(
+                              size: (width ?? 100) / 5,
+                              duration: const Duration(milliseconds: 1000),
+                            ),
+                          ],
+                        ),
                       ],
-                    )
+                    ),
+                    const Spacer(flex: 4),
                   ],
                 ),
-                const Spacer(flex: 4),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Spacer(),
+                    FractionallySizedBox(
+                      widthFactor: 0.8,
+                      child: AnimatedOpacity(
+                        opacity: (_stateLocation.currentLocation?.address ?? '')
+                                .isNotEmpty
+                            ? 1
+                            : 0,
+                        duration: const Duration(milliseconds: 1000),
+                        child: Text(
+                          _stateLocation.currentLocation?.address ?? '',
+                          textAlign: TextAlign.center,
+                          style: textStyle.bodyBoldBlackBig,
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                  ],
+                )
               ],
             );
           }),

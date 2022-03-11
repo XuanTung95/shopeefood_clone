@@ -1,12 +1,9 @@
-// home tab if not location -> loadlocation
-
 import 'package:shopeefood_clone/routing/app_routing.dart';
 import 'package:shopeefood_clone/screens/home/local/location/finding_location.dart';
 import 'package:shopeefood_clone/screens/home/local/tabs/home/home_dish_row.dart';
 import 'package:shopeefood_clone/screens/home/local/tabs/home/home_flash_sale_row.dart';
 import 'package:shopeefood_clone/vm/global/state_home_category.dart';
 import 'package:shopeefood_clone/vm/global/state_home_now_service_categories.dart';
-import 'package:shopeefood_clone/vm/global/state_user_location.dart';
 import 'package:shopeefood_clone/widgets/button/app_gesture_detector.dart';
 import 'package:shopeefood_clone/widgets/divider/list_divider.dart';
 import 'package:shopeefood_clone/widgets/loading/lazy_load_scrollview.dart';
@@ -15,7 +12,7 @@ import 'package:sliver_tools/sliver_tools.dart';
 import '../../../../../utils/common_import.dart';
 import '../../../../../vm/global/state_home_tab_scroll.dart';
 import '../../../../../widgets/banner/home_banner_widget.dart';
-import '../../../../../widgets/flash_sale/flash_sale_countdown.dart';
+import '../../../../../widgets/drag/drag_ads_widget.dart';
 import '../../../../../widgets/grid/home_category_grid.dart';
 import '../../../../../widgets/list/home_now_service_categories_icon_row.dart';
 import '../../../../../widgets/tab_bar/home_now_service_categories_tabbar.dart';
@@ -37,6 +34,8 @@ class _ScreenHomeTabState extends ConsumerState<TabHomeScreen> {
   late final ChangeNotifier homeScrollToTop;
   late final StateHomeTabScroll scrollState;
   bool showBackToHomeBtn = false;
+  final GlobalKey tabBarKey = GlobalKey();
+  static const double paddingHorizontal = 10.0;
 
   @override
   void initState() {
@@ -76,112 +75,120 @@ class _ScreenHomeTabState extends ConsumerState<TabHomeScreen> {
     super.dispose();
   }
 
-  GlobalKey myKey = GlobalKey();
-  static const double paddingHorizontal = 10.0;
-
   @override
   Widget build(BuildContext context) {
     var colors = AppColor(context);
-    var _stateLocation = ref.watch(StateUserLocation.provider);
     var _stateCategory = ref.watch(StateHomeCategory.provider);
     return Material(
       color: colors.homeBg,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          SafeArea(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 8,
-                      right: paddingHorizontal,
-                      left: paddingHorizontal),
-                  child: AppGestureDetector(
-                      onTap: () {
-                        AppRouting.goToAddressScreen(context);
-                      },
-                      child: const DeliverToWidget()),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: paddingHorizontal),
-                  child: HomeSearchBarWidget(
-                    text: "McDonald's - Cheeseburger chỉ 1k",
+      child: LayoutBuilder(builder: (context, size) {
+        return Stack(
+          fit: StackFit.expand,
+          children: [
+            SafeArea(
+              child: Column(
+                children: [
+                  buildDeliverToRow(context),
+                  buildSearchBar(),
+                  const SizedBox(
+                    height: 10,
                   ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Expanded(
-                  child: LazyLoadScrollView(
-                    isLoading: false,
-                    scrollOffset: 200,
-                    onEndOfPage: () {
-                      executeLoadMore();
-                    },
-                    child: RefreshIndicator(
-                      onRefresh: () async {
-                        var _state =
-                            ref.read(StateHomeNowServiceCategories.provider);
-                        _state.resetData();
-                        await _state.loadNextPage();
+                  Expanded(
+                    child: LazyLoadScrollView(
+                      isLoading: false,
+                      scrollOffset: 200,
+                      onEndOfPage: () {
+                        executeLoadMore();
                       },
-                      child: CustomScrollView(
-                        controller: scrollController,
-                        slivers: [
-                          const SliverToBoxAdapter(
-                            child: HomeBannerWidget(),
-                          ),
-                          SliverToBoxAdapter(
-                            child: Container(
-                              height: 180,
-                              margin: const EdgeInsets.only(bottom: 10),
-                              child: HomeCategoryGrid(
-                                categories: _stateCategory.categories.data,
+                      child: RefreshIndicator(
+                        onRefresh: () async {
+                          var _state =
+                              ref.read(StateHomeNowServiceCategories.provider);
+                          _state.resetData();
+                          await _state.loadNextPage();
+                        },
+                        child: CustomScrollView(
+                          controller: scrollController,
+                          slivers: [
+                            const SliverToBoxAdapter(
+                              child: HomeBannerWidget(),
+                            ),
+                            SliverToBoxAdapter(
+                              child: Container(
+                                height: 180,
+                                margin: const EdgeInsets.only(bottom: 10),
+                                child: HomeCategoryGrid(
+                                  categories: _stateCategory.categories.data,
+                                ),
                               ),
                             ),
-                          ),
-                          const SliverToBoxAdapter(
-                            child: ListDivider(),
-                          ),
-                          const SliverToBoxAdapter(
-                            child: HomeCollectionsRow(),
-                          ),
-                          SliverToBoxAdapter(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Container(
-                                  height: 10,
-                                  width: double.infinity,
-                                  color: colors.homeDividerBg,
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.only(top: 10, bottom: 10),
-                                  child: HomeFlashSaleRow(),
-                                ),
-                              ],
+                            const SliverToBoxAdapter(
+                              child: ListDivider(),
                             ),
-                          ),
-                          const SliverToBoxAdapter(
-                            child: ListDivider(),
-                          ),
-                          const SliverToBoxAdapter(
-                            child: HomeDishRow(),
-                          ),
-                          ...buildSliversNowServices(),
-                        ],
+                            const SliverToBoxAdapter(
+                              child: HomeCollectionsRow(),
+                            ),
+                            SliverToBoxAdapter(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    height: 10,
+                                    width: double.infinity,
+                                    color: colors.homeDividerBg,
+                                  ),
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 10, bottom: 10),
+                                    child: HomeFlashSaleRow(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SliverToBoxAdapter(
+                              child: ListDivider(),
+                            ),
+                            const SliverToBoxAdapter(
+                              child: HomeDishRow(),
+                            ),
+                            ...buildSliversNowServices(),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          if (_stateLocation.loading) const FindingLocation(),
-          ...buildLoading()
-        ],
+            DragAdsWidget(
+              size: Size(size.maxWidth, size.maxHeight),
+            ),
+            const FindingLocation(),
+            ...buildLoading()
+          ],
+        );
+      }),
+    );
+  }
+
+  Widget buildSearchBar() {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: paddingHorizontal),
+      child: HomeSearchBarWidget(
+        text: "McDonald's - Cheeseburger chỉ 1k",
       ),
+    );
+  }
+
+  Widget buildDeliverToRow(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(
+          top: 8, right: paddingHorizontal, left: paddingHorizontal),
+      child: AppGestureDetector(
+          onTap: () {
+            AppRouting.goToAddressScreen(context);
+          },
+          child: const DeliverToWidget()),
     );
   }
 
@@ -192,22 +199,20 @@ class _ScreenHomeTabState extends ConsumerState<TabHomeScreen> {
     var pageData = _stateDeliveryService.getCurrentData();
     if (pageData.data.isEmpty && _stateDeliveryService.prevData != null) {
       pageData = _stateDeliveryService.prevData!;
-      //logger.w('This is Previous data');
     }
-
     return [
       const SliverToBoxAdapter(
         child: HomeNowServiceCategoriesIconRow(),
       ),
       SliverPinnedHeader(
-        key: myKey,
+        key: tabBarKey,
         child: Stack(
           children: [
             HomeNowServiceCategoriesTabBar(
               onChanged: () {
-                if (myKey.currentContext != null) {
+                if (tabBarKey.currentContext != null) {
                   Scrollable.ensureVisible(
-                    myKey.currentContext!,
+                    tabBarKey.currentContext!,
                     duration: const Duration(milliseconds: 300),
                     alignment: 0.001,
                     alignmentPolicy: ScrollPositionAlignmentPolicy.explicit,
@@ -255,7 +260,7 @@ class _ScreenHomeTabState extends ConsumerState<TabHomeScreen> {
     ref.read(StateHomeNowServiceCategories.provider).loadNextPage();
   }
 
-  buildLoading() {
+  List<Widget> buildLoading() {
     var colors = AppColor(context);
     final loading = ref.watch(StateHomeNowServiceCategories.provider
         .select((value) => value.showFullScreenLoading));

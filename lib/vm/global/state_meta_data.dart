@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:shopeefood_clone/models/model_meta_response.dart';
 
 import '../../services/remote_services.dart';

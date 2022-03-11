@@ -6,10 +6,8 @@ import 'package:shopeefood_clone/widgets/list/tile/view_draft_cart.dart';
 import 'package:shopeefood_clone/widgets/loading/loading_indicator.dart';
 
 import '../../../../../utils/common_import.dart';
-import '../../../../../vm/global/state_services_info.dart';
 import '../../../../../widgets/button/app_gesture_detector.dart';
 import '../../../../../widgets/empty/empty_cart_widget.dart';
-import '../like/local/like_filter_select_item_view.dart';
 import 'cart_filter_select_item_widget.dart';
 
 class ViewCartWidget extends ConsumerStatefulWidget {
@@ -88,9 +86,7 @@ class _ViewCartWidgetState extends ConsumerState<ViewCartWidget> {
   }
 
   buildSearchFilterRow(BuildContext context) {
-    final colors = AppColor(context);
     final vm = ref.watch(StateDraftCart.provider);
-    final servicesInfo = ref.watch(StateServiceInfo.provider);
     return Container(
       child: SearchFilterRow(
         text1: vm.selectedService,

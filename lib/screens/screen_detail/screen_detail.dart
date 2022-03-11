@@ -6,8 +6,8 @@ import 'package:flutter/rendering.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:measured_size/measured_size.dart';
 import 'package:shopeefood_clone/models/model_menu_response.dart';
-import 'package:shopeefood_clone/models/model_photo.dart';
 import 'package:shopeefood_clone/routing/app_routing.dart';
+import 'package:shopeefood_clone/utils/app_config.dart';
 import 'package:shopeefood_clone/utils/share_utils.dart';
 import 'package:shopeefood_clone/vm/global/state_cart.dart';
 import 'package:shopeefood_clone/vm/global/state_restaurant_detail.dart';
@@ -175,18 +175,18 @@ class _ScreenShopDetailState extends ConsumerState<ScreenShopDetail>
 
   SafeArea buildLoadingScreen(AppColor colors) {
     return SafeArea(
-          child: Column(
-              children: [
-                const AppBarDefault(title: ""),
-                Expanded(
-                    child: Center(
-                  child: DefaultLoadingIndicator(
-                    color: colors.primaryColor,
-                  ),
-                )),
-              ],
+      child: Column(
+        children: [
+          const AppBarDefault(title: ""),
+          Expanded(
+              child: Center(
+            child: DefaultLoadingIndicator(
+              color: colors.primaryColor,
             ),
-        );
+          )),
+        ],
+      ),
+    );
   }
 
   Widget buildListMenuLayer(StateRestaurantDetail state, AppColor colors,
@@ -332,7 +332,7 @@ class _ScreenShopDetailState extends ConsumerState<ScreenShopDetail>
             padding: const EdgeInsets.symmetric(vertical: 2),
             child: SimpleListItem(
               asset: Assets.images.assetsImgMerchantIcTime.path,
-              title: '${'shop_opening_hours'.tr()}',
+              title: 'shop_opening_hours'.tr(),
               iconSize: 20,
               tailWidget: Text(
                 '00:00 - 23:59',
@@ -369,7 +369,6 @@ class _ScreenShopDetailState extends ConsumerState<ScreenShopDetail>
             onSelected: (value) {
               commentState.pageData.reset();
               commentState.loadData();
-              print('isLoading: ${commentState.pageData.isLoading}');
             },
           ),
         ),
@@ -453,11 +452,11 @@ class _ScreenShopDetailState extends ConsumerState<ScreenShopDetail>
                 menu: item,
                 orderDish: orderDish,
                 onClickText: (count) {
-                  orderDish.quantity = min(999, max(0, count));
+                  orderDish.quantity = min(AppConfig.MAX_ITEM_ORDER, max(0, count));
                   cart.addRemoveDish(orderDish, state.shopDetail!);
                 },
                 onClickAdd: (bool isAdd, Offset? clickPos) {
-                  orderDish.quantity = min(999,
+                  orderDish.quantity = min(AppConfig.MAX_ITEM_ORDER,
                       max(0, (orderDish.quantity ?? 0) + (isAdd ? 1 : -1)));
                   cart.addRemoveDish(orderDish, state.shopDetail!);
                   if (isAdd) {
@@ -665,14 +664,8 @@ class _ScreenShopDetailState extends ConsumerState<ScreenShopDetail>
               ),
             ),
           ),
-        // if (!state.isLoading)
-        //   SliverPersistentHeader(
-        //       delegate: ShopImageHeaderDelegate(
-        //           scrollSize.shopImageHeight(),
-        //           state.deliveryDetail?.photos ?? [],
-        //           imageZoomAnimation)),
         SliverPinnedHeader(
-            child: Container(
+            child: SizedBox(
           height: scrollSize.tabBarHeight(),
           child: StatefulBuilder(
             builder: (BuildContext context,
@@ -949,36 +942,4 @@ class DetailScreenScrollPhysics extends ScrollPhysics {
 
   @override
   bool get allowImplicitScrolling => false;
-}
-
-class ShopImageHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final double maxHeight;
-  final Animation<double> imageZoomAnimation;
-  final List<Photos> photos;
-
-  ShopImageHeaderDelegate(this.maxHeight, this.photos, this.imageZoomAnimation);
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return ScaleTransition(
-      scale: imageZoomAnimation,
-      child: AppImageNetworkWidget(
-        url: ImageUtils.getIconImage(photos),
-        fit: BoxFit.cover,
-        alignment: Alignment.topCenter,
-      ),
-    );
-  }
-
-  @override
-  double get maxExtent => maxHeight;
-
-  @override
-  double get minExtent => 0;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
-  }
 }

@@ -39,8 +39,7 @@ class _ScreenNotificationSettingState extends State<ScreenNotificationSetting> {
                 initValue: true,
                 title: 'notification_now_promotion'.tr(),
                 description:
-                    'Notify me when there are promotions in the selected province/city'
-                        .tr(),
+                    'Notify me when there are promotions in the selected province/city',
               ),
             ),
             Expanded(

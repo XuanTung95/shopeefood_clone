@@ -1,8 +1,6 @@
 
 import 'model_delivery.dart';
-import 'model_label.dart';
 import 'model_photo.dart';
-import 'model_position.dart';
 import 'model_price.dart';
 
 class DishResponse {
@@ -12,12 +10,12 @@ class DishResponse {
   DishResponse({this.reply, this.result});
 
   DishResponse.fromJson(Map<String, dynamic> json) {
-    reply = json['reply'] != null ? new DishReply.fromJson(json['reply']) : null;
+    reply = json['reply'] != null ? DishReply.fromJson(json['reply']) : null;
     result = json['result'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (reply != null) {
       data['reply'] = reply!.toJson();
     }
@@ -35,13 +33,13 @@ class DishReply {
     if (json['dish_infos'] != null) {
       dishInfos = <ModelDish>[];
       json['dish_infos'].forEach((v) {
-        dishInfos!.add(new ModelDish.fromJson(v));
+        dishInfos!.add(ModelDish.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (dishInfos != null) {
       data['dish_infos'] = dishInfos!.map((v) => v.toJson()).toList();
     }
@@ -93,20 +91,20 @@ class ModelDish {
     // }
     name = json['name'];
     displayTotalOrder = json['display_total_order'];
-    price = json['price'] != null ? new ModelPrice.fromJson(json['price']) : null;
+    price = json['price'] != null ? ModelPrice.fromJson(json['price']) : null;
     discountRemainingQuantity = json['discount_remaining_quantity'];
     discountPrice = json['discount_price'] != null
-        ? new ModelPrice.fromJson(json['discount_price'])
+        ? ModelPrice.fromJson(json['discount_price'])
         : null;
     totalLike = json['total_like'];
     displayTotalLike = json['display_total_like'];
     delivery = json['delivery'] != null
-        ? new ModelDelivery.fromJson(json['delivery'])
+        ? ModelDelivery.fromJson(json['delivery'])
         : null;
     if (json['photos'] != null) {
       photos = <Photos>[];
       json['photos'].forEach((v) {
-        photos!.add(new Photos.fromJson(v));
+        photos!.add(Photos.fromJson(v));
       });
     }
     isValid = json['is_valid'];
@@ -116,7 +114,7 @@ class ModelDish {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['total_order'] = totalOrder;
     // if (this.campaigns != null) {
     //   data['campaigns'] = this.campaigns!.map((v) => v.toJson()).toList();

@@ -44,7 +44,9 @@ class _MeTabViewState extends ConsumerState<TabMeHomeView> {
                 asset: Assets.images.assetsImgMeVoucherIcon.path,
                 title: 'user_voucher_header'.tr(),
                 tailWidget: Text(
-                  '12',
+                  (state.userProfile?.totalUserPromotions != null)
+                      ? '${state.userProfile?.totalUserPromotions}'
+                      : '',
                   style: textStyle.bodySmallGrey,
                 ),
               ),
@@ -182,7 +184,8 @@ class _MeTabViewState extends ConsumerState<TabMeHomeView> {
         SliverToBoxAdapter(
           child: Container(
             color: colors.homeDividerBg,
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 40),
+            padding:
+                const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 40),
             child: SizedBox(
               child: AppSelectButton(
                 onClick: () {},
@@ -195,24 +198,31 @@ class _MeTabViewState extends ConsumerState<TabMeHomeView> {
     );
   }
 
-  Container buildUserAvatar(AppColor colors, StateMe state, AppTextStyle textStyle) {
+  Container buildUserAvatar(
+      AppColor colors, StateMe state, AppTextStyle textStyle) {
     return Container(
-          color: colors.profileBg,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, bottom: 10, top: 70),
-            child: Row(
-              children: [
-                const UserAvatarWidget(),
-                const SizedBox(
-                  width: 15,
-                ),
-                Text(
-                  state.userProfile?.name ?? '',
-                  style: textStyle.userName,
-                ),
-              ],
-            ),
+      color: colors.profileBg,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, bottom: 10, top: 70),
+        child: AppGestureDetector(
+          blurType: BlurType.OPACITY,
+          onTap: () {
+            AppRouting.goToEditUserInfoScreen(context);
+          },
+          child: Row(
+            children: [
+              const UserAvatarWidget(),
+              const SizedBox(
+                width: 15,
+              ),
+              Text(
+                state.userProfile?.name ?? '',
+                style: textStyle.userName,
+              ),
+            ],
           ),
-        );
+        ),
+      ),
+    );
   }
 }

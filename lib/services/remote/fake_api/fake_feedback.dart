@@ -5716,7 +5716,7 @@ class FakeFeedback extends BaseFakeApi {
   }
 
   @override
-  response() {
+  response({String? url}) {
     return jsonDecode((DateTime.now().second % 2 == 0) ? _json : _json2);
   }
 }

@@ -137,7 +137,7 @@ class ViewAddressItem extends StatelessWidget {
                 ],
               )),
               Text(
-                'Edit',
+                'edit'.tr(),
                 style: textStyle.bodySmall2Grey.copyWith(color: Colors.blue),
               )
             ],

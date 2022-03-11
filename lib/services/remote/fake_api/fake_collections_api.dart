@@ -518,7 +518,7 @@ class FakeCollectionsApi extends BaseFakeApi {
   }
 
   @override
-  dynamic response() {
+  dynamic response({String? url}) {
     return getCollections();
   }
 }

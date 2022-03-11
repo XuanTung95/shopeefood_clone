@@ -1,7 +1,6 @@
 import 'package:shopeefood_clone/models/model_price.dart';
 
 import 'model_delivery.dart';
-import 'model_dish.dart';
 import 'model_photo.dart';
 
 class OrderResponse {

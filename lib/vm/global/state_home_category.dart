@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopeefood_clone/models/list_data_store.dart';
 import 'package:shopeefood_clone/models/model_category.dart';
 import 'package:shopeefood_clone/services/remote_services.dart';

@@ -6,7 +6,7 @@ class StateMyVoucher extends ChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateMyVoucher());
 
   List<ModelVoucher> _validVoucher = [];
-  List<ModelVoucher> _usedVoucher = [];
+  final List<ModelVoucher> _usedVoucher = [];
   List<ModelVoucher> _invalidVoucher = [];
 
   init() {

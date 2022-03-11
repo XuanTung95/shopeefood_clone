@@ -1,6 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopeefood_clone/models/model_collection.dart';
-import 'package:shopeefood_clone/services/remote/fake_api/fake_collections_api.dart';
 import 'package:shopeefood_clone/services/remote_services.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 

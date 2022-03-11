@@ -1274,9 +1274,8 @@ class Districts {
 
 class SearchPlaceHolderTimeRanges {
   int? foodyServiceId;
-  List<Null>? holderTimeRanges;
 
-  SearchPlaceHolderTimeRanges({this.foodyServiceId, this.holderTimeRanges});
+  SearchPlaceHolderTimeRanges({this.foodyServiceId,});
 
   SearchPlaceHolderTimeRanges.fromJson(Map<String, dynamic> json) {
     foodyServiceId = json['foody_service_id'];
@@ -1506,7 +1505,6 @@ class Paynow {
   bool? applyForApp;
   int? id;
   bool? applyForWeb;
-  Null? paymentNote;
   int? maxTopup;
   String? notifyNumber;
   List<int>? topupMethod;
@@ -1521,7 +1519,6 @@ class Paynow {
         this.applyForApp,
         this.id,
         this.applyForWeb,
-        this.paymentNote,
         this.maxTopup,
         this.notifyNumber,
         this.topupMethod,
@@ -1536,7 +1533,6 @@ class Paynow {
     applyForApp = json['apply_for_app'];
     id = json['id'];
     applyForWeb = json['apply_for_web'];
-    paymentNote = json['payment_note'];
     maxTopup = json['max_topup'];
     notifyNumber = json['notify_number'];
     topupMethod = json['topup_method']?.cast<int>();
@@ -1553,7 +1549,6 @@ class Paynow {
     data['apply_for_app'] = applyForApp;
     data['id'] = id;
     data['apply_for_web'] = applyForWeb;
-    data['payment_note'] = paymentNote;
     data['max_topup'] = maxTopup;
     data['notify_number'] = notifyNumber;
     data['topup_method'] = topupMethod;

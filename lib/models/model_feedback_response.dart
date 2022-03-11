@@ -90,9 +90,9 @@ class ModelUserFeedbacks {
       json['photos'].forEach((v) {
         final List<Photos> lstPhoto = [];
         if (v is List) {
-          v.forEach((element) {
+          for (var element in v) {
             lstPhoto.add(Photos.fromJson(element));
-          });
+          }
           photos!.add(lstPhoto);
         }
 

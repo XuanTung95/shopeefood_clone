@@ -32,7 +32,6 @@ class _ScreenSplashState extends ConsumerState<ScreenSplash> {
   }
 
   Future initApp() async {
-    ref.read(StateUserLocation.provider).init();
     ref.read(StateHomeCategory.provider).init();
     ref.read(StateHomeCollection.provider).init();
     ref.read(StateHomeDish.provider).init();
@@ -46,6 +45,7 @@ class _ScreenSplashState extends ConsumerState<ScreenSplash> {
     ref.read(StateMyVoucher.provider).init();
     ref.read(StateUserAddress.provider).init();
     await Future.delayed(const Duration(seconds: 1));
+    ref.read(StateUserLocation.provider).init();
     AppRouting.goToHomeScreen(context);
   }
 

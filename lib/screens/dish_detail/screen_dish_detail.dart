@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:shopeefood_clone/models/model_menu_response.dart';
+import 'package:shopeefood_clone/utils/app_config.dart';
 import 'package:shopeefood_clone/vm/global/state_cart.dart';
 import 'package:shopeefood_clone/widgets/list/tile/divider_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -73,8 +74,8 @@ class _ScreenDishDetailState extends ConsumerState<ScreenDishDetail> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                buildNameRow(textStyle),
-                                buildDescRow(
+                                buildDishNameRow(textStyle),
+                                buildDishDescRow(
                                   context,
                                   textStyle,
                                 ),
@@ -100,7 +101,7 @@ class _ScreenDishDetailState extends ConsumerState<ScreenDishDetail> {
                               horizontal: 10, vertical: 10),
                           child: Column(
                             children: [
-                              Container(
+                              SizedBox(
                                 width: double.infinity,
                                 child: Text(
                                   'review'.tr(),
@@ -192,7 +193,7 @@ class _ScreenDishDetailState extends ConsumerState<ScreenDishDetail> {
           ),
         ),
         SliverPinnedHeader(
-            child: Container(
+            child: SizedBox(
           height: scrollSize.tabBarHeight(),
           child: Padding(
             padding: EdgeInsets.only(top: scrollSize.statusBarHeight()),
@@ -223,7 +224,7 @@ class _ScreenDishDetailState extends ConsumerState<ScreenDishDetail> {
     );
   }
 
-  buildNameRow(AppTextStyle textStyle) {
+  buildDishNameRow(AppTextStyle textStyle) {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: RichText(
@@ -240,7 +241,7 @@ class _ScreenDishDetailState extends ConsumerState<ScreenDishDetail> {
     );
   }
 
-  buildDescRow(BuildContext context, AppTextStyle textStyle) {
+  buildDishDescRow(BuildContext context, AppTextStyle textStyle) {
     return Padding(
       padding: const EdgeInsets.only(
         top: 10,
@@ -298,7 +299,7 @@ class _ScreenDishDetailState extends ConsumerState<ScreenDishDetail> {
         cart.getOrderDishFromMenu(widget.shopDetail!, widget.menu!);
 
     final colors = AppColor(context);
-    String finalPrice = '${widget.menu?.price?.getPrice ?? ' '}';
+    String finalPrice = widget.menu?.price?.getPrice ?? ' ';
     String oldPrice = '';
     if (widget.menu?.discountPrice != null) {
       oldPrice = finalPrice;
@@ -358,13 +359,14 @@ class _ScreenDishDetailState extends ConsumerState<ScreenDishDetail> {
                 count: orderDish.quantity ?? 0,
                 id: widget.menu!.id,
                 onClickText: (count) {
-                  orderDish.quantity = min(999, max(0, count));
+                  orderDish.quantity =
+                      min(AppConfig.MAX_ITEM_ORDER, max(0, count));
                   cart.addRemoveDish(orderDish, widget.shopDetail!);
                 },
                 onClick: (BuildContext context, bool isAdd) {
                   Offset? clickPos;
                   clickPos = WidgetUtils.getWidgetGlobalPosition(context);
-                  orderDish.quantity = min(999,
+                  orderDish.quantity = min(AppConfig.MAX_ITEM_ORDER,
                       max(0, (orderDish.quantity ?? 0) + (isAdd ? 1 : -1)));
                   cart.addRemoveDish(orderDish, widget.shopDetail!);
                   if (isAdd) {

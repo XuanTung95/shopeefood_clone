@@ -1,8 +1,6 @@
 import 'package:shopeefood_clone/models/list_data_store.dart';
-import 'package:shopeefood_clone/models/model_address.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
-import '../../models/model_cart.dart';
 import '../../models/model_draft_order.dart';
 import '../../services/remote_services.dart';
 

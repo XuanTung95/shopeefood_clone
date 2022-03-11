@@ -1,5 +1,3 @@
-
-
 import '../../utils/common_import.dart';
 import '../../widgets/app_bar/app_bar_default.dart';
 import '../../widgets/button/app_gesture_detector.dart';

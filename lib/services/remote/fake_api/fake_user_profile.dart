@@ -10,16 +10,17 @@ class FakeUserProfile extends BaseFakeApi {
   final String _json = r'''
   {
 	"reply": {
-		"username": "foodee_muel2r3e",
+		"username": "foodee_muel6r9e",
 		"last_name": "xuan",
-		"uid": 20126994,
+		"uid": 20126124,
 		"phones": [{
-			"id": 12194317,
 			"is_verified": true,
-			"number": "0963195999",
-			"primary": true
+			"number": "0963195670",
+			"primary": true,
+			"id": 12194317
 		}],
 		"is_merchant": false,
+		"is_completed_profile": true,
 		"total_user_promotions": 12,
 		"photos": [{
 			"width": 160,
@@ -30,7 +31,7 @@ class FakeUserProfile extends BaseFakeApi {
 			"value": "https://images.foody.vn/usr/g2513/25126124/avt/s200x200/foody-avatar-c42edb2f-de2b-49ef--1ea5f17d-210921152603.jpg",
 			"height": 240
 		}],
-		"is_completed_profile": false,
+		"birthday": "1995-01-04",
 		"total_delivered_order": 8,
 		"first_name": "tung",
 		"name": "Xuan Tung",
@@ -40,7 +41,8 @@ class FakeUserProfile extends BaseFakeApi {
 		},
 		"foody_uid": 25126124,
 		"no_password": true,
-		"gender": 0,
+		"gender": 1,
+		"occupation_id": 2,
 		"fastflow_delay": 5,
 		"is_has_verified_phone": true,
 		"reminder": {
@@ -50,12 +52,13 @@ class FakeUserProfile extends BaseFakeApi {
 			}
 		},
 		"is_verified": true,
-		"email": "findyou795@gmail.com",
+		"email": "xuantung4195@gmail.com",
 		"is_enable_coin_reward": true
 	},
 	"result": "success"
 }
   ''';
+
 
   @override
   bool accept(String url) {
@@ -63,7 +66,7 @@ class FakeUserProfile extends BaseFakeApi {
   }
 
   @override
-  response() {
+  response({String? url}) {
     return jsonDecode(_json);
   }
   

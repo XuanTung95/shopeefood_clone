@@ -141,8 +141,11 @@ class _AddDeleteIconWidgetState extends State<AddDeleteIconWidget>
                       ),
                     ),
                   ),
-                  AddIconWidget(
-                    size: widget.iconSize,
+                  Opacity(
+                    opacity: 0,
+                    child: AddIconWidget(
+                      size: widget.iconSize,
+                    ),
                   ),
                 ],
               ),

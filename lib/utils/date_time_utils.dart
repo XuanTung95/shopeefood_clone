@@ -1,5 +1,3 @@
-
-
 import 'package:intl/intl.dart';
 import 'package:shopeefood_clone/models/model_notifications.dart';
 import 'package:shopeefood_clone/models/model_order.dart';
@@ -9,12 +7,24 @@ import 'common_import.dart';
 
 class DateTimeUtils {
   static final dateFormat = DateFormat('yyyy-MM-dd hh:mm:ss');
+  static final dateFormatDay = DateFormat('yyyy-MM-dd');
   static final dateOutFormat = DateFormat('dd/MM/yyyy');
   static final dateOutCheckoutFormat = DateFormat('hh:mm - {} dd/MM');
   static final dateOutShortFormat = DateFormat('dd/MM/yy');
   static final dateOutDefaultFormat = DateFormat('dd-MM-yyyy hh:mm');
   static final dateOutFormatDot = DateFormat('dd.MM.yyyy');
   static final dateOutFormatWithTime = DateFormat('dd/MM/yyyy hh:mm');
+
+  static String tryFormat(
+      DateFormat inFormat, DateFormat outFormat, String input) {
+    try {
+      final datetime = inFormat.parse(input);
+      return outFormat.format(datetime);
+    } catch (e) {
+      logger.e(e);
+    }
+    return '';
+  }
 
   static String formatOnlyDate(DateTime datetime) {
     try {
@@ -23,6 +33,10 @@ class DateTimeUtils {
       logger.e(e);
     }
     return '';
+  }
+
+  static String getTimeFromTo(String from, String to) {
+    return '${tryFormat(dateFormat, dateOutFormatWithTime, from)} - ${tryFormat(dateFormat, dateOutFormatWithTime, to)}';
   }
 
   static String getOrderDate(ModelOrders? order) {

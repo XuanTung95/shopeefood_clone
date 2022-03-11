@@ -1,9 +1,7 @@
-import 'package:shopeefood_clone/vm/global/state_home_collections.dart';
 
 import '../../../../../utils/common_import.dart';
 import '../../../../../vm/global/state_home_dish.dart';
 import '../../../../../widgets/common/see_all_row.dart';
-import '../../../../../widgets/list/home_collections_scroll.dart';
 import '../../../../../widgets/list/home_dish_scroll.dart';
 
 class HomeDishRow extends ConsumerWidget {

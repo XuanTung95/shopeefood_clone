@@ -69,8 +69,7 @@ class _NotificationTabState extends ConsumerState<TabNotificationHome> {
                 ),
                 SliverToBoxAdapter(
                   child: AppGestureDetector(
-                    onTap: () {
-                    },
+                    onTap: () {},
                     child: IconTitleDescWidget(
                       asset: Assets.images.assetsImgNotificationtabNews.path,
                       title: 'notification_news'.tr(),
@@ -88,44 +87,46 @@ class _NotificationTabState extends ConsumerState<TabNotificationHome> {
     );
   }
 
-  SliverToBoxAdapter buildNotificationCount(AppColor colors, AppTextStyle textStyle, StateNotifications state) {
+  Widget buildNotificationCount(
+      AppColor colors, AppTextStyle textStyle, StateNotifications state) {
     return SliverToBoxAdapter(
-                child: Container(
-                  color: colors.homeDividerBg,
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: Row(
-                    children: [
-                      Text(
-                        'key_updates'.tr(),
-                        style: textStyle.bodyMedium
-                            .copyWith(color: textStyle.textColorGrey),
-                      ),
-                      const Spacer(),
-                      Text(
-                          'notification_now_read_all'.tr() +
-                              ' (${state.notifications.data.length})',
-                          style: textStyle.bodyMedium
-                              .copyWith(color: colors.primaryColor)),
-                    ],
-                  ),
-                ),
-              );
+      child: Container(
+        color: colors.homeDividerBg,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        child: Row(
+          children: [
+            Text(
+              'key_updates'.tr(),
+              style:
+                  textStyle.bodyMedium.copyWith(color: textStyle.textColorGrey),
+            ),
+            const Spacer(),
+            Text(
+                'notification_now_read_all'.tr() +
+                    ' (${state.notifications.data.length})',
+                style:
+                    textStyle.bodyMedium.copyWith(color: colors.primaryColor)),
+          ],
+        ),
+      ),
+    );
   }
 
-  SliverList buildListNotification(StateNotifications state) {
+  Widget buildListNotification(StateNotifications state) {
     return SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  final item = state.notifications.data[index];
-                  return DividerWidget(
-                      child: AppGestureDetector(
-                        onTap: () {
-                          AppRouting.goToShopDetailScreen(context);
-                        },
-                        child: ViewNotificationWidget(
-                    notification: item,
-                  ),
-                      ));
-                }, childCount: state.notifications.data.length),
-              );
+      delegate: SliverChildBuilderDelegate((context, index) {
+        final item = state.notifications.data[index];
+        return DividerWidget(
+          child: AppGestureDetector(
+            onTap: () {
+              AppRouting.goToShopDetailScreen(context);
+            },
+            child: ViewNotificationWidget(
+              notification: item,
+            ),
+          ),
+        );
+      }, childCount: state.notifications.data.length),
+    );
   }
 }
