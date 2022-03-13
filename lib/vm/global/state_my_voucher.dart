@@ -2,7 +2,7 @@ import 'package:shopeefood_clone/models/model_voucher.dart';
 import 'package:shopeefood_clone/services/remote_services.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
-class StateMyVoucher extends ChangeNotifier {
+class StateMyVoucher extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateMyVoucher());
 
   List<ModelVoucher> _validVoucher = [];

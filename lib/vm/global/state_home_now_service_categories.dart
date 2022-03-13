@@ -6,7 +6,7 @@ import 'package:shopeefood_clone/vm/global/state_meta_data.dart';
 import '../../models/model_meta_response.dart';
 import '../../utils/common_import.dart';
 
-class StateHomeNowServiceCategories extends ChangeNotifier {
+class StateHomeNowServiceCategories extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) {
     var ret = StateHomeNowServiceCategories();
     ref.listen<StateMetaData>(StateMetaData.provider, (previous, next) {

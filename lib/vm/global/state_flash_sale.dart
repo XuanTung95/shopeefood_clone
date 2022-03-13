@@ -3,8 +3,9 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../../models/model_flash_sale.dart';
 import '../../services/remote_services.dart';
+import '../base_change_notifier.dart';
 
-class StateFlashSale extends ChangeNotifier {
+class StateFlashSale extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateFlashSale());
 
   final _ongoing = PageDataStoreWithId<ModelFlashSale>();

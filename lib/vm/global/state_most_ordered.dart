@@ -4,7 +4,7 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../../models/model_delivery.dart';
 
-class StateMostOrdered extends ChangeNotifier {
+class StateMostOrdered extends BaseChangeNotifier {
   static final provider =
       ChangeNotifierProvider<StateMostOrdered>((ref) => StateMostOrdered());
 

@@ -4,7 +4,7 @@ import 'package:shopeefood_clone/services/remote_services.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
 
-class StateNotifications extends ChangeNotifier {
+class StateNotifications extends BaseChangeNotifier {
   static final provider =
       ChangeNotifierProvider<StateNotifications>((ref) => StateNotifications());
 

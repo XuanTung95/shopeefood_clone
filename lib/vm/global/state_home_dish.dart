@@ -5,7 +5,7 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 import '../../models/list_data_store.dart';
 import '../../models/model_dish.dart';
 
-class StateHomeDish extends ChangeNotifier {
+class StateHomeDish extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateHomeDish());
   PageDataStoreWithId<ModelDish> _dishs = PageDataStoreWithId<ModelDish>();
 

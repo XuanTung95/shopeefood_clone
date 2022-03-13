@@ -1,12 +1,10 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shopeefood_clone/services/remote/location_service.dart';
 import 'package:shopeefood_clone/services/remote_services.dart';
 import 'package:shopeefood_clone/utils/app_config.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 import 'package:shopeefood_clone/utils/location_util.dart';
 import 'package:shopeefood_clone/vm/global/state_home_ads_banner.dart';
 
-class StateUserLocation extends ChangeNotifier {
+class StateUserLocation extends BaseChangeNotifier {
   static final provider =
       ChangeNotifierProvider((ref) => StateUserLocation(ref));
   final Ref ref;
@@ -31,15 +29,20 @@ class StateUserLocation extends ChangeNotifier {
       //   retryIf: (e) => false,
       // );
       await Future.delayed(const Duration(seconds: 1));
-      final pos = await LocationUtils.determinePosition();
-      final mapService = RemoteService.getGoogleMapService();
-      final locationResponse = await mapService.getLocationName(
-          '${pos.latitude},${pos.longitude}', AppConfig.MAP_API_KEY);
-      if (locationResponse.results?.isNotEmpty ?? false) {
+      if (AppConfig.testConfig.isTesting) {
         _currentLocation = UserLocation()
-          ..address = locationResponse.results?.first.formattedAddress ?? '';
-        notifyListeners();
-        await Future.delayed(const Duration(seconds: 2));
+          ..address = 'test address';
+      } else {
+        final pos = await LocationUtils.determinePosition();
+        final mapService = RemoteService.getGoogleMapService();
+        final locationResponse = await mapService.getLocationName(
+            '${pos.latitude},${pos.longitude}', AppConfig.MAP_API_KEY);
+        if (locationResponse.results?.isNotEmpty ?? false) {
+          _currentLocation = UserLocation()
+            ..address = locationResponse.results?.first.formattedAddress ?? '';
+          notifyListeners();
+          await Future.delayed(const Duration(seconds: 2));
+        }
       }
     } catch (e) {
       logger.e(e);

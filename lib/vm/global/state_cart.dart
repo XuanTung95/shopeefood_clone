@@ -3,8 +3,9 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../../models/model_cart.dart';
 import '../../models/model_shop_detail.dart';
+import '../base_change_notifier.dart';
 
-class StateCart extends ChangeNotifier {
+class StateCart extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateCart());
 
   final List<OrderItems> _orderItems = [];

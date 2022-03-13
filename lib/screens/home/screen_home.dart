@@ -18,12 +18,10 @@ class ScreenHome extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    logger.d("Build Home Screen");
     return ScrollConfiguration(
       behavior:
       Platform.isMacOS ? MacOsScrollBehavior() : const ScrollBehavior(),
       child: LayoutBuilder(builder: (context, size) {
-        logger.d('Size: ${size.maxWidth} : ${size.maxHeight}');
         Widget homeContent = const SizedBox();
         var stateBotNav = ref.watch(StateHomeBottomNav.provider);
         switch(stateBotNav.selected) {

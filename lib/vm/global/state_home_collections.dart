@@ -5,7 +5,7 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../../models/list_data_store.dart';
 
-class StateHomeCollection extends ChangeNotifier {
+class StateHomeCollection extends BaseChangeNotifier {
   static final provider =
       ChangeNotifierProvider((ref) => StateHomeCollection());
   final _collections = PageDataStoreWithId<ModelCollection>();

@@ -3,8 +3,9 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../../models/model_draft_order.dart';
 import '../../services/remote_services.dart';
+import '../base_change_notifier.dart';
 
-class StateDraftCart extends ChangeNotifier {
+class StateDraftCart extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateDraftCart());
   final _draftCart = PageDataStoreWithId<ModelDraftCarts>();
 

@@ -1,4 +1,5 @@
 import 'package:shopeefood_clone/routing/app_routing.dart';
+import 'package:shopeefood_clone/utils/app_labels.dart';
 import 'package:shopeefood_clone/vm/global/state_drag_ads.dart';
 import 'package:shopeefood_clone/widgets/common/app_image_widget.dart';
 
@@ -57,48 +58,53 @@ class _DragAdsWidgetState extends ConsumerState<DragAdsWidget>
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(StateDragAds.provider);
-    return Positioned(
-        left: state.left,
-        top: state.top,
-        child: state.ready
-            ? GestureDetector(
-                onPanStart: (details) => state.onPanStart(details),
-                onPanUpdate: (details) => state.onPanUpdate(details),
-                onPanEnd: (details) => state.onPanEnd(details),
-                onPanDown: (details) {
-                  state.onPanDown(details);
-                },
-                child: SizedBox(
-                  width: state.widgetSize.width,
-                  height: state.widgetSize.height,
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          AppRouting.goToShopDetailScreen(context);
-                        },
-                        child: AppImageNetworkWidget(
-                          url: ImageUtils.getIconImage(state.dragAds?.photos, highQuality: true),
-                        ),
+    return state.ready
+        ? Positioned(
+            left: state.left,
+            top: state.top,
+            child: GestureDetector(
+              onPanStart: (details) => state.onPanStart(details),
+              onPanUpdate: (details) => state.onPanUpdate(details),
+              onPanEnd: (details) => state.onPanEnd(details),
+              onPanDown: (details) {
+                state.onPanDown(details);
+              },
+              child: SizedBox(
+                width: state.widgetSize.width,
+                height: state.widgetSize.height,
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        AppRouting.goToShopDetailScreen(context);
+                      },
+                      child: AppImageNetworkWidget(
+                        url: ImageUtils.getIconImage(state.dragAds?.photos,
+                            highQuality: true),
                       ),
-                      Positioned(
-                        top: -5,
-                        right: -5,
-                        child: GestureDetector(
-                          onTap: () {
-                            state.clearDragAds();
-                          },
+                    ),
+                    Positioned(
+                      top: -5,
+                      right: -5,
+                      child: GestureDetector(
+                        onTap: () {
+                          state.clearDragAds();
+                        },
+                        child: Semantics(
+                          label: AppLabels.CLOSE_DRAG_ADS_BUTTON,
                           child: Image.asset(
                             Assets.images.assetsImgCheckoutIcclosepopup.path,
                             width: 30,
                           ),
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            : const SizedBox());
+              ),
+            ),
+          )
+        : const SizedBox();
   }
 }

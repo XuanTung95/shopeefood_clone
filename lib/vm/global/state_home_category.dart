@@ -3,7 +3,7 @@ import 'package:shopeefood_clone/models/model_category.dart';
 import 'package:shopeefood_clone/services/remote_services.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
-class StateHomeCategory extends ChangeNotifier {
+class StateHomeCategory extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateHomeCategory());
 
   final _categories = PageDataStoreWithId<ModelHomeSquare>();

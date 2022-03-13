@@ -1,7 +1,7 @@
 import 'package:shopeefood_clone/utils/common_import.dart';
 import 'package:shopeefood_clone/utils/date_time_utils.dart';
 
-class StateOrderHistoryFilter extends ChangeNotifier {
+class StateOrderHistoryFilter extends BaseChangeNotifier {
   static final provider =
       ChangeNotifierProvider((ref) => StateOrderHistoryFilter());
 

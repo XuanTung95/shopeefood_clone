@@ -169,6 +169,12 @@ class ViewVoucherImage extends StatelessWidget {
             ? AppImageNetworkWidget(
                 fit: fit,
                 url: voucher.icon?.background?.value ?? '',
+                loadingWidget: const AspectRatio(
+                  aspectRatio: 1,
+                  child: SizedBox(
+                    width: double.infinity,
+                  ),
+                ),
                 color: voucher.status == 1 ? null : Colors.grey[300],
               )
             : AppImageNetworkWidget(

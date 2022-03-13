@@ -1,6 +1,6 @@
 import 'package:shopeefood_clone/utils/common_import.dart';
 
-class StateLikesTabFilter extends ChangeNotifier {
+class StateLikesTabFilter extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateLikesTabFilter());
 
   String _selectedService = 'All Services';

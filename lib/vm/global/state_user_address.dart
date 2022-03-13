@@ -4,7 +4,7 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../../services/remote_services.dart';
 
-class StateUserAddress extends ChangeNotifier {
+class StateUserAddress extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateUserAddress());
   final _address =
       PageDataStoreWithId<ModelAddresses>();

@@ -1,18 +1,29 @@
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shopeefood_clone/routing/app_routing.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:shopeefood_clone/utils/app_config.dart';
 
+import 'package:window_manager/window_manager.dart';
 
-void main() async {
+Future<void> main() async {
   // debugPrintMarkNeedsLayoutStacks = true;
   // debugRepaintTextRainbowEnabled = true;
   // debugPaintLayerBordersEnabled = true;
   // debugRepaintRainbowEnabled = true;
   //debugPaintLayerBordersEnabled = true;
 
+  AppConfig.testConfig = TestConfig.notTesting();
+
   WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    await windowManager.ensureInitialized();
+    await windowManager.setSize(const Size(360, 780));
+  }
+
   await EasyLocalization.ensureInitialized();
   runApp(ProviderScope(
     child: EasyLocalization(

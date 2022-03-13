@@ -12,5 +12,6 @@ import 'package:logger/logger.dart';
 export 'package:shopeefood_clone/extensions/model_extensions.dart';
 export 'package:auto_size_text/auto_size_text.dart';
 export 'image_utils.dart';
+export 'package:shopeefood_clone/vm/base_change_notifier.dart';
 
 var logger = Logger();

@@ -36,7 +36,7 @@ class HomeBottomNavigationBar extends ConsumerWidget {
                 iconAssetActive:
                     Assets.images.assetsImgTabbarIcTabBarHomeSelected.path,
               ),
-              text: showBackToTopBtn ? 'back_to_top'.tr() : 'Home',
+              text: showBackToTopBtn ? 'back_to_top'.tr() : 'tab_home_title'.tr(),
             ),
           ),
           Expanded(
@@ -52,7 +52,7 @@ class HomeBottomNavigationBar extends ConsumerWidget {
                 iconAssetActive:
                     Assets.images.assetsImgTabbarIcTabBarOrderSelected.path,
               ),
-              text: 'My Orders',
+              text: 'tab_order_title'.tr(),
             ),
           ),
           Expanded(
@@ -68,7 +68,7 @@ class HomeBottomNavigationBar extends ConsumerWidget {
                 iconAssetActive:
                     Assets.images.assetsImgTabbarIcTabBarSaveSelected.path,
               ),
-              text: 'Likes',
+              text: 'rebranding.likes_tab_title'.tr(),
             ),
           ),
           Expanded(
@@ -88,7 +88,7 @@ class HomeBottomNavigationBar extends ConsumerWidget {
                     .nodeModulesShopeernCommonimagesAssetsCommoniconNotificationiconSelected
                     .path,
               ),
-              text: 'Notifications',
+              text: 'notifications'.tr(),
             ),
           ),
           Expanded(
@@ -104,7 +104,7 @@ class HomeBottomNavigationBar extends ConsumerWidget {
                 iconAssetActive:
                     Assets.images.assetsImgAuthenticationIconUserSelected.path,
               ),
-              text: 'Me',
+              text: 'me_title'.tr(),
             ),
           ),
         ],

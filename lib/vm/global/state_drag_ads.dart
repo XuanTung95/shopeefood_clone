@@ -3,8 +3,9 @@ import 'package:rebound_dart/rebound_dart.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../../models/model_ads_banner.dart';
+import '../base_change_notifier.dart';
 
-class StateDragAds extends ChangeNotifier {
+class StateDragAds extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateDragAds());
   ModelBanner? _dragAds;
 

@@ -8,6 +8,7 @@ import 'package:shopeefood_clone/screens/edit_user_info/screen_update_user_name.
 import 'package:shopeefood_clone/screens/error/screen_error.dart';
 import 'package:shopeefood_clone/screens/voucher_detail/screen_voucher_detail.dart';
 import 'package:shopeefood_clone/screens/webview/screen_webview.dart';
+import 'package:shopeefood_clone/utils/app_config.dart';
 import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../models/model_menu_response.dart';
@@ -215,7 +216,7 @@ class AppRouting {
       // redirect: (state) {
       //   // logger.d('Redirect: ${state.path}');
       // },
-      debugLogDiagnostics: true,
+      debugLogDiagnostics: !AppConfig.testConfig.isTesting,
       errorPageBuilder: (
         context,
         state,

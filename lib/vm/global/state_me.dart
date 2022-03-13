@@ -6,7 +6,7 @@ import 'package:shopeefood_clone/utils/date_time_utils.dart';
 import '../../models/model_user_profile.dart';
 import '../../services/remote_services.dart';
 
-class StateMe extends ChangeNotifier {
+class StateMe extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider<StateMe>((ref) => StateMe());
 
   final PageDataStoreWithId<ModelUserProfile> _userProfile =

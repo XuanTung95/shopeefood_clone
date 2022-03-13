@@ -8,6 +8,7 @@ import 'package:measured_size/measured_size.dart';
 import 'package:shopeefood_clone/models/model_menu_response.dart';
 import 'package:shopeefood_clone/routing/app_routing.dart';
 import 'package:shopeefood_clone/utils/app_config.dart';
+import 'package:shopeefood_clone/utils/app_labels.dart';
 import 'package:shopeefood_clone/utils/share_utils.dart';
 import 'package:shopeefood_clone/vm/global/state_cart.dart';
 import 'package:shopeefood_clone/vm/global/state_restaurant_detail.dart';
@@ -681,15 +682,18 @@ class _ScreenShopDetailState extends ConsumerState<ScreenShopDetail>
                         const SizedBox(
                           width: 10,
                         ),
-                        buildAppBarButton(
-                          context,
-                          Assets
-                              .images
-                              .nodeModulesShopeernCommonimagesAssetsCommoniconArrowbackwhiteicon
-                              .path,
-                          () {
-                            context.pop();
-                          },
+                        Semantics(
+                          label: AppLabels.BACK_BUTTON_APP_BAR,
+                          child: buildAppBarButton(
+                            context,
+                            Assets
+                                .images
+                                .nodeModulesShopeernCommonimagesAssetsCommoniconArrowbackwhiteicon
+                                .path,
+                                () {
+                              context.pop();
+                            },
+                          ),
                         ),
                         const Spacer(),
                         buildAppBarButton(
@@ -850,7 +854,7 @@ class ShopDetailScrollSize {
   double shopTitleRowHeight() {
     if (_titleHeight == 0) {
       WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
-        logger.i('Get Title Height');
+        // logger.i('Get Title Height');
         final BuildContext? context = titleRowKey.currentContext;
         if (context == null) return;
         final RenderObject? box = context.findRenderObject();

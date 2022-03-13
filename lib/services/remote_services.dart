@@ -19,6 +19,7 @@ import 'package:shopeefood_clone/services/remote/fake_api/fake_shop_menus.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_user_profile.dart';
 import 'package:shopeefood_clone/services/remote/fake_api/fake_voucher.dart';
 import 'package:shopeefood_clone/services/remote/google_map_service.dart';
+import 'package:shopeefood_clone/utils/app_config.dart';
 
 import '../utils/common_import.dart';
 
@@ -28,7 +29,9 @@ class RemoteService {
   static ApiRestClient getApiService() {
     if (_client == null) {
       Dio dio = Dio();
-      dio.interceptors.add(LogInterceptor());
+      if (!AppConfig.testConfig.isTesting) {
+        dio.interceptors.add(LogInterceptor());
+      }
       dio.interceptors.add(FakeApiInterceptor());
 
       _client = ApiRestClient(dio);

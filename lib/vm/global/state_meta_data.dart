@@ -3,7 +3,7 @@ import 'package:shopeefood_clone/models/model_meta_response.dart';
 import '../../services/remote_services.dart';
 import '../../utils/common_import.dart';
 
-class StateMetaData extends ChangeNotifier {
+class StateMetaData extends BaseChangeNotifier {
   static final provider =
   ChangeNotifierProvider<StateMetaData>((ref) => StateMetaData());
   ModelMetaData? _metaData;

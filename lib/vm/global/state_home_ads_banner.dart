@@ -7,7 +7,7 @@ import 'package:shopeefood_clone/vm/global/state_home_popup.dart';
 
 import '../../utils/enum_utils.dart';
 
-class StateHomeBanner extends ChangeNotifier {
+class StateHomeBanner extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateHomeBanner(ref));
 
   final Ref ref;

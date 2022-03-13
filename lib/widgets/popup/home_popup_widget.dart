@@ -1,4 +1,5 @@
 import 'package:shopeefood_clone/routing/app_routing.dart';
+import 'package:shopeefood_clone/utils/app_labels.dart';
 import 'package:shopeefood_clone/vm/global/state_home_popup.dart';
 import 'package:shopeefood_clone/widgets/common/app_image_widget.dart';
 
@@ -92,9 +93,12 @@ class _HomePopupWidgetState extends ConsumerState<HomePopupWidget>
                           onTap: () {
                             statePopup.clearPopupAds();
                           },
-                          child: Image.asset(
-                            Assets.images.assetsImgCheckoutIcclosepopup.path,
-                            width: 40,
+                          child: Semantics(
+                            label: AppLabels.CLOSE_POPUP_BUTTON,
+                            child: Image.asset(
+                              Assets.images.assetsImgCheckoutIcclosepopup.path,
+                              width: 40,
+                            ),
                           ),
                         ))
                   ],

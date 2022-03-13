@@ -2,8 +2,9 @@ import '../../models/list_data_store.dart';
 import '../../models/model_delivery.dart';
 import '../../services/remote_services.dart';
 import '../../utils/common_import.dart';
+import '../base_change_notifier.dart';
 
-class StateBrandRestaurant extends ChangeNotifier {
+class StateBrandRestaurant extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider.family.autoDispose(
     (ref, ModelDelivery shop) => StateBrandRestaurant(shop: shop),
   );

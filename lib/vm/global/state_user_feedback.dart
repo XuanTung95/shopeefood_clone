@@ -4,7 +4,7 @@ import '../../models/list_data_store.dart';
 import '../../services/remote_services.dart';
 import '../../utils/common_import.dart';
 
-class StateUserFeedback extends ChangeNotifier {
+class StateUserFeedback extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider.family
       .autoDispose((ref, String id) => StateUserFeedback());
 

@@ -1,7 +1,7 @@
 
 import 'package:shopeefood_clone/utils/common_import.dart';
 
-class StateHomeBottomNav extends ChangeNotifier {
+class StateHomeBottomNav extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateHomeBottomNav());
 
   HomeBottomNavName _selected = HomeBottomNavName.HOME;

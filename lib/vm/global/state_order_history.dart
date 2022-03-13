@@ -4,7 +4,7 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 import '../../models/model_order.dart';
 import '../../services/remote_services.dart';
 
-class StateOrderHistory extends ChangeNotifier {
+class StateOrderHistory extends BaseChangeNotifier {
   static final provider =
       ChangeNotifierProvider<StateOrderHistory>((ref) => StateOrderHistory());
 

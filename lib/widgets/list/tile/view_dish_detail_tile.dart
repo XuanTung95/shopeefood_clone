@@ -62,7 +62,7 @@ class ViewDishDetailTile extends StatelessWidget {
             width: double.infinity,
             padding: EdgeInsets.all(padding),
             child: AppImageNetworkWidget(
-              url: ImageUtils.getIconImage(menu.photos),
+              url: ImageUtils.getIconImage(menu.photos, highQuality: true),
               fit: BoxFit.fitWidth,
             ),
           ),

@@ -209,20 +209,33 @@ class _MeTabViewState extends ConsumerState<TabMeHomeView> {
           onTap: () {
             AppRouting.goToEditUserInfoScreen(context);
           },
-          child: Row(
-            children: [
-              const UserAvatarWidget(),
-              const SizedBox(
-                width: 15,
-              ),
-              Text(
-                state.userProfile?.name ?? '',
-                style: textStyle.userName,
-              ),
-            ],
-          ),
+          child: const AvatarUserNameWidget(),
         ),
       ),
+    );
+  }
+}
+
+class AvatarUserNameWidget extends ConsumerWidget {
+  const AvatarUserNameWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final textStyle = AppTextStyle(context);
+    final state = ref.watch(StateMe.provider);
+    return Row(
+      children: [
+        const UserAvatarWidget(),
+        const SizedBox(
+          width: 15,
+        ),
+        Text(
+          state.userProfile?.name ?? '',
+          style: textStyle.userName,
+        ),
+      ],
     );
   }
 }

@@ -50,8 +50,7 @@ class _ScreenHomeTabState extends ConsumerState<TabHomeScreen> {
         bool newValue = scrollController.offset > 500;
         if (newValue != showBackToHomeBtn) {
           showBackToHomeBtn = newValue;
-          ref.read(StateHomeTabScroll.provider).showBackToTopBtn =
-              showBackToHomeBtn;
+          ref.read(StateHomeTabScroll.provider).setShowBackToTopBtn(showBackToHomeBtn);
         }
       },
     );
@@ -70,7 +69,7 @@ class _ScreenHomeTabState extends ConsumerState<TabHomeScreen> {
     homeScrollToTop.removeListener(_scrollToTop);
     scrollController.dispose();
     Future.delayed(Duration.zero).then((value) {
-      scrollState.showBackToTopBtn = false;
+      scrollState.setShowBackToTopBtn(false, notify: false);
     });
     super.dispose();
   }

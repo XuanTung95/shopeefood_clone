@@ -9,8 +9,10 @@ class StateHomeTabScroll extends ChangeNotifier {
 
   bool get showBackToTopBtn => _showBackToTopBtn;
 
-  set showBackToTopBtn(bool value) {
+  void setShowBackToTopBtn(bool value, {bool notify = true}) {
     _showBackToTopBtn = value;
-    notifyListeners();
+    if (notify) {
+      notifyListeners();
+    }
   }
 }

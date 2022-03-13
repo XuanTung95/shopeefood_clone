@@ -2,7 +2,7 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 
 import '../../models/model_ads_banner.dart';
 
-class StateHomePopup extends ChangeNotifier {
+class StateHomePopup extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider((ref) => StateHomePopup());
 
   ModelBanner? _popupAds;

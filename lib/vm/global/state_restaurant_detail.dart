@@ -5,7 +5,7 @@ import 'package:shopeefood_clone/utils/common_import.dart';
 import '../../models/model_menu_response.dart';
 import '../../models/model_shop_detail.dart';
 
-class StateRestaurantDetail extends ChangeNotifier {
+class StateRestaurantDetail extends BaseChangeNotifier {
   static final provider = ChangeNotifierProvider.family
       .autoDispose((ref, String id) => StateRestaurantDetail());
 
