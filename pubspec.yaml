@@ -30,39 +30,43 @@ dependencies:
   flutter:
     sdk: flutter
   # Get location 
-  geolocator: ^8.2.0
+  geolocator: ^9.0.2
   intl:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  easy_localization:
+  easy_localization: 3.0.0
   logger:
   flutter_riverpod: ^1.0.3
   dio: ^4.0.4
   retrofit: '>=3.0.0 <4.0.0'
   retry: ^3.1.0
   go_router: ^3.0.4
-  extended_image: ^6.0.1
+  extended_image: ^6.3.2
   auto_size_text: ^3.0.0
   carousel_slider: ^4.0.0
   slide_countdown: ^0.1.2
-  sliver_tools: ^0.2.5
+  sliver_tools: ^0.2.8
   modal_bottom_sheet: ^2.0.0
-  share_plus: ^3.1.0
+  share_plus: ^6.3.0
   #flutter_html: ^2.2.1
   flutter_widget_from_html: ^0.8.5
   google_maps_flutter: ^2.1.2
   measured_size: ^1.0.0
   badges: ^2.0.2
-  webview_flutter: ^3.0.1
+  webview_flutter: ^3.0.4
   easy_debounce: ^2.0.2+1
   clipboard: ^0.1.3
   image_picker: ^0.8.4+10
-  permission_handler: ^9.2.0
+  permission_handler: ^10.2.0
   rebound_dart: ^0.3.0
   email_validator: ^2.0.1
-  window_manager: ^0.2.0
+  window_manager: ^0.2.7
 
+dependency_overrides:
+  path: 1.8.2
+  fwfh_text_style: ^2.22.8+1
+  just_audio: ^0.9.30
 dev_dependencies:
   integration_test:
     sdk: flutter

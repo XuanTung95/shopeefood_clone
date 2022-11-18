@@ -671,6 +671,7 @@ class CustomScrollbarPainter extends ChangeNotifier implements CustomPainter {
       case PointerDeviceKind.unknown:
         return interactiveRect.contains(position);
     }
+    return false;
   }
 
   /// Same as hitTestInteractive, but excludes the track portion of the scrollbar.
@@ -704,6 +705,7 @@ class CustomScrollbarPainter extends ChangeNotifier implements CustomPainter {
       case PointerDeviceKind.unknown:
         return _thumbRect!.contains(position);
     }
+    return false;
   }
 
   // Scrollbars are interactive.
