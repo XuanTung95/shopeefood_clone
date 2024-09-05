@@ -17,7 +17,7 @@ class ScreenWebView extends StatefulWidget {
 }
 
 class _ScreenWebViewState extends State<ScreenWebView> {
-  WebViewController? controller;
+  late WebViewController controller;
   bool isLoading = true;
   String title = '';
 
@@ -26,7 +26,34 @@ class _ScreenWebViewState extends State<ScreenWebView> {
     super.initState();
     title = widget.title;
     // Enable virtual display.
-    if (Platform.isAndroid) WebView.platform = AndroidWebView();
+    // if (Platform.isAndroid) WebView.platform = AndroidWebView();
+    controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {
+          },
+          onPageStarted: (String url) {},
+          onPageFinished: (String url) {
+            setState(() {
+              isLoading = false;
+            });
+            controller?.getTitle().then((value) {
+              setState(() {
+                if (value != null) {
+                  title = value;
+                }
+              });
+            });
+          },
+          onHttpError: (HttpResponseError error) {},
+          onWebResourceError: (WebResourceError error) {},
+          onNavigationRequest: (NavigationRequest request) {
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(widget.url));
   }
 
   @override
@@ -50,25 +77,7 @@ class _ScreenWebViewState extends State<ScreenWebView> {
   Widget buildWebView() {
     if (Platform.isAndroid || Platform.isIOS) {
       return Stack(children: [
-        WebView(
-          initialUrl: widget.url,
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController controller) {
-            this.controller = controller;
-          },
-          onPageFinished: (val) {
-            setState(() {
-              isLoading = false;
-            });
-            controller?.getTitle().then((value) {
-              setState(() {
-                if (value != null) {
-                  title = value;
-                }
-              });
-            });
-          },
-        ),
+        WebViewWidget(controller: controller),
         if (isLoading)
           const SizedBox(
             width: double.infinity,

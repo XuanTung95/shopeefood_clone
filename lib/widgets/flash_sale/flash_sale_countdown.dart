@@ -16,8 +16,8 @@ class _FlashSaleCountdownState extends State<FlashSaleCountdown> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SlideCountdownSeparated(
-          height: 20,
-          width: 24,
+          // height: 20,
+          // width: 24,
           duration: const Duration(days: 0, hours: 3, minutes: 30),
           padding: EdgeInsets.zero,
           separatorPadding: const EdgeInsets.all(2),
@@ -26,7 +26,7 @@ class _FlashSaleCountdownState extends State<FlashSaleCountdown> {
             color: Colors.black,
           ),
           slideDirection: SlideDirection.up,
-          textStyle: AppTextStyle(context).homeDeliverToContent.copyWith(
+          style: AppTextStyle(context).homeDeliverToContent.copyWith(
               color: Colors.white, fontSize: 13, fontWeight: FontWeight.w400),
         ),
       ],

@@ -21,7 +21,8 @@ class AppImageNetworkWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExtendedImage.network(
-      url ?? '',
+      // url ?? '',
+      'https://static.kfcvietnam.com.vn/images/category/lg/COMBO%20NHOM.jpg',
       width: width,
       height: height,
       cache: true,

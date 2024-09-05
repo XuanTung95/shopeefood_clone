@@ -45,8 +45,9 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      routeInformationParser: _router.routeInformationParser,
-      routerDelegate: _router.routerDelegate,
+      // routeInformationParser: _router.routeInformationParser,
+      // routerDelegate: _router.routerDelegate,
+      routerConfig: _router,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,

@@ -1,4 +1,4 @@
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:shopeefood_clone/utils/money_utls.dart';
 import 'package:shopeefood_clone/vm/global/state_cart.dart';
 import 'package:shopeefood_clone/widgets/button/app_gesture_detector.dart';
@@ -58,9 +58,11 @@ class CheckoutRow extends ConsumerWidget {
                                   clipBehavior: Clip.none,
                                   alignment: Alignment.topRight,
                                   children: [
-                                    Badge(
-                                      badgeColor: colors.primaryColor,
-                                      position: const BadgePosition(top: -5, end: -0),
+                                    badges.Badge(
+                                      badgeStyle: badges.BadgeStyle(
+                                        badgeColor: colors.primaryColor,
+                                      ),
+                                      position: badges.BadgePosition.topEnd(top: -5, end: -0),
                                       badgeContent: Text('${orderDishes.length}',
                                           style: textStyle.bodyBoldSmallWhite
                                               .copyWith(fontSize: 9)),

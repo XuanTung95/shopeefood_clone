@@ -129,10 +129,10 @@ class _ScrollDayPickerItemState extends State<ScrollDayPickerItem> {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final MaterialLocalizations localizations = MaterialLocalizations.of(context);
     final TextTheme textTheme = Theme.of(context).textTheme;
-    final TextStyle? headerStyle = textTheme.caption?.apply(
+    final TextStyle? headerStyle = textTheme.bodyMedium?.apply(
       color: colorScheme.onSurface.withOpacity(0.60),
     );
-    final TextStyle dayStyle = textTheme.caption!;
+    final TextStyle dayStyle = textTheme.bodyMedium!;
     final Color enabledDayColor = colorScheme.onSurface.withOpacity(0.87);
     final Color disabledDayColor = colorScheme.onSurface.withOpacity(0.38);
     final Color selectedDayColor = colorScheme.onPrimary;
